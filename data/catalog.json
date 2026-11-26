@@ -1,6 +1,722 @@
 {
   "schemaVersion": 1,
-  "specimens": [],
-  "structures": [],
-  "assets": []
+  "specimens": [
+    {
+      "id": "felis-catus-tavernier-2022",
+      "species": "Felis catus",
+      "breed": "Domestic cat (unspecified breed in photogrammetry record)",
+      "age": "Adult (skeletally mature; exact age unspecified in source)",
+      "provenance": "Photogrammetry scan 'cat skeleton' by Tavernier Amaury (@svtavernier), published 2022-05-22 on Sketchfab (https://sketchfab.com/3d-models/cat-skeleton-7106115b299649e992476f2d3b4fc602), licensed CC BY-NC-SA 4.0."
+    }
+  ],
+  "structures": [
+    {
+      "id": "felis-catus.skeletal.cranium",
+      "species": "Felis catus",
+      "system": "skeletal",
+      "region": "head",
+      "laterality": "midline",
+      "names": {
+        "ar": "الجمجمة (القحف)",
+        "en": "Cranium",
+        "la": "Cranium"
+      },
+      "ontology": {
+        "navEdition": "NAV 6th edition (2017)"
+      },
+      "references": [
+        "https://www.wava-amav.org/wava-documents.html",
+        "https://sketchfab.com/3d-models/cat-skeleton-7106115b299649e992476f2d3b4fc602"
+      ],
+      "review": {
+        "status": "draft"
+      }
+    },
+    {
+      "id": "felis-catus.skeletal.mandibula",
+      "species": "Felis catus",
+      "system": "skeletal",
+      "region": "head",
+      "laterality": "midline",
+      "names": {
+        "ar": "الفك السفلي",
+        "en": "Mandible",
+        "la": "Mandibula"
+      },
+      "ontology": {
+        "navEdition": "NAV 6th edition (2017)"
+      },
+      "references": [
+        "https://www.wava-amav.org/wava-documents.html",
+        "https://sketchfab.com/3d-models/cat-skeleton-7106115b299649e992476f2d3b4fc602"
+      ],
+      "review": {
+        "status": "draft"
+      }
+    },
+    {
+      "id": "felis-catus.skeletal.vertebrae-cervicales",
+      "species": "Felis catus",
+      "system": "skeletal",
+      "region": "neck",
+      "laterality": "midline",
+      "names": {
+        "ar": "الفقرات العنقية",
+        "en": "Cervical vertebrae",
+        "la": "Vertebrae cervicales"
+      },
+      "ontology": {
+        "navEdition": "NAV 6th edition (2017)"
+      },
+      "references": [
+        "https://www.wava-amav.org/wava-documents.html",
+        "https://sketchfab.com/3d-models/cat-skeleton-7106115b299649e992476f2d3b4fc602"
+      ],
+      "review": {
+        "status": "draft"
+      }
+    },
+    {
+      "id": "felis-catus.skeletal.vertebrae-thoracicae",
+      "species": "Felis catus",
+      "system": "skeletal",
+      "region": "thorax",
+      "laterality": "midline",
+      "names": {
+        "ar": "الفقرات الصدرية",
+        "en": "Thoracic vertebrae",
+        "la": "Vertebrae thoracicae"
+      },
+      "ontology": {
+        "navEdition": "NAV 6th edition (2017)"
+      },
+      "references": [
+        "https://www.wava-amav.org/wava-documents.html",
+        "https://sketchfab.com/3d-models/cat-skeleton-7106115b299649e992476f2d3b4fc602"
+      ],
+      "review": {
+        "status": "draft"
+      }
+    },
+    {
+      "id": "felis-catus.skeletal.vertebrae-lumbales",
+      "species": "Felis catus",
+      "system": "skeletal",
+      "region": "abdomen",
+      "laterality": "midline",
+      "names": {
+        "ar": "الفقرات القطنية",
+        "en": "Lumbar vertebrae",
+        "la": "Vertebrae lumbales"
+      },
+      "ontology": {
+        "navEdition": "NAV 6th edition (2017)"
+      },
+      "references": [
+        "https://www.wava-amav.org/wava-documents.html",
+        "https://sketchfab.com/3d-models/cat-skeleton-7106115b299649e992476f2d3b4fc602"
+      ],
+      "review": {
+        "status": "draft"
+      }
+    },
+    {
+      "id": "felis-catus.skeletal.os-sacrum",
+      "species": "Felis catus",
+      "system": "skeletal",
+      "region": "pelvis",
+      "laterality": "midline",
+      "names": {
+        "ar": "العجز",
+        "en": "Sacrum",
+        "la": "Os sacrum"
+      },
+      "ontology": {
+        "navEdition": "NAV 6th edition (2017)"
+      },
+      "references": [
+        "https://www.wava-amav.org/wava-documents.html",
+        "https://sketchfab.com/3d-models/cat-skeleton-7106115b299649e992476f2d3b4fc602"
+      ],
+      "review": {
+        "status": "draft"
+      }
+    },
+    {
+      "id": "felis-catus.skeletal.vertebrae-caudales",
+      "species": "Felis catus",
+      "system": "skeletal",
+      "region": "tail",
+      "laterality": "midline",
+      "names": {
+        "ar": "الفقرات الذيلية",
+        "en": "Caudal vertebrae",
+        "la": "Vertebrae caudales"
+      },
+      "ontology": {
+        "navEdition": "NAV 6th edition (2017)"
+      },
+      "references": [
+        "https://www.wava-amav.org/wava-documents.html",
+        "https://sketchfab.com/3d-models/cat-skeleton-7106115b299649e992476f2d3b4fc602"
+      ],
+      "review": {
+        "status": "draft"
+      }
+    },
+    {
+      "id": "felis-catus.skeletal.costae.left",
+      "species": "Felis catus",
+      "system": "skeletal",
+      "region": "thorax",
+      "laterality": "left",
+      "names": {
+        "ar": "الأضلاع اليسرى",
+        "en": "Left ribs",
+        "la": "Costae"
+      },
+      "ontology": {
+        "navEdition": "NAV 6th edition (2017)"
+      },
+      "references": [
+        "https://www.wava-amav.org/wava-documents.html",
+        "https://sketchfab.com/3d-models/cat-skeleton-7106115b299649e992476f2d3b4fc602"
+      ],
+      "review": {
+        "status": "draft"
+      }
+    },
+    {
+      "id": "felis-catus.skeletal.costae.right",
+      "species": "Felis catus",
+      "system": "skeletal",
+      "region": "thorax",
+      "laterality": "right",
+      "names": {
+        "ar": "الأضلاع اليمنى",
+        "en": "Right ribs",
+        "la": "Costae"
+      },
+      "ontology": {
+        "navEdition": "NAV 6th edition (2017)"
+      },
+      "references": [
+        "https://www.wava-amav.org/wava-documents.html",
+        "https://sketchfab.com/3d-models/cat-skeleton-7106115b299649e992476f2d3b4fc602"
+      ],
+      "review": {
+        "status": "draft"
+      }
+    },
+    {
+      "id": "felis-catus.skeletal.sternum",
+      "species": "Felis catus",
+      "system": "skeletal",
+      "region": "thorax",
+      "laterality": "midline",
+      "names": {
+        "ar": "القص",
+        "en": "Sternum",
+        "la": "Sternum"
+      },
+      "ontology": {
+        "navEdition": "NAV 6th edition (2017)"
+      },
+      "references": [
+        "https://www.wava-amav.org/wava-documents.html",
+        "https://sketchfab.com/3d-models/cat-skeleton-7106115b299649e992476f2d3b4fc602"
+      ],
+      "review": {
+        "status": "draft"
+      }
+    },
+    {
+      "id": "felis-catus.skeletal.os-coxae.left",
+      "species": "Felis catus",
+      "system": "skeletal",
+      "region": "pelvis",
+      "laterality": "left",
+      "names": {
+        "ar": "العظم الوركي الأيسر (نصف الحوض الأيسر)",
+        "en": "Left hip bone",
+        "la": "Os coxae"
+      },
+      "ontology": {
+        "navEdition": "NAV 6th edition (2017)"
+      },
+      "references": [
+        "https://www.wava-amav.org/wava-documents.html",
+        "https://sketchfab.com/3d-models/cat-skeleton-7106115b299649e992476f2d3b4fc602"
+      ],
+      "review": {
+        "status": "draft"
+      }
+    },
+    {
+      "id": "felis-catus.skeletal.os-coxae.right",
+      "species": "Felis catus",
+      "system": "skeletal",
+      "region": "pelvis",
+      "laterality": "right",
+      "names": {
+        "ar": "العظم الوركي الأيمن (نصف الحوض الأيمن)",
+        "en": "Right hip bone",
+        "la": "Os coxae"
+      },
+      "ontology": {
+        "navEdition": "NAV 6th edition (2017)"
+      },
+      "references": [
+        "https://www.wava-amav.org/wava-documents.html",
+        "https://sketchfab.com/3d-models/cat-skeleton-7106115b299649e992476f2d3b4fc602"
+      ],
+      "review": {
+        "status": "draft"
+      }
+    },
+    {
+      "id": "felis-catus.skeletal.scapula.left",
+      "species": "Felis catus",
+      "system": "skeletal",
+      "region": "forelimb",
+      "laterality": "left",
+      "names": {
+        "ar": "لوح الكتف الأيسر",
+        "en": "Left scapula",
+        "la": "Scapula"
+      },
+      "ontology": {
+        "navEdition": "NAV 6th edition (2017)"
+      },
+      "references": [
+        "https://www.wava-amav.org/wava-documents.html",
+        "https://sketchfab.com/3d-models/cat-skeleton-7106115b299649e992476f2d3b4fc602"
+      ],
+      "review": {
+        "status": "draft"
+      }
+    },
+    {
+      "id": "felis-catus.skeletal.scapula.right",
+      "species": "Felis catus",
+      "system": "skeletal",
+      "region": "forelimb",
+      "laterality": "right",
+      "names": {
+        "ar": "لوح الكتف الأيمن",
+        "en": "Right scapula",
+        "la": "Scapula"
+      },
+      "ontology": {
+        "navEdition": "NAV 6th edition (2017)"
+      },
+      "references": [
+        "https://www.wava-amav.org/wava-documents.html",
+        "https://sketchfab.com/3d-models/cat-skeleton-7106115b299649e992476f2d3b4fc602"
+      ],
+      "review": {
+        "status": "draft"
+      }
+    },
+    {
+      "id": "felis-catus.skeletal.humerus.left",
+      "species": "Felis catus",
+      "system": "skeletal",
+      "region": "forelimb",
+      "laterality": "left",
+      "names": {
+        "ar": "عظم العضد الأيسر",
+        "en": "Left humerus",
+        "la": "Humerus"
+      },
+      "ontology": {
+        "navEdition": "NAV 6th edition (2017)"
+      },
+      "references": [
+        "https://www.wava-amav.org/wava-documents.html",
+        "https://sketchfab.com/3d-models/cat-skeleton-7106115b299649e992476f2d3b4fc602"
+      ],
+      "review": {
+        "status": "draft"
+      }
+    },
+    {
+      "id": "felis-catus.skeletal.humerus.right",
+      "species": "Felis catus",
+      "system": "skeletal",
+      "region": "forelimb",
+      "laterality": "right",
+      "names": {
+        "ar": "عظم العضد الأيمن",
+        "en": "Right humerus",
+        "la": "Humerus"
+      },
+      "ontology": {
+        "navEdition": "NAV 6th edition (2017)"
+      },
+      "references": [
+        "https://www.wava-amav.org/wava-documents.html",
+        "https://sketchfab.com/3d-models/cat-skeleton-7106115b299649e992476f2d3b4fc602"
+      ],
+      "review": {
+        "status": "draft"
+      }
+    },
+    {
+      "id": "felis-catus.skeletal.ossa-antebrachii.left",
+      "species": "Felis catus",
+      "system": "skeletal",
+      "region": "forelimb",
+      "laterality": "left",
+      "names": {
+        "ar": "عظما الساعد الأيسر (الكعبرة والزند)",
+        "en": "Left radius and ulna",
+        "la": "Ossa antebrachii (Radius et Ulna)"
+      },
+      "ontology": {
+        "navEdition": "NAV 6th edition (2017)"
+      },
+      "references": [
+        "https://www.wava-amav.org/wava-documents.html",
+        "https://sketchfab.com/3d-models/cat-skeleton-7106115b299649e992476f2d3b4fc602"
+      ],
+      "review": {
+        "status": "draft"
+      }
+    },
+    {
+      "id": "felis-catus.skeletal.ossa-antebrachii.right",
+      "species": "Felis catus",
+      "system": "skeletal",
+      "region": "forelimb",
+      "laterality": "right",
+      "names": {
+        "ar": "عظما الساعد الأيمن (الكعبرة والزند)",
+        "en": "Right radius and ulna",
+        "la": "Ossa antebrachii (Radius et Ulna)"
+      },
+      "ontology": {
+        "navEdition": "NAV 6th edition (2017)"
+      },
+      "references": [
+        "https://www.wava-amav.org/wava-documents.html",
+        "https://sketchfab.com/3d-models/cat-skeleton-7106115b299649e992476f2d3b4fc602"
+      ],
+      "review": {
+        "status": "draft"
+      }
+    },
+    {
+      "id": "felis-catus.skeletal.skeleton-manus.left",
+      "species": "Felis catus",
+      "system": "skeletal",
+      "region": "forelimb",
+      "laterality": "left",
+      "names": {
+        "ar": "عظام الكف الأمامية اليسرى",
+        "en": "Left forepaw bones",
+        "la": "Skeleton manus"
+      },
+      "ontology": {
+        "navEdition": "NAV 6th edition (2017)"
+      },
+      "references": [
+        "https://www.wava-amav.org/wava-documents.html",
+        "https://sketchfab.com/3d-models/cat-skeleton-7106115b299649e992476f2d3b4fc602"
+      ],
+      "review": {
+        "status": "draft"
+      }
+    },
+    {
+      "id": "felis-catus.skeletal.skeleton-manus.right",
+      "species": "Felis catus",
+      "system": "skeletal",
+      "region": "forelimb",
+      "laterality": "right",
+      "names": {
+        "ar": "عظام الكف الأمامية اليمنى",
+        "en": "Right forepaw bones",
+        "la": "Skeleton manus"
+      },
+      "ontology": {
+        "navEdition": "NAV 6th edition (2017)"
+      },
+      "references": [
+        "https://www.wava-amav.org/wava-documents.html",
+        "https://sketchfab.com/3d-models/cat-skeleton-7106115b299649e992476f2d3b4fc602"
+      ],
+      "review": {
+        "status": "draft"
+      }
+    },
+    {
+      "id": "felis-catus.skeletal.os-femoris.left",
+      "species": "Felis catus",
+      "system": "skeletal",
+      "region": "hindlimb",
+      "laterality": "left",
+      "names": {
+        "ar": "عظم الفخذ الأيسر",
+        "en": "Left femur",
+        "la": "Os femoris"
+      },
+      "ontology": {
+        "navEdition": "NAV 6th edition (2017)"
+      },
+      "references": [
+        "https://www.wava-amav.org/wava-documents.html",
+        "https://sketchfab.com/3d-models/cat-skeleton-7106115b299649e992476f2d3b4fc602"
+      ],
+      "review": {
+        "status": "draft"
+      }
+    },
+    {
+      "id": "felis-catus.skeletal.os-femoris.right",
+      "species": "Felis catus",
+      "system": "skeletal",
+      "region": "hindlimb",
+      "laterality": "right",
+      "names": {
+        "ar": "عظم الفخذ الأيمن",
+        "en": "Right femur",
+        "la": "Os femoris"
+      },
+      "ontology": {
+        "navEdition": "NAV 6th edition (2017)"
+      },
+      "references": [
+        "https://www.wava-amav.org/wava-documents.html",
+        "https://sketchfab.com/3d-models/cat-skeleton-7106115b299649e992476f2d3b4fc602"
+      ],
+      "review": {
+        "status": "draft"
+      }
+    },
+    {
+      "id": "felis-catus.skeletal.ossa-cruris.left",
+      "species": "Felis catus",
+      "system": "skeletal",
+      "region": "hindlimb",
+      "laterality": "left",
+      "names": {
+        "ar": "عظما الساق اليسرى (الظنبوب والشظية)",
+        "en": "Left tibia and fibula",
+        "la": "Ossa cruris (Tibia et Fibula)"
+      },
+      "ontology": {
+        "navEdition": "NAV 6th edition (2017)"
+      },
+      "references": [
+        "https://www.wava-amav.org/wava-documents.html",
+        "https://sketchfab.com/3d-models/cat-skeleton-7106115b299649e992476f2d3b4fc602"
+      ],
+      "review": {
+        "status": "draft"
+      }
+    },
+    {
+      "id": "felis-catus.skeletal.ossa-cruris.right",
+      "species": "Felis catus",
+      "system": "skeletal",
+      "region": "hindlimb",
+      "laterality": "right",
+      "names": {
+        "ar": "عظما الساق اليمنى (الظنبوب والشظية)",
+        "en": "Right tibia and fibula",
+        "la": "Ossa cruris (Tibia et Fibula)"
+      },
+      "ontology": {
+        "navEdition": "NAV 6th edition (2017)"
+      },
+      "references": [
+        "https://www.wava-amav.org/wava-documents.html",
+        "https://sketchfab.com/3d-models/cat-skeleton-7106115b299649e992476f2d3b4fc602"
+      ],
+      "review": {
+        "status": "draft"
+      }
+    },
+    {
+      "id": "felis-catus.skeletal.skeleton-pedis.left",
+      "species": "Felis catus",
+      "system": "skeletal",
+      "region": "hindlimb",
+      "laterality": "left",
+      "names": {
+        "ar": "عظام القدم الخلفية اليسرى",
+        "en": "Left hindpaw bones",
+        "la": "Skeleton pedis"
+      },
+      "ontology": {
+        "navEdition": "NAV 6th edition (2017)"
+      },
+      "references": [
+        "https://www.wava-amav.org/wava-documents.html",
+        "https://sketchfab.com/3d-models/cat-skeleton-7106115b299649e992476f2d3b4fc602"
+      ],
+      "review": {
+        "status": "draft"
+      }
+    },
+    {
+      "id": "felis-catus.skeletal.skeleton-pedis.right",
+      "species": "Felis catus",
+      "system": "skeletal",
+      "region": "hindlimb",
+      "laterality": "right",
+      "names": {
+        "ar": "عظام القدم الخلفية اليمنى",
+        "en": "Right hindpaw bones",
+        "la": "Skeleton pedis"
+      },
+      "ontology": {
+        "navEdition": "NAV 6th edition (2017)"
+      },
+      "references": [
+        "https://www.wava-amav.org/wava-documents.html",
+        "https://sketchfab.com/3d-models/cat-skeleton-7106115b299649e992476f2d3b4fc602"
+      ],
+      "review": {
+        "status": "draft"
+      }
+    }
+  ],
+  "assets": [
+    {
+      "id": "asset.felis-catus.skeletal.tavernier-2022",
+      "specimenId": "felis-catus-tavernier-2022",
+      "titleAr": "الجهاز الهيكلي للقطة المنزلية (مسح Tavernier Amaury)",
+      "titleEn": "Domestic cat skeletal system (Tavernier Amaury photogrammetry)",
+      "geometry": "surface-scan",
+      "source": {
+        "url": "https://sketchfab.com/3d-models/cat-skeleton-7106115b299649e992476f2d3b4fc602",
+        "sha256": "891f86c4effe001a895459e30b1064c47cab7f3d69837f49d6b509775c103ac9",
+        "attribution": "Tavernier Amaury (@svtavernier)",
+        "license": "CC-BY-NC-SA-4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by-nc-sa/4.0/",
+        "nonCommercial": true
+      },
+      "model": {
+        "path": "models/cat/felis-catus-tavernier-skeleton.glb",
+        "sha256": "e59e517be3d0f1f207294d3dbf071aba9eaca3f8dad063d85947f97735b50be5",
+        "bytes": 3534008,
+        "units": "m",
+        "transformation": "Rotated -90 deg about +Y (cranial=-Z, dorsal=+Y, left=-X); scaled 0.04 m per raw unit (total length 0.476 m, standing height 0.248 m); centered X/Z and grounded to y=0; segmented single photogrammetric surface (74,235 faces) into 26 distinguishable anatomical nodes without fabricating geometry; removed KHR_materials_specular; embedded 2048px JPEG albedo texture."
+      },
+      "bindings": [
+        {
+          "node": "cranium",
+          "structureId": "felis-catus.skeletal.cranium"
+        },
+        {
+          "node": "mandibula",
+          "structureId": "felis-catus.skeletal.mandibula"
+        },
+        {
+          "node": "vertebrae_cervicales",
+          "structureId": "felis-catus.skeletal.vertebrae-cervicales"
+        },
+        {
+          "node": "vertebrae_thoracicae",
+          "structureId": "felis-catus.skeletal.vertebrae-thoracicae"
+        },
+        {
+          "node": "vertebrae_lumbales",
+          "structureId": "felis-catus.skeletal.vertebrae-lumbales"
+        },
+        {
+          "node": "os_sacrum",
+          "structureId": "felis-catus.skeletal.os-sacrum"
+        },
+        {
+          "node": "vertebrae_caudales",
+          "structureId": "felis-catus.skeletal.vertebrae-caudales"
+        },
+        {
+          "node": "costae_sinistrae",
+          "structureId": "felis-catus.skeletal.costae.left"
+        },
+        {
+          "node": "costae_dextrae",
+          "structureId": "felis-catus.skeletal.costae.right"
+        },
+        {
+          "node": "sternum",
+          "structureId": "felis-catus.skeletal.sternum"
+        },
+        {
+          "node": "os_coxae_sinistrum",
+          "structureId": "felis-catus.skeletal.os-coxae.left"
+        },
+        {
+          "node": "os_coxae_dextrum",
+          "structureId": "felis-catus.skeletal.os-coxae.right"
+        },
+        {
+          "node": "scapula_sinistra",
+          "structureId": "felis-catus.skeletal.scapula.left"
+        },
+        {
+          "node": "scapula_dextra",
+          "structureId": "felis-catus.skeletal.scapula.right"
+        },
+        {
+          "node": "humerus_sinister",
+          "structureId": "felis-catus.skeletal.humerus.left"
+        },
+        {
+          "node": "humerus_dexter",
+          "structureId": "felis-catus.skeletal.humerus.right"
+        },
+        {
+          "node": "antebrachium_sinistrum",
+          "structureId": "felis-catus.skeletal.ossa-antebrachii.left"
+        },
+        {
+          "node": "antebrachium_dextrum",
+          "structureId": "felis-catus.skeletal.ossa-antebrachii.right"
+        },
+        {
+          "node": "manus_sinistra",
+          "structureId": "felis-catus.skeletal.skeleton-manus.left"
+        },
+        {
+          "node": "manus_dextra",
+          "structureId": "felis-catus.skeletal.skeleton-manus.right"
+        },
+        {
+          "node": "femur_sinister",
+          "structureId": "felis-catus.skeletal.os-femoris.left"
+        },
+        {
+          "node": "femur_dexter",
+          "structureId": "felis-catus.skeletal.os-femoris.right"
+        },
+        {
+          "node": "crus_sinistrum",
+          "structureId": "felis-catus.skeletal.ossa-cruris.left"
+        },
+        {
+          "node": "crus_dextrum",
+          "structureId": "felis-catus.skeletal.ossa-cruris.right"
+        },
+        {
+          "node": "pes_sinister",
+          "structureId": "felis-catus.skeletal.skeleton-pedis.left"
+        },
+        {
+          "node": "pes_dexter",
+          "structureId": "felis-catus.skeletal.skeleton-pedis.right"
+        }
+      ],
+      "review": {
+        "status": "draft"
+      },
+      "rightsReview": {
+        "status": "draft"
+      }
+    }
+  ]
 }
