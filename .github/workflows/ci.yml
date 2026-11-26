@@ -45,11 +45,18 @@ jobs:
           cache: npm
       - run: npm ci --no-audit --no-fund
       - run: npm run build
-      - name: Install CI-only Khronos glTF-Validator & Playwright Chromium
+      - name: Resolve exact devDependencies for lockfile snapshot
         run: |
-          npm install --no-save --no-audit --no-fund gltf-validator playwright
+          npm install --save-dev --save-exact --no-audit --no-fund gltf-validator playwright
           npx playwright install chromium
-      - name: Run Khronos glTF-Validator & 360px SwiftShader WebGL smoke
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4 verified upstream
+        with:
+          name: pinned-lockfile-snapshot
+          path: |
+            package.json
+            package-lock.json
+          retention-days: 1
+      - name: Run Khronos glTF-Validator & real Viewer.tsx 360px WebGL E2E smoke
         run: node scripts/khronos-and-browser-smoke.mjs
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4 verified upstream
         with:

@@ -68,9 +68,15 @@ export default function Viewer({ path, highlightedNode = '', isolatedNode = '' }
   useEffect(() => {
     const el = host.current;
     if (!el) return;
+    el.dataset.meshCount = '0';
+    el.dataset.visibleMeshes = '0';
+    el.dataset.highlightedMeshes = '0';
+    el.dataset.cameraPos = '';
+    el.dataset.loadedPath = '';
+
     let renderer: THREE.WebGLRenderer;
     try {
-      renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+      renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true, preserveDrawingBuffer: true });
     } catch {
       setStatus('هذا الجهاز لا يدعم العرض ثلاثي الأبعاد. يمكنك قراءة البيانات التشريحية أدناه.');
       return;
@@ -98,11 +104,18 @@ export default function Viewer({ path, highlightedNode = '', isolatedNode = '' }
     light.position.set(3, 5, 4);
     scene.add(light);
 
+    const syncCameraAttr = () => {
+      el.dataset.cameraPos = `${camera.position.x.toFixed(3)},${camera.position.y.toFixed(3)},${camera.position.z.toFixed(3)}`;
+    };
+
     const draw = () => {
       if (!alive || lost || frame) return;
       frame = requestAnimationFrame(() => {
         frame = 0;
-        if (alive && !lost) renderer.render(scene, camera);
+        if (alive && !lost) {
+          renderer.render(scene, camera);
+          syncCameraAttr();
+        }
       });
     };
 
@@ -148,6 +161,7 @@ export default function Viewer({ path, highlightedNode = '', isolatedNode = '' }
         e.preventDefault();
         camera.position.copy(controls.target).add(new THREE.Vector3().setFromSpherical(sph));
         controls.update();
+        syncCameraAttr();
         draw();
       }
     };
@@ -170,14 +184,21 @@ export default function Viewer({ path, highlightedNode = '', isolatedNode = '' }
       clonedHighlightMaterials.length = 0;
 
       const root = loadedRoot;
+      let totalMeshes = 0;
+      let visibleMeshes = 0;
+      let highlightedMeshes = 0;
+
       root.traverse((obj) => {
         if (!(obj instanceof THREE.Mesh)) return;
+        totalMeshes++;
         const orig = originalMaterials.get(obj);
         if (orig) obj.material = orig;
         const inHighlighted = hasNamedNode(obj, hi, root);
         const inIsolated = hasNamedNode(obj, iso, root);
         obj.visible = !iso || inIsolated;
+        if (obj.visible) visibleMeshes++;
         if (hi && (inHighlighted || inIsolated) && orig) {
+          highlightedMeshes++;
           const cloneOne = (mat: THREE.Material) => {
             const c = mat.clone();
             if ('emissive' in c && c.emissive instanceof THREE.Color) {
@@ -189,6 +210,12 @@ export default function Viewer({ path, highlightedNode = '', isolatedNode = '' }
           obj.material = Array.isArray(orig) ? orig.map(cloneOne) : cloneOne(orig);
         }
       });
+
+      el.dataset.meshCount = String(totalMeshes);
+      el.dataset.visibleMeshes = String(visibleMeshes);
+      el.dataset.highlightedMeshes = String(highlightedMeshes);
+      el.dataset.highlightedNode = hi;
+      el.dataset.isolatedNode = iso;
       draw();
     };
     applySelectionRef.current = applySelection;
@@ -238,10 +265,11 @@ export default function Viewer({ path, highlightedNode = '', isolatedNode = '' }
           camera.updateProjectionMatrix();
           controls.target.set(0, 0, 0);
           controls.update();
+          syncCameraAttr();
           draw();
         };
         reset.current();
-        // Always apply latest selection ref (prevents stale closure if user clicked while loading)
+        el.dataset.loadedPath = path;
         applySelection(selectionRef.current.hi, selectionRef.current.iso);
         setStatus('');
       })
