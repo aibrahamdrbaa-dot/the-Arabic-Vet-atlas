@@ -35,6 +35,7 @@ button{cursor:pointer;margin-block:8px}
       <input id="file" type="file" accept=".glb">
       <p id="status" role="status"></p>
       <button id="reset" type="button" disabled>إعادة ضبط العرض</button>
+      <button id="isolate" type="button" aria-pressed="false" disabled>عزل الجزء المحدد</button>
       <fieldset><legend>الطبقات</legend><div id="layer-list">لا توجد طبقات محمّلة.</div></fieldset>
       <label for="part">اختيار جزء من الملف</label>
       <select id="part"><option value="">ملاحظات الجهاز الهيكلي</option></select>
@@ -44,6 +45,7 @@ button{cursor:pointer;margin-block:8px}
       <label for="note">ملاحظاتي</label>
       <textarea id="note" maxlength="4000" placeholder="اكتب ملاحظاتك هنا"></textarea>
       <button id="save" type="button">حفظ على هذا المتصفح</button>
+      <button id="export" type="button">تصدير الملاحظات والألوان (JSON)</button>
     </aside>
   </div>
 </main>

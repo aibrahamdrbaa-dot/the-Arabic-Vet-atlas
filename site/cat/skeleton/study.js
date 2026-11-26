@@ -5,6 +5,8 @@ const layers = new Map();
 const stage = get('stage');
 const status = get('status');
 let viewer;
+let isolated = false;
+const meshIds = new WeakMap();
 let study = { notes: {}, colors: {} };
 try {
   const saved = JSON.parse(localStorage.getItem(key) ?? '{}');
@@ -26,10 +28,15 @@ function selected() { return get('part').value || 'workspace'; }
 
 function showSelection() {
   const id = selected();
+  get('part').dataset.previous = get('part').value;
   get('note').value = study.notes[id] ?? '';
   get('color').disabled = !parts.has(id);
   get('clear-color').disabled = !parts.has(id);
   get('color').value = study.colors[id] ?? '#4176d6';
+  get('isolate').disabled = !parts.has(id);
+  if (!parts.has(id)) isolated = false;
+  ensureSelectedLayer();
+  refreshVisibility();
 }
 
 function applyColor(id) {
@@ -42,7 +49,55 @@ function applyColor(id) {
   viewer.render();
 }
 
-get('part').addEventListener('change', showSelection);
+function ensureSelectedLayer() {
+  if (!isolated) return;
+  for (const layer of layers.values()) if (layer.ids.has(selected())) layer.toggle.checked = true;
+}
+
+function refreshVisibility() {
+  const id = selected();
+  for (const layer of layers.values()) {
+    layer.root.visible = layer.toggle.checked && (!isolated || layer.ids.has(id));
+  }
+  for (const [partId, part] of parts) part.mesh.layers.set(isolated && partId !== id ? 1 : 0);
+  get('isolate').setAttribute('aria-pressed', String(isolated));
+  get('isolate').textContent = isolated ? 'إنهاء العزل' : 'عزل الجزء المحدد';
+  viewer?.render();
+}
+
+function selectPart(id) {
+  const select = get('part');
+  if (select.value === id) return;
+  if (get('note').value !== (study.notes[selected()] ?? '')) {
+    if (!confirm('الملاحظة الحالية غير محفوظة. هل تريد الانتقال إلى جزء آخر؟')) return;
+  }
+  select.value = id;
+  showSelection();
+}
+
+get('part').addEventListener('change', () => {
+  const select = get('part');
+  const next = select.value;
+  select.value = select.dataset.previous ?? '';
+  selectPart(next);
+  select.dataset.previous = select.value;
+});
+get('isolate').addEventListener('click', () => {
+  isolated = !isolated;
+  ensureSelectedLayer();
+  refreshVisibility();
+});
+get('export').addEventListener('click', () => {
+  const labels = Object.fromEntries([...parts].map(([id, part]) => [id, part.label]));
+  const url = URL.createObjectURL(new Blob([
+    JSON.stringify({ schemaVersion: 1, ...study, labels }, null, 2),
+  ], { type: 'application/json' }));
+  const link = document.createElement('a');
+  link.href = url;
+  link.download = 'arabic-vet-atlas-cat-study.json';
+  link.click();
+  setTimeout(() => URL.revokeObjectURL(url), 1000);
+});
 get('save').addEventListener('click', () => {
   study.notes[selected()] = get('note').value;
   persist('حُفظت الملاحظة.');
@@ -58,7 +113,11 @@ get('clear-color').addEventListener('click', () => {
   showSelection();
   persist('استُعيد اللون الأصلي.');
 });
-get('reset').addEventListener('click', () => viewer.fit());
+get('reset').addEventListener('click', () => {
+  isolated = false;
+  refreshVisibility();
+  viewer.fit();
+});
 showSelection();
 
 async function createViewer() {
@@ -89,7 +148,28 @@ async function createViewer() {
   };
   new ResizeObserver(resize).observe(stage);
   controls.addEventListener('change', render);
-  stage.append(renderer.domElement);
+  const canvas = renderer.domElement;
+  const ray = new THREE.Raycaster();
+  const pointer = new THREE.Vector2();
+  let down;
+  canvas.addEventListener('pointerdown', event => {
+    down = event.isPrimary && event.button === 0 ? [event.clientX, event.clientY] : undefined;
+  });
+  canvas.addEventListener('pointercancel', () => { down = undefined; });
+  canvas.addEventListener('pointerup', event => {
+    if (!down || !event.isPrimary) return;
+    const moved = Math.hypot(event.clientX - down[0], event.clientY - down[1]);
+    down = undefined;
+    if (moved > 6) return;
+    const rect = canvas.getBoundingClientRect();
+    pointer.set(2 * (event.clientX - rect.left) / rect.width - 1,
+      1 - 2 * (event.clientY - rect.top) / rect.height);
+    ray.setFromCamera(pointer, camera);
+    const visible = [...layers.values()].filter(layer => layer.root.visible).map(layer => layer.root);
+    const hit = ray.intersectObjects(visible, true).find(item => meshIds.has(item.object));
+    if (hit) selectPart(meshIds.get(hit.object));
+  });
+  stage.append(canvas);
   resize();
   const manager = new THREE.LoadingManager();
   manager.setURLModifier(url => {
@@ -149,7 +229,7 @@ get('file').addEventListener('change', async event => {
     }
     viewer ??= await createViewer();
     const root = await viewer.load(buffer);
-    layers.set(hash, root);
+    const ids = new Set();
     let number = 0;
     root.traverse(object => {
       if (!object.isMesh) return;
@@ -157,11 +237,16 @@ get('file').addEventListener('change', async event => {
       const materials = (Array.isArray(object.material) ? object.material : [object.material])
         .map(material => material.clone());
       object.material = Array.isArray(object.material) ? materials : materials[0];
+      const label = file.name + ' · ' + (object.name || 'جزء ' + number);
+      ids.add(id);
+      meshIds.set(object, id);
       parts.set(id, {
+        mesh: object,
+        label,
         materials: materials.filter(material => material.color)
           .map(material => ({ material, original: material.color.clone() })),
       });
-      get('part').add(new Option(file.name + ' · ' + (object.name || 'جزء ' + number), id));
+      get('part').add(new Option(label, id));
       if (study.colors[id]) applyColor(id);
     });
     const row = document.createElement('div');
@@ -169,7 +254,14 @@ get('file').addEventListener('change', async event => {
     const toggle = document.createElement('input');
     toggle.type = 'checkbox';
     toggle.checked = true;
-    toggle.addEventListener('change', () => { root.visible = toggle.checked; viewer.render(); });
+    layers.set(hash, { root, toggle, ids });
+    toggle.addEventListener('change', () => {
+      if (!toggle.checked && isolated && ids.has(selected())) {
+        isolated = false;
+      }
+      refreshVisibility();
+    });
+    refreshVisibility();
     label.append(toggle, ' ' + file.name);
     row.append(label);
     if (layers.size === 1) get('layer-list').replaceChildren();
