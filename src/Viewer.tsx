@@ -14,6 +14,16 @@ function isRenderable(obj: THREE.Object3D): obj is DisposableRenderable {
   );
 }
 
+function hasNamedNode(obj: THREE.Object3D, targetName: string, stopAt: THREE.Object3D): boolean {
+  if (!targetName) return false;
+  let curr: THREE.Object3D | null = obj;
+  while (curr && curr !== stopAt) {
+    if (curr.name === targetName) return true;
+    curr = curr.parent;
+  }
+  return false;
+}
+
 function disposeTree(root: THREE.Object3D) {
   const geometries = new Set<THREE.BufferGeometry>();
   const materials = new Set<THREE.Material>();
@@ -50,6 +60,9 @@ export default function Viewer({ path, highlightedNode = '', isolatedNode = '' }
   const host = useRef<HTMLDivElement>(null);
   const reset = useRef<() => void>(() => {});
   const applySelectionRef = useRef<(hi: string, iso: string) => void>(() => {});
+  const selectionRef = useRef({ hi: highlightedNode, iso: isolatedNode });
+  selectionRef.current = { hi: highlightedNode, iso: isolatedNode };
+
   const [status, setStatus] = useState('جارٍ تحميل العينة…');
 
   useEffect(() => {
@@ -156,13 +169,15 @@ export default function Viewer({ path, highlightedNode = '', isolatedNode = '' }
       for (const m of clonedHighlightMaterials) m.dispose();
       clonedHighlightMaterials.length = 0;
 
-      loadedRoot.traverse((obj) => {
+      const root = loadedRoot;
+      root.traverse((obj) => {
         if (!(obj instanceof THREE.Mesh)) return;
         const orig = originalMaterials.get(obj);
         if (orig) obj.material = orig;
-        const isMatch = obj.name === hi || obj.name === iso;
-        obj.visible = !iso || obj.name === iso;
-        if (hi && isMatch && orig) {
+        const inHighlighted = hasNamedNode(obj, hi, root);
+        const inIsolated = hasNamedNode(obj, iso, root);
+        obj.visible = !iso || inIsolated;
+        if (hi && (inHighlighted || inIsolated) && orig) {
           const cloneOne = (mat: THREE.Material) => {
             const c = mat.clone();
             if ('emissive' in c && c.emissive instanceof THREE.Color) {
@@ -226,7 +241,8 @@ export default function Viewer({ path, highlightedNode = '', isolatedNode = '' }
           draw();
         };
         reset.current();
-        applySelection(highlightedNode, isolatedNode);
+        // Always apply latest selection ref (prevents stale closure if user clicked while loading)
+        applySelection(selectionRef.current.hi, selectionRef.current.iso);
         setStatus('');
       })
       .catch(() => {

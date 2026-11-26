@@ -30,3 +30,29 @@ jobs:
           name: foundation-build
           path: dist/
           retention-days: 3
+
+  khronos-and-webgl-smoke:
+    needs: validate
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4 verified upstream
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4 verified upstream
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci --no-audit --no-fund
+      - run: npm run build
+      - name: Install CI-only Khronos glTF-Validator & Playwright Chromium
+        run: |
+          npm install --no-save --no-audit --no-fund gltf-validator@2.0.0-dev.3.10 playwright@1.56.1
+          npx playwright install chromium
+      - name: Run Khronos glTF-Validator & 360px SwiftShader WebGL smoke
+        run: node scripts/khronos-and-browser-smoke.mjs
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4 verified upstream
+        with:
+          name: mobile-webgl-smoke-artifacts
+          path: smoke-artifacts/
+          retention-days: 3

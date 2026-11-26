@@ -3,14 +3,16 @@ import { createHash } from 'node:crypto';
 import { resolve, relative } from 'node:path';
 import { pathToFileURL } from 'node:url';
 
-export const LIMITS = Object.freeze({
-  maxGlbBytes: 15 * 1024 * 1024, // 15 MiB mobile & static-host budget
+// Preliminary P0 safety ceilings only; calibrate with real Android device telemetry in P1.
+export const PRELIMINARY_LIMITS = Object.freeze({
+  maxGlbBytes: 15 * 1024 * 1024,
   maxMeshes: 500,
   maxPrimitives: 2000,
   maxNodes: 2000,
   maxImages: 32,
   maxVertices: 1_500_000,
 });
+export const LIMITS = PRELIMINARY_LIMITS;
 
 const SAFE_DATA_URI_RE = /^data:(application\/octet-stream|image\/(png|jpeg|webp));base64,[A-Za-z0-9+/=]+$/;
 const SAFE_NODE_NAME_RE = /^[A-Za-z0-9_-]{1,128}$/;
@@ -50,9 +52,9 @@ function validReview(r, allowedRoles) {
   if (!obj(r) || !['draft', 'expert-reviewed', 'rejected'].includes(r.status)) return false;
   if (!approved(r)) return true;
   if (!nonempty(r.reviewer) || AI_REVIEWER_RE.test(r.reviewer.trim())) return false;
+  if (!allowedRoles.includes(r.role)) return false; // Mandatory role for expert-reviewed records
   if (!strictDate(r.reviewedAt)) return false;
   if (!Array.isArray(r.evidence) || r.evidence.length === 0 || !r.evidence.every(https)) return false;
-  if (r.role !== undefined && !allowedRoles.includes(r.role)) return false;
   return true;
 }
 
@@ -114,6 +116,7 @@ export function validate(c, { publicDir } = {}) {
       }
     }
 
+    let hasVerifiedDescription = false;
     if (s.claims !== undefined) {
       if (!Array.isArray(s.claims)) {
         bad(k, 'invalid claims');
@@ -126,9 +129,14 @@ export function validate(c, { publicDir } = {}) {
             (cl.status === 'verified' && (!nonempty(cl.ar) || !Array.isArray(cl.evidence) || !cl.evidence.length || !cl.evidence.every(https)))
           ) {
             bad(k, 'invalid claim or missing claim evidence');
+          } else if (cl.type === 'description' && cl.status === 'verified') {
+            hasVerifiedDescription = true;
           }
         }
       }
+    }
+    if (approved(s.review) && !hasVerifiedDescription) {
+      bad(k, 'expert-reviewed structure requires at least one verified description claim');
     }
 
     if (s.relations !== undefined) {
@@ -187,11 +195,11 @@ export function validate(c, { publicDir } = {}) {
       !hash(m.sha256) ||
       !Number.isSafeInteger(m.bytes) ||
       m.bytes <= 0 ||
-      m.bytes > LIMITS.maxGlbBytes ||
+      m.bytes > PRELIMINARY_LIMITS.maxGlbBytes ||
       m.units !== 'm' ||
       !nonempty(m.transformation)
     ) {
-      bad(k, 'invalid model manifest or exceeds size budget');
+      bad(k, 'invalid model manifest or exceeds preliminary size ceiling');
     }
 
     const nodes = new Set();
@@ -261,14 +269,14 @@ export function validate(c, { publicDir } = {}) {
 
 export function inspectGLB(b) {
   if (!Buffer.isBuffer(b) || b.length < 20) throw Error('invalid GLB header');
-  if (b.length > LIMITS.maxGlbBytes) throw Error('GLB exceeds mobile size budget');
+  if (b.length > PRELIMINARY_LIMITS.maxGlbBytes) throw Error('GLB exceeds preliminary size ceiling');
   if (b.readUInt32LE(0) !== 0x46546c67 || b.readUInt32LE(4) !== 2 || b.readUInt32LE(8) !== b.length || b.readUInt32LE(16) !== 0x4e4f534a) {
     throw Error('invalid GLB header');
   }
   const jsonLen = b.readUInt32LE(12);
   if (jsonLen <= 0 || jsonLen % 4 !== 0 || 20 + jsonLen > b.length) throw Error('invalid JSON chunk');
 
-  // Verify optional BIN chunk header & exact bounds
+  let actualBinLen = 0;
   const binOffset = 20 + jsonLen;
   if (binOffset < b.length) {
     if (binOffset + 8 > b.length) throw Error('truncated BIN chunk header');
@@ -277,37 +285,84 @@ export function inspectGLB(b) {
     if (binType !== 0x004e4942 || binLen % 4 !== 0 || binOffset + 8 + binLen !== b.length) {
       throw Error('invalid or truncated BIN chunk');
     }
+    actualBinLen = binLen;
   }
 
   const doc = JSON.parse(b.subarray(20, 20 + jsonLen).toString('utf8'));
   if (doc.asset?.version !== '2.0' || !Array.isArray(doc.nodes) || !Array.isArray(doc.meshes) || !doc.meshes.length) {
     throw Error('invalid model document');
   }
-  if (doc.nodes.length > LIMITS.maxNodes || doc.meshes.length > LIMITS.maxMeshes) {
-    throw Error('GLB exceeds node or mesh complexity budget');
+  if (doc.nodes.length > PRELIMINARY_LIMITS.maxNodes || doc.meshes.length > PRELIMINARY_LIMITS.maxMeshes) {
+    throw Error('GLB exceeds preliminary node or mesh ceiling');
   }
-  if ((doc.images ?? []).length > LIMITS.maxImages) {
-    throw Error('GLB exceeds image budget');
+  if ((doc.images ?? []).length > PRELIMINARY_LIMITS.maxImages) {
+    throw Error('GLB exceeds preliminary image ceiling');
+  }
+
+  const buffers = Array.isArray(doc.buffers) ? doc.buffers : [];
+  const bufferViews = Array.isArray(doc.bufferViews) ? doc.bufferViews : [];
+  const accessors = Array.isArray(doc.accessors) ? doc.accessors : [];
+
+  for (const buf of buffers) {
+    if (!obj(buf) || !Number.isSafeInteger(buf.byteLength) || buf.byteLength < 0) {
+      throw Error('invalid buffer declaration');
+    }
+    if (buf.uri === undefined && buf.byteLength > actualBinLen) {
+      throw Error('buffer byteLength exceeds BIN chunk');
+    }
+  }
+
+  for (const bv of bufferViews) {
+    if (
+      !obj(bv) ||
+      !Number.isInteger(bv.buffer) ||
+      bv.buffer < 0 ||
+      bv.buffer >= buffers.length ||
+      !Number.isSafeInteger(bv.byteLength) ||
+      bv.byteLength <= 0 ||
+      (bv.byteOffset ?? 0) < 0 ||
+      (bv.byteOffset ?? 0) + bv.byteLength > buffers[bv.buffer].byteLength
+    ) {
+      throw Error('invalid or out-of-bounds bufferView');
+    }
+  }
+
+  for (const acc of accessors) {
+    if (!obj(acc) || !Number.isSafeInteger(acc.count) || acc.count <= 0) {
+      throw Error('invalid accessor count');
+    }
+    if (acc.bufferView !== undefined && (!Number.isInteger(acc.bufferView) || acc.bufferView < 0 || acc.bufferView >= bufferViews.length)) {
+      throw Error('accessor references missing bufferView');
+    }
   }
 
   let primitiveCount = 0;
   let totalVertices = 0;
-  const accessors = Array.isArray(doc.accessors) ? doc.accessors : [];
   for (const mesh of doc.meshes) {
     const prims = Array.isArray(mesh?.primitives) ? mesh.primitives : [];
+    if (!prims.length) throw Error('mesh has no primitives');
     primitiveCount += prims.length;
     for (const prim of prims) {
-      const posIdx = prim?.attributes?.POSITION;
-      if (Number.isInteger(posIdx) && accessors[posIdx]?.count) {
-        totalVertices += accessors[posIdx].count;
+      const attrs = prim?.attributes;
+      if (!obj(attrs) || !Number.isInteger(attrs.POSITION) || attrs.POSITION < 0 || attrs.POSITION >= accessors.length) {
+        throw Error('primitive missing valid POSITION accessor');
       }
+      for (const accIdx of Object.values(attrs)) {
+        if (!Number.isInteger(accIdx) || accIdx < 0 || accIdx >= accessors.length) {
+          throw Error('primitive attribute references missing accessor');
+        }
+      }
+      if (prim.indices !== undefined && (!Number.isInteger(prim.indices) || prim.indices < 0 || prim.indices >= accessors.length)) {
+        throw Error('primitive indices references missing accessor');
+      }
+      totalVertices += accessors[attrs.POSITION].count;
     }
   }
-  if (primitiveCount > LIMITS.maxPrimitives || totalVertices > LIMITS.maxVertices) {
-    throw Error('GLB exceeds primitive or vertex complexity budget');
+  if (primitiveCount > PRELIMINARY_LIMITS.maxPrimitives || totalVertices > PRELIMINARY_LIMITS.maxVertices) {
+    throw Error('GLB exceeds preliminary primitive or vertex ceiling');
   }
 
-  for (const item of [...(doc.buffers ?? []), ...(doc.images ?? [])]) {
+  for (const item of [...buffers, ...(doc.images ?? [])]) {
     if (typeof item?.uri === 'string') {
       if (!SAFE_DATA_URI_RE.test(item.uri)) {
         throw Error('external or unsafe resource URI');
