@@ -112,7 +112,7 @@ async function runBrowserSmoke(fixtureBytes) {
   mkdirSync(outDir, { recursive: true });
   writeFileSync(join(outDir, 'synthetic-non-anatomical.glb'), fixtureBytes);
 
-  const server = spawn('npx', ['vite', 'preview', '--host', '127.0.0.1', '--port', '4173', '--strictPort'], { stdio: 'pipe' });
+  const server = spawn('./node_modules/.bin/vite', ['preview', '--host', '127.0.0.1', '--port', '4173', '--strictPort'], { stdio: 'ignore' });
   const errors = [];
   let browser;
   try {
@@ -175,10 +175,11 @@ async function runBrowserSmoke(fixtureBytes) {
     console.log('WebGL SwiftShader smoke PASSED:', webglCheck);
   } finally {
     if (browser) await browser.close();
-    server.kill('SIGTERM');
+    server.kill('SIGKILL');
   }
 }
 
 const fixture = buildSpecCompliantFixtureGLB();
 await runKhronosChecks(fixture);
 await runBrowserSmoke(fixture);
+process.exit(0);
