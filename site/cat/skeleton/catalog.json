@@ -1,0 +1,664 @@
+{
+  "schemaVersion": 1,
+  "specimen": {
+    "id": "felis-catus-tavernier-2022",
+    "assetId": "asset.felis-catus.skeletal.tavernier-2022",
+    "species": "Felis catus",
+    "titleAr": "هيكل قطة منزلية كاملة (Felis catus)",
+    "titleEn": "Domestic Cat Complete Skeleton (Felis catus)",
+    "modelUrl": "./models/felis-catus-tavernier-skeleton.glb",
+    "reviewStatus": "draft",
+    "reviewStatusAr": "مسودة — بانتظار مراجعة اختصاصي تشريح بيطري",
+    "source": {
+      "title": "cat skeleton",
+      "author": "Tavernier Amaury (@svtavernier)",
+      "authorUrl": "https://sketchfab.com/svtavernier",
+      "pageUrl": "https://sketchfab.com/3d-models/cat-skeleton-7106115b299649e992476f2d3b4fc602",
+      "license": "CC Attribution–NonCommercial–ShareAlike 4.0 (CC BY-NC-SA 4.0)",
+      "licenseUrl": "https://creativecommons.org/licenses/by-nc-sa/4.0/",
+      "sourceGlbSha256": "891f86c4effe001a895459e30b1064c47cab7f3d69837f49d6b509775c103ac9",
+      "sourceZipSha256": "eeeaf7353db4b7d7befa0432234eba37330fd368c73f055cbdeade8517cd112e",
+      "derivativeGlbSha256": "e59e517be3d0f1f207294d3dbf071aba9eaca3f8dad063d85947f97735b50be5",
+      "derivativeGlbBytes": 3534008,
+      "units": "m",
+      "scaleFactor": 0.04,
+      "rotation": "Ry(-90 deg): (x,y,z)->(-z,y,x) so cranial=-Z, dorsal=+Y, left=-X, floor y=0",
+      "bboxMeters": {
+        "min": [
+          -0.0623,
+          0.0,
+          -0.238
+        ],
+        "max": [
+          0.0623,
+          0.2481,
+          0.238
+        ],
+        "size": [
+          0.1246,
+          0.2481,
+          0.476
+        ]
+      }
+    },
+    "arteriesStatusAr": "لم تُضَف طبقة الشرايين في هذا الإصدار لعدم توفر هندسة شرايين موثّقة لقطة وبيانات مطابقة مكانية متسقة؛ مسجّل كنقص مفتوح في سجل المشروع.",
+    "missingOrMergedAr": [
+      "العظم اللامي (Apparatus hyoideus): غير موجود في المسح الأصلي.",
+      "الترقوتان الأثريتان (Claviculae): غير موجودتين في المسح الأصلي.",
+      "الرضفتان (Patellae) والعظام السمسمانية (Ossa sesamoidea) والغضاريف الضلعية المنفصلة: غير قابلة للتمييز كعظام مستقلة في المسح السطحي.",
+      "الفقرات الفردية داخل كل منطقة، والأضلاع الفردية عند المفاصل، والكعبرة مع الزند، والظنبوب مع الشظية، وعظام الكفوف والقدمين: مندمجة سطحيًا في المسح الفوتوغرامتري وفُصلت وفق الحدود القابلة للتمييز فقط دون اختلاق هندسة.",
+      "آثار قواعد التثبيت السفلية: توجد رقع تثبيت رقيقة أسفل الكفوف الأربع في العينة المثبّتة."
+    ],
+    "nodeBreakdownAr": "26 عقدة تشريحية قابلة للتحديد: 10 عظام منفردة و16 مجموعة عظام مندمجة سطحيًا في المسح الفوتوغرامتري.",
+    "licenseSeparationAr": "كود الأطلس مرخّص تحت MIT، بينما المجسم المشتق لـ Felis catus مرخّص بشكل مستقل تحت CC BY-NC-SA 4.0 (غير تجاري مع الإسناد والمشاركة بالمثل).",
+    "governanceNoteAr": "هذه العينة في حالة مسودة (draft) ومستضافة في معاينة الفرع فقط لأغراض الفحص والمراجعة البشرية؛ لم تُرقَّ إلى public/models/ أو الإنتاج بانتظار اعتماد اختصاصي تشريح بيطري ومراجع الحقوق."
+  },
+  "regions": [
+    {
+      "id": "head",
+      "labelAr": "الرأس"
+    },
+    {
+      "id": "neck",
+      "labelAr": "العنق"
+    },
+    {
+      "id": "thorax",
+      "labelAr": "الصدر والقفص الصدري"
+    },
+    {
+      "id": "abdomen",
+      "labelAr": "القطن"
+    },
+    {
+      "id": "pelvis",
+      "labelAr": "الحوض والعجز"
+    },
+    {
+      "id": "tail",
+      "labelAr": "الذيل"
+    },
+    {
+      "id": "forelimb",
+      "labelAr": "الطرف الأمامي"
+    },
+    {
+      "id": "hindlimb",
+      "labelAr": "الطرف الخلفي"
+    }
+  ],
+  "structures": [
+    {
+      "node": "cranium",
+      "id": "felis-catus.skeletal.cranium",
+      "region": "head",
+      "regionAr": "الرأس",
+      "laterality": "midline",
+      "lateralityAr": "وسطي",
+      "names": {
+        "ar": "الجمجمة (القحف)",
+        "en": "Cranium",
+        "la": "Cranium"
+      },
+      "navEdition": "NAV 6th edition (2017)",
+      "sourceLabel": "Tavernier Amaury (@svtavernier) — cat skeleton (CC BY-NC-SA 4.0)",
+      "sourceUrl": "https://sketchfab.com/3d-models/cat-skeleton-7106115b299649e992476f2d3b4fc602",
+      "reviewStatus": "draft",
+      "reviewStatusAr": "مسودة (بانتظار مراجعة اختصاصي)",
+      "coverageNoteAr": "القحف والفك العلوي؛ الفك السفلي متمفصل معه بوضع إغلاق في المسح الفوتوغرامتري.",
+      "triangles": 6673,
+      "nodeKind": "merged-group",
+      "nodeKindAr": "مجموعة عظام مندمجة سطحيًا"
+    },
+    {
+      "node": "mandibula",
+      "id": "felis-catus.skeletal.mandibula",
+      "region": "head",
+      "regionAr": "الرأس",
+      "laterality": "midline",
+      "lateralityAr": "وسطي",
+      "names": {
+        "ar": "الفك السفلي",
+        "en": "Mandible",
+        "la": "Mandibula"
+      },
+      "navEdition": "NAV 6th edition (2017)",
+      "sourceLabel": "Tavernier Amaury (@svtavernier) — cat skeleton (CC BY-NC-SA 4.0)",
+      "sourceUrl": "https://sketchfab.com/3d-models/cat-skeleton-7106115b299649e992476f2d3b4fc602",
+      "reviewStatus": "draft",
+      "reviewStatusAr": "مسودة (بانتظار مراجعة اختصاصي)",
+      "coverageNoteAr": "الفك السفلي مفصول عند الخط الإطباقي السفلي؛ متمفصل بوضع مغلق مع الجمجمة في العينة.",
+      "triangles": 3859,
+      "nodeKind": "single-bone",
+      "nodeKindAr": "عظم منفرد"
+    },
+    {
+      "node": "vertebrae_cervicales",
+      "id": "felis-catus.skeletal.vertebrae-cervicales",
+      "region": "neck",
+      "regionAr": "العنق",
+      "laterality": "midline",
+      "lateralityAr": "وسطي",
+      "names": {
+        "ar": "الفقرات العنقية",
+        "en": "Cervical vertebrae",
+        "la": "Vertebrae cervicales"
+      },
+      "navEdition": "NAV 6th edition (2017)",
+      "sourceLabel": "Tavernier Amaury (@svtavernier) — cat skeleton (CC BY-NC-SA 4.0)",
+      "sourceUrl": "https://sketchfab.com/3d-models/cat-skeleton-7106115b299649e992476f2d3b4fc602",
+      "reviewStatus": "draft",
+      "reviewStatusAr": "مسودة (بانتظار مراجعة اختصاصي)",
+      "coverageNoteAr": "الفقرات العنقية (C1–C7) كوحدة إقليمية متصلة لاندماج الفواصل بين الفقرات في المسح السطحي.",
+      "triangles": 3499,
+      "nodeKind": "merged-group",
+      "nodeKindAr": "مجموعة عظام مندمجة سطحيًا"
+    },
+    {
+      "node": "vertebrae_thoracicae",
+      "id": "felis-catus.skeletal.vertebrae-thoracicae",
+      "region": "thorax",
+      "regionAr": "الصدر والقفص الصدري",
+      "laterality": "midline",
+      "lateralityAr": "وسطي",
+      "names": {
+        "ar": "الفقرات الصدرية",
+        "en": "Thoracic vertebrae",
+        "la": "Vertebrae thoracicae"
+      },
+      "navEdition": "NAV 6th edition (2017)",
+      "sourceLabel": "Tavernier Amaury (@svtavernier) — cat skeleton (CC BY-NC-SA 4.0)",
+      "sourceUrl": "https://sketchfab.com/3d-models/cat-skeleton-7106115b299649e992476f2d3b4fc602",
+      "reviewStatus": "draft",
+      "reviewStatusAr": "مسودة (بانتظار مراجعة اختصاصي)",
+      "coverageNoteAr": "العمود الفقري الصدري (T1–T13)؛ الفواصل الفردية بين الفقرات مندمجة في السطح الأصلي.",
+      "triangles": 3921,
+      "nodeKind": "merged-group",
+      "nodeKindAr": "مجموعة عظام مندمجة سطحيًا"
+    },
+    {
+      "node": "vertebrae_lumbales",
+      "id": "felis-catus.skeletal.vertebrae-lumbales",
+      "region": "abdomen",
+      "regionAr": "القطن",
+      "laterality": "midline",
+      "lateralityAr": "وسطي",
+      "names": {
+        "ar": "الفقرات القطنية",
+        "en": "Lumbar vertebrae",
+        "la": "Vertebrae lumbales"
+      },
+      "navEdition": "NAV 6th edition (2017)",
+      "sourceLabel": "Tavernier Amaury (@svtavernier) — cat skeleton (CC BY-NC-SA 4.0)",
+      "sourceUrl": "https://sketchfab.com/3d-models/cat-skeleton-7106115b299649e992476f2d3b4fc602",
+      "reviewStatus": "draft",
+      "reviewStatusAr": "مسودة (بانتظار مراجعة اختصاصي)",
+      "coverageNoteAr": "الفقرات القطنية (L1–L7) بنواتئها الشوكية والمستعرضة؛ مندمجة كوحدة إقليمية دون اختلاق فواصل.",
+      "triangles": 5210,
+      "nodeKind": "merged-group",
+      "nodeKindAr": "مجموعة عظام مندمجة سطحيًا"
+    },
+    {
+      "node": "os_sacrum",
+      "id": "felis-catus.skeletal.os-sacrum",
+      "region": "pelvis",
+      "regionAr": "الحوض والعجز",
+      "laterality": "midline",
+      "lateralityAr": "وسطي",
+      "names": {
+        "ar": "العجز",
+        "en": "Sacrum",
+        "la": "Os sacrum"
+      },
+      "navEdition": "NAV 6th edition (2017)",
+      "sourceLabel": "Tavernier Amaury (@svtavernier) — cat skeleton (CC BY-NC-SA 4.0)",
+      "sourceUrl": "https://sketchfab.com/3d-models/cat-skeleton-7106115b299649e992476f2d3b4fc602",
+      "reviewStatus": "draft",
+      "reviewStatusAr": "مسودة (بانتظار مراجعة اختصاصي)",
+      "coverageNoteAr": "العظم العجزي بين جناحي الحرقفة في المنطقة الظهرية الوسطية للحوض.",
+      "triangles": 2116,
+      "nodeKind": "single-bone",
+      "nodeKindAr": "عظم منفرد"
+    },
+    {
+      "node": "vertebrae_caudales",
+      "id": "felis-catus.skeletal.vertebrae-caudales",
+      "region": "tail",
+      "regionAr": "الذيل",
+      "laterality": "midline",
+      "lateralityAr": "وسطي",
+      "names": {
+        "ar": "الفقرات الذيلية",
+        "en": "Caudal vertebrae",
+        "la": "Vertebrae caudales"
+      },
+      "navEdition": "NAV 6th edition (2017)",
+      "sourceLabel": "Tavernier Amaury (@svtavernier) — cat skeleton (CC BY-NC-SA 4.0)",
+      "sourceUrl": "https://sketchfab.com/3d-models/cat-skeleton-7106115b299649e992476f2d3b4fc602",
+      "reviewStatus": "draft",
+      "reviewStatusAr": "مسودة (بانتظار مراجعة اختصاصي)",
+      "coverageNoteAr": "سلسلة الفقرات الذيلية المتدلية خلف الحوض؛ الفواصل الدقيقة بين الفقرات الذيلية مندمجة سطحيًا.",
+      "triangles": 3171,
+      "nodeKind": "merged-group",
+      "nodeKindAr": "مجموعة عظام مندمجة سطحيًا"
+    },
+    {
+      "node": "costae_sinistrae",
+      "id": "felis-catus.skeletal.costae.left",
+      "region": "thorax",
+      "regionAr": "الصدر والقفص الصدري",
+      "laterality": "left",
+      "lateralityAr": "أيسر",
+      "names": {
+        "ar": "الأضلاع اليسرى",
+        "en": "Left ribs",
+        "la": "Costae"
+      },
+      "navEdition": "NAV 6th edition (2017)",
+      "sourceLabel": "Tavernier Amaury (@svtavernier) — cat skeleton (CC BY-NC-SA 4.0)",
+      "sourceUrl": "https://sketchfab.com/3d-models/cat-skeleton-7106115b299649e992476f2d3b4fc602",
+      "reviewStatus": "draft",
+      "reviewStatusAr": "مسودة (بانتظار مراجعة اختصاصي)",
+      "coverageNoteAr": "أقواس الأضلاع اليسرى؛ بعض الحواف الدقيقة للأضلاع تحوي شظايا فوتوغرامتريّة أُلحقت بها دون اختلاق هندسة.",
+      "triangles": 4775,
+      "nodeKind": "merged-group",
+      "nodeKindAr": "مجموعة عظام مندمجة سطحيًا"
+    },
+    {
+      "node": "costae_dextrae",
+      "id": "felis-catus.skeletal.costae.right",
+      "region": "thorax",
+      "regionAr": "الصدر والقفص الصدري",
+      "laterality": "right",
+      "lateralityAr": "أيمن",
+      "names": {
+        "ar": "الأضلاع اليمنى",
+        "en": "Right ribs",
+        "la": "Costae"
+      },
+      "navEdition": "NAV 6th edition (2017)",
+      "sourceLabel": "Tavernier Amaury (@svtavernier) — cat skeleton (CC BY-NC-SA 4.0)",
+      "sourceUrl": "https://sketchfab.com/3d-models/cat-skeleton-7106115b299649e992476f2d3b4fc602",
+      "reviewStatus": "draft",
+      "reviewStatusAr": "مسودة (بانتظار مراجعة اختصاصي)",
+      "coverageNoteAr": "أقواس الأضلاع اليمنى؛ الغضاريف الضلعية غير مفصولة عن الأضلاع العظمية في هذا المسح.",
+      "triangles": 6329,
+      "nodeKind": "merged-group",
+      "nodeKindAr": "مجموعة عظام مندمجة سطحيًا"
+    },
+    {
+      "node": "sternum",
+      "id": "felis-catus.skeletal.sternum",
+      "region": "thorax",
+      "regionAr": "الصدر والقفص الصدري",
+      "laterality": "midline",
+      "lateralityAr": "وسطي",
+      "names": {
+        "ar": "القص",
+        "en": "Sternum",
+        "la": "Sternum"
+      },
+      "navEdition": "NAV 6th edition (2017)",
+      "sourceLabel": "Tavernier Amaury (@svtavernier) — cat skeleton (CC BY-NC-SA 4.0)",
+      "sourceUrl": "https://sketchfab.com/3d-models/cat-skeleton-7106115b299649e992476f2d3b4fc602",
+      "reviewStatus": "draft",
+      "reviewStatusAr": "مسودة (بانتظار مراجعة اختصاصي)",
+      "coverageNoteAr": "شريط القص البطني أسفل القفص الصدري؛ القطع القصية الفردية (Sternebrae) مندمجة في السطح.",
+      "triangles": 1205,
+      "nodeKind": "merged-group",
+      "nodeKindAr": "مجموعة عظام مندمجة سطحيًا"
+    },
+    {
+      "node": "os_coxae_sinistrum",
+      "id": "felis-catus.skeletal.os-coxae.left",
+      "region": "pelvis",
+      "regionAr": "الحوض والعجز",
+      "laterality": "left",
+      "lateralityAr": "أيسر",
+      "names": {
+        "ar": "العظم الوركي الأيسر (نصف الحوض الأيسر)",
+        "en": "Left hip bone",
+        "la": "Os coxae"
+      },
+      "navEdition": "NAV 6th edition (2017)",
+      "sourceLabel": "Tavernier Amaury (@svtavernier) — cat skeleton (CC BY-NC-SA 4.0)",
+      "sourceUrl": "https://sketchfab.com/3d-models/cat-skeleton-7106115b299649e992476f2d3b4fc602",
+      "reviewStatus": "draft",
+      "reviewStatusAr": "مسودة (بانتظار مراجعة اختصاصي)",
+      "coverageNoteAr": "نصف الحوض الأيسر (الحرقفة والورك والعانة مندمجة تشريحيًا في القط البالغ).",
+      "triangles": 2823,
+      "nodeKind": "single-bone",
+      "nodeKindAr": "عظم منفرد"
+    },
+    {
+      "node": "os_coxae_dextrum",
+      "id": "felis-catus.skeletal.os-coxae.right",
+      "region": "pelvis",
+      "regionAr": "الحوض والعجز",
+      "laterality": "right",
+      "lateralityAr": "أيمن",
+      "names": {
+        "ar": "العظم الوركي الأيمن (نصف الحوض الأيمن)",
+        "en": "Right hip bone",
+        "la": "Os coxae"
+      },
+      "navEdition": "NAV 6th edition (2017)",
+      "sourceLabel": "Tavernier Amaury (@svtavernier) — cat skeleton (CC BY-NC-SA 4.0)",
+      "sourceUrl": "https://sketchfab.com/3d-models/cat-skeleton-7106115b299649e992476f2d3b4fc602",
+      "reviewStatus": "draft",
+      "reviewStatusAr": "مسودة (بانتظار مراجعة اختصاصي)",
+      "coverageNoteAr": "نصف الحوض الأيمن (الحرقفة والورك والعانة مندمجة تشريحيًا في القط البالغ).",
+      "triangles": 1388,
+      "nodeKind": "single-bone",
+      "nodeKindAr": "عظم منفرد"
+    },
+    {
+      "node": "scapula_sinistra",
+      "id": "felis-catus.skeletal.scapula.left",
+      "region": "forelimb",
+      "regionAr": "الطرف الأمامي",
+      "laterality": "left",
+      "lateralityAr": "أيسر",
+      "names": {
+        "ar": "لوح الكتف الأيسر",
+        "en": "Left scapula",
+        "la": "Scapula"
+      },
+      "navEdition": "NAV 6th edition (2017)",
+      "sourceLabel": "Tavernier Amaury (@svtavernier) — cat skeleton (CC BY-NC-SA 4.0)",
+      "sourceUrl": "https://sketchfab.com/3d-models/cat-skeleton-7106115b299649e992476f2d3b4fc602",
+      "reviewStatus": "draft",
+      "reviewStatusAr": "مسودة (بانتظار مراجعة اختصاصي)",
+      "coverageNoteAr": "لوح الكتف الأيسر متموضع على الجانب الأمامي الوحشي للقفص الصدري.",
+      "triangles": 896,
+      "nodeKind": "single-bone",
+      "nodeKindAr": "عظم منفرد"
+    },
+    {
+      "node": "scapula_dextra",
+      "id": "felis-catus.skeletal.scapula.right",
+      "region": "forelimb",
+      "regionAr": "الطرف الأمامي",
+      "laterality": "right",
+      "lateralityAr": "أيمن",
+      "names": {
+        "ar": "لوح الكتف الأيمن",
+        "en": "Right scapula",
+        "la": "Scapula"
+      },
+      "navEdition": "NAV 6th edition (2017)",
+      "sourceLabel": "Tavernier Amaury (@svtavernier) — cat skeleton (CC BY-NC-SA 4.0)",
+      "sourceUrl": "https://sketchfab.com/3d-models/cat-skeleton-7106115b299649e992476f2d3b4fc602",
+      "reviewStatus": "draft",
+      "reviewStatusAr": "مسودة (بانتظار مراجعة اختصاصي)",
+      "coverageNoteAr": "لوح الكتف الأيمن متموضع على الجانب الأمامي الوحشي للقفص الصدري.",
+      "triangles": 3860,
+      "nodeKind": "single-bone",
+      "nodeKindAr": "عظم منفرد"
+    },
+    {
+      "node": "humerus_sinister",
+      "id": "felis-catus.skeletal.humerus.left",
+      "region": "forelimb",
+      "regionAr": "الطرف الأمامي",
+      "laterality": "left",
+      "lateralityAr": "أيسر",
+      "names": {
+        "ar": "عظم العضد الأيسر",
+        "en": "Left humerus",
+        "la": "Humerus"
+      },
+      "navEdition": "NAV 6th edition (2017)",
+      "sourceLabel": "Tavernier Amaury (@svtavernier) — cat skeleton (CC BY-NC-SA 4.0)",
+      "sourceUrl": "https://sketchfab.com/3d-models/cat-skeleton-7106115b299649e992476f2d3b4fc602",
+      "reviewStatus": "draft",
+      "reviewStatusAr": "مسودة (بانتظار مراجعة اختصاصي)",
+      "coverageNoteAr": "عظم العضد الأيسر الممتد من مفصل الكتف إلى مفصل المرفق.",
+      "triangles": 1116,
+      "nodeKind": "single-bone",
+      "nodeKindAr": "عظم منفرد"
+    },
+    {
+      "node": "humerus_dexter",
+      "id": "felis-catus.skeletal.humerus.right",
+      "region": "forelimb",
+      "regionAr": "الطرف الأمامي",
+      "laterality": "right",
+      "lateralityAr": "أيمن",
+      "names": {
+        "ar": "عظم العضد الأيمن",
+        "en": "Right humerus",
+        "la": "Humerus"
+      },
+      "navEdition": "NAV 6th edition (2017)",
+      "sourceLabel": "Tavernier Amaury (@svtavernier) — cat skeleton (CC BY-NC-SA 4.0)",
+      "sourceUrl": "https://sketchfab.com/3d-models/cat-skeleton-7106115b299649e992476f2d3b4fc602",
+      "reviewStatus": "draft",
+      "reviewStatusAr": "مسودة (بانتظار مراجعة اختصاصي)",
+      "coverageNoteAr": "عظم العضد الأيمن الممتد من مفصل الكتف إلى مفصل المرفق (الطرف الأيمن متقدم في وقفة المشي).",
+      "triangles": 1090,
+      "nodeKind": "single-bone",
+      "nodeKindAr": "عظم منفرد"
+    },
+    {
+      "node": "antebrachium_sinistrum",
+      "id": "felis-catus.skeletal.ossa-antebrachii.left",
+      "region": "forelimb",
+      "regionAr": "الطرف الأمامي",
+      "laterality": "left",
+      "lateralityAr": "أيسر",
+      "names": {
+        "ar": "عظما الساعد الأيسر (الكعبرة والزند)",
+        "en": "Left radius and ulna",
+        "la": "Ossa antebrachii (Radius et Ulna)"
+      },
+      "navEdition": "NAV 6th edition (2017)",
+      "sourceLabel": "Tavernier Amaury (@svtavernier) — cat skeleton (CC BY-NC-SA 4.0)",
+      "sourceUrl": "https://sketchfab.com/3d-models/cat-skeleton-7106115b299649e992476f2d3b4fc602",
+      "reviewStatus": "draft",
+      "reviewStatusAr": "مسودة (بانتظار مراجعة اختصاصي)",
+      "coverageNoteAr": "الكعبرة والزند اليسرى مجمّعتان كوحدة ساعد لاندماجهما السطحي في المسح الفوتوغرامتري.",
+      "triangles": 1997,
+      "nodeKind": "merged-group",
+      "nodeKindAr": "مجموعة عظام مندمجة سطحيًا"
+    },
+    {
+      "node": "antebrachium_dextrum",
+      "id": "felis-catus.skeletal.ossa-antebrachii.right",
+      "region": "forelimb",
+      "regionAr": "الطرف الأمامي",
+      "laterality": "right",
+      "lateralityAr": "أيمن",
+      "names": {
+        "ar": "عظما الساعد الأيمن (الكعبرة والزند)",
+        "en": "Right radius and ulna",
+        "la": "Ossa antebrachii (Radius et Ulna)"
+      },
+      "navEdition": "NAV 6th edition (2017)",
+      "sourceLabel": "Tavernier Amaury (@svtavernier) — cat skeleton (CC BY-NC-SA 4.0)",
+      "sourceUrl": "https://sketchfab.com/3d-models/cat-skeleton-7106115b299649e992476f2d3b4fc602",
+      "reviewStatus": "draft",
+      "reviewStatusAr": "مسودة (بانتظار مراجعة اختصاصي)",
+      "coverageNoteAr": "الكعبرة والزند اليمنى مجمّعتان كوحدة ساعد لاندماجهما السطحي في المسح الفوتوغرامتري.",
+      "triangles": 2235,
+      "nodeKind": "merged-group",
+      "nodeKindAr": "مجموعة عظام مندمجة سطحيًا"
+    },
+    {
+      "node": "manus_sinistra",
+      "id": "felis-catus.skeletal.skeleton-manus.left",
+      "region": "forelimb",
+      "regionAr": "الطرف الأمامي",
+      "laterality": "left",
+      "lateralityAr": "أيسر",
+      "names": {
+        "ar": "عظام الكف الأمامية اليسرى",
+        "en": "Left forepaw bones",
+        "la": "Skeleton manus"
+      },
+      "navEdition": "NAV 6th edition (2017)",
+      "sourceLabel": "Tavernier Amaury (@svtavernier) — cat skeleton (CC BY-NC-SA 4.0)",
+      "sourceUrl": "https://sketchfab.com/3d-models/cat-skeleton-7106115b299649e992476f2d3b4fc602",
+      "reviewStatus": "draft",
+      "reviewStatusAr": "مسودة (بانتظار مراجعة اختصاصي)",
+      "coverageNoteAr": "عظام الرسغ والمشط والسلاميات اليسرى مجمّعة؛ توجد آثار رقيقة لقاعدة التثبيت أسفل الكف.",
+      "triangles": 1963,
+      "nodeKind": "merged-group",
+      "nodeKindAr": "مجموعة عظام مندمجة سطحيًا"
+    },
+    {
+      "node": "manus_dextra",
+      "id": "felis-catus.skeletal.skeleton-manus.right",
+      "region": "forelimb",
+      "regionAr": "الطرف الأمامي",
+      "laterality": "right",
+      "lateralityAr": "أيمن",
+      "names": {
+        "ar": "عظام الكف الأمامية اليمنى",
+        "en": "Right forepaw bones",
+        "la": "Skeleton manus"
+      },
+      "navEdition": "NAV 6th edition (2017)",
+      "sourceLabel": "Tavernier Amaury (@svtavernier) — cat skeleton (CC BY-NC-SA 4.0)",
+      "sourceUrl": "https://sketchfab.com/3d-models/cat-skeleton-7106115b299649e992476f2d3b4fc602",
+      "reviewStatus": "draft",
+      "reviewStatusAr": "مسودة (بانتظار مراجعة اختصاصي)",
+      "coverageNoteAr": "عظام الرسغ والمشط والسلاميات اليمنى مجمّعة؛ توجد آثار رقيقة لقاعدة التثبيت أسفل الكف.",
+      "triangles": 1785,
+      "nodeKind": "merged-group",
+      "nodeKindAr": "مجموعة عظام مندمجة سطحيًا"
+    },
+    {
+      "node": "femur_sinister",
+      "id": "felis-catus.skeletal.os-femoris.left",
+      "region": "hindlimb",
+      "regionAr": "الطرف الخلفي",
+      "laterality": "left",
+      "lateralityAr": "أيسر",
+      "names": {
+        "ar": "عظم الفخذ الأيسر",
+        "en": "Left femur",
+        "la": "Os femoris"
+      },
+      "navEdition": "NAV 6th edition (2017)",
+      "sourceLabel": "Tavernier Amaury (@svtavernier) — cat skeleton (CC BY-NC-SA 4.0)",
+      "sourceUrl": "https://sketchfab.com/3d-models/cat-skeleton-7106115b299649e992476f2d3b4fc602",
+      "reviewStatus": "draft",
+      "reviewStatusAr": "مسودة (بانتظار مراجعة اختصاصي)",
+      "coverageNoteAr": "عظم الفخذ الأيسر الممتد من مفصل الورك إلى الركبة؛ الرضفة غير مفصولة كعظم مستقل في المسح.",
+      "triangles": 2005,
+      "nodeKind": "single-bone",
+      "nodeKindAr": "عظم منفرد"
+    },
+    {
+      "node": "femur_dexter",
+      "id": "felis-catus.skeletal.os-femoris.right",
+      "region": "hindlimb",
+      "regionAr": "الطرف الخلفي",
+      "laterality": "right",
+      "lateralityAr": "أيمن",
+      "names": {
+        "ar": "عظم الفخذ الأيمن",
+        "en": "Right femur",
+        "la": "Os femoris"
+      },
+      "navEdition": "NAV 6th edition (2017)",
+      "sourceLabel": "Tavernier Amaury (@svtavernier) — cat skeleton (CC BY-NC-SA 4.0)",
+      "sourceUrl": "https://sketchfab.com/3d-models/cat-skeleton-7106115b299649e992476f2d3b4fc602",
+      "reviewStatus": "draft",
+      "reviewStatusAr": "مسودة (بانتظار مراجعة اختصاصي)",
+      "coverageNoteAr": "عظم الفخذ الأيمن الممتد من مفصل الورك إلى الركبة؛ الرضفة غير مفصولة كعظم مستقل في المسح.",
+      "triangles": 1643,
+      "nodeKind": "single-bone",
+      "nodeKindAr": "عظم منفرد"
+    },
+    {
+      "node": "crus_sinistrum",
+      "id": "felis-catus.skeletal.ossa-cruris.left",
+      "region": "hindlimb",
+      "regionAr": "الطرف الخلفي",
+      "laterality": "left",
+      "lateralityAr": "أيسر",
+      "names": {
+        "ar": "عظما الساق اليسرى (الظنبوب والشظية)",
+        "en": "Left tibia and fibula",
+        "la": "Ossa cruris (Tibia et Fibula)"
+      },
+      "navEdition": "NAV 6th edition (2017)",
+      "sourceLabel": "Tavernier Amaury (@svtavernier) — cat skeleton (CC BY-NC-SA 4.0)",
+      "sourceUrl": "https://sketchfab.com/3d-models/cat-skeleton-7106115b299649e992476f2d3b4fc602",
+      "reviewStatus": "draft",
+      "reviewStatusAr": "مسودة (بانتظار مراجعة اختصاصي)",
+      "coverageNoteAr": "الظنبوب والشظية اليسرى مجمّعتان لاندماج الشظية الدقيقة سطحيًا مع الظنبوب في المسح.",
+      "triangles": 1859,
+      "nodeKind": "merged-group",
+      "nodeKindAr": "مجموعة عظام مندمجة سطحيًا"
+    },
+    {
+      "node": "crus_dextrum",
+      "id": "felis-catus.skeletal.ossa-cruris.right",
+      "region": "hindlimb",
+      "regionAr": "الطرف الخلفي",
+      "laterality": "right",
+      "lateralityAr": "أيمن",
+      "names": {
+        "ar": "عظما الساق اليمنى (الظنبوب والشظية)",
+        "en": "Right tibia and fibula",
+        "la": "Ossa cruris (Tibia et Fibula)"
+      },
+      "navEdition": "NAV 6th edition (2017)",
+      "sourceLabel": "Tavernier Amaury (@svtavernier) — cat skeleton (CC BY-NC-SA 4.0)",
+      "sourceUrl": "https://sketchfab.com/3d-models/cat-skeleton-7106115b299649e992476f2d3b4fc602",
+      "reviewStatus": "draft",
+      "reviewStatusAr": "مسودة (بانتظار مراجعة اختصاصي)",
+      "coverageNoteAr": "الظنبوب والشظية اليمنى مجمّعتان لاندماج الشظية الدقيقة سطحيًا مع الظنبوب في المسح.",
+      "triangles": 2286,
+      "nodeKind": "merged-group",
+      "nodeKindAr": "مجموعة عظام مندمجة سطحيًا"
+    },
+    {
+      "node": "pes_sinister",
+      "id": "felis-catus.skeletal.skeleton-pedis.left",
+      "region": "hindlimb",
+      "regionAr": "الطرف الخلفي",
+      "laterality": "left",
+      "lateralityAr": "أيسر",
+      "names": {
+        "ar": "عظام القدم الخلفية اليسرى",
+        "en": "Left hindpaw bones",
+        "la": "Skeleton pedis"
+      },
+      "navEdition": "NAV 6th edition (2017)",
+      "sourceLabel": "Tavernier Amaury (@svtavernier) — cat skeleton (CC BY-NC-SA 4.0)",
+      "sourceUrl": "https://sketchfab.com/3d-models/cat-skeleton-7106115b299649e992476f2d3b4fc602",
+      "reviewStatus": "draft",
+      "reviewStatusAr": "مسودة (بانتظار مراجعة اختصاصي)",
+      "coverageNoteAr": "عظام الرصغ والمشط والسلاميات للقدم الخلفية اليسرى؛ توجد آثار رقيقة لقاعدة التثبيت أسفل القدم.",
+      "triangles": 3081,
+      "nodeKind": "merged-group",
+      "nodeKindAr": "مجموعة عظام مندمجة سطحيًا"
+    },
+    {
+      "node": "pes_dexter",
+      "id": "felis-catus.skeletal.skeleton-pedis.right",
+      "region": "hindlimb",
+      "regionAr": "الطرف الخلفي",
+      "laterality": "right",
+      "lateralityAr": "أيمن",
+      "names": {
+        "ar": "عظام القدم الخلفية اليمنى",
+        "en": "Right hindpaw bones",
+        "la": "Skeleton pedis"
+      },
+      "navEdition": "NAV 6th edition (2017)",
+      "sourceLabel": "Tavernier Amaury (@svtavernier) — cat skeleton (CC BY-NC-SA 4.0)",
+      "sourceUrl": "https://sketchfab.com/3d-models/cat-skeleton-7106115b299649e992476f2d3b4fc602",
+      "reviewStatus": "draft",
+      "reviewStatusAr": "مسودة (بانتظار مراجعة اختصاصي)",
+      "coverageNoteAr": "عظام الرصغ والمشط والسلاميات للقدم الخلفية اليمنى؛ توجد آثار رقيقة لقاعدة التثبيت أسفل القدم.",
+      "triangles": 3450,
+      "nodeKind": "merged-group",
+      "nodeKindAr": "مجموعة عظام مندمجة سطحيًا"
+    }
+  ]
+}

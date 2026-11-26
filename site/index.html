@@ -1000,15 +1000,15 @@
         nameAr: "القطة المنزلية",
         latin: "Felis catus",
         status: "active-draft",
-        statusLabelAr: "المسار الجاري • عينة الهيكل قيد المراجعة",
+        statusLabelAr: "المسار الجاري • متاح للجميع (26 عقدة)",
         badgeClass: "badge-pilot",
         image: SPECIES_ASSETS.cat,
         imageAlt: "صورة تحريرية ترحيبية للقطة المنزلية — منفصلة عن المجسم التشريحي العلمي",
-        summaryAr: "محور العمل الحالي في الأطلس، بدءًا بالجهاز الهيكلي الكامل وفق NAV الطبعة السادسة. العينة ثلاثية الأبعاد قيد المراجعة التشريحية والحقوقية حاليًا، ويتاح استوديو الفحص المحلي في /cat/skeleton/.",
+        summaryAr: "محور العمل الحالي في الأطلس، بدءًا بالجهاز الهيكلي الكامل المشتق من مسح فوتوغرامتري حقيقي بـ 26 عقدة تشريحية ومصطلحات NAV الطبعة السادسة (مسودة بانتظار مراجعة اختصاصي).",
         catalogUrl: "./cat/skeleton/catalog.json",
         studyUrl: "/cat/skeleton/",
         systems: [
-          { id: "skeletal", ar: "الجهاز الهيكلي", latin: "Systema skeletale", status: "draft-preview", statusAr: "استوديو الفحص متاح • العينة قيد المراجعة", url: "/cat/skeleton/", desc: "مساحة الدراسة التفاعلية جاهزة في /cat/skeleton/ لفتح ملفات GLB محليًا وتجربة التحديد والعزل والتلوين والملاحظات، بانتظار اعتماد اختصاصي تشريح بيطري وحسم الحقوق لنشر العينة الموثّقة تلقائيًا." },
+          { id: "skeletal", ar: "الجهاز الهيكلي", latin: "Systema skeletale", status: "draft-preview", statusAr: "مسودة معاينة (26 عقدة)", url: "/cat/skeleton/", desc: "عينة مسح فوتوغرامتري لقطة كاملة (Tavernier Amaury، CC BY-NC-SA 4.0) مفصولة إلى 10 عظام منفردة و16 مجموعة عظام مندمجة سطحيًا بانتظار اعتماد اختصاصي." },
           { id: "cardiovascular", ar: "الجهاز الوعائي (الشرايين)", latin: "Systema cardiovasculare", status: "unavailable", statusAr: "غير متاح حاليًا", url: null, desc: "معلّق بانتظار مصدر هندسي موثّق لشرايين القطة المنزلية وبيانات مطابقة مكانية متسقة؛ لا اشتقاق من الكلب ولا تخمين للمسارات." },
           { id: "muscular", ar: "الجهاز العضلي", latin: "Systema musculare", status: "planned", statusAr: "قيد التخطيط", url: null, desc: "سيُضاف لاحقًا عند توفر عينة قططية موثّقة ومراجعة تشريحية." },
           { id: "nervous", ar: "الجهاز العصبي", latin: "Systema nervosum", status: "planned", statusAr: "قيد التخطيط", url: null, desc: "سيُضاف لاحقًا عند توفر بيانات تشريحية موثّقة للقطة." }
@@ -1037,30 +1037,14 @@
       catCatalogError: false
     };
 
-    const STANDARD_CAT_REGIONS = [
-      { id: "head", labelAr: "الرأس (الجمجمة والفك)" },
-      { id: "neck", labelAr: "العنق (الفقرات العنقية)" },
-      { id: "thorax", labelAr: "الصدر والقفص الصدري" },
-      { id: "abdomen", labelAr: "القطن (الفقرات القطنية)" },
-      { id: "pelvis", labelAr: "الحوض والعجز" },
-      { id: "tail", labelAr: "الذيل (الفقرات الذيلية)" },
-      { id: "forelimb", labelAr: "الطرف الأمامي" },
-      { id: "hindlimb", labelAr: "الطرف الخلفي" }
-    ];
-
     async function loadCatCatalog() {
       try {
         const res = await fetch("./cat/skeleton/catalog.json", { cache: "no-cache" });
-        if (res.ok) {
-          appState.catCatalog = await res.json();
-          appState.catCatalogError = false;
-        } else {
-          appState.catCatalog = { regions: STANDARD_CAT_REGIONS, structures: [] };
-          appState.catCatalogError = false;
-        }
-      } catch {
-        appState.catCatalog = { regions: STANDARD_CAT_REGIONS, structures: [] };
+        if (!res.ok) throw new Error("catalog fetch failed");
+        appState.catCatalog = await res.json();
         appState.catCatalogError = false;
+      } catch {
+        appState.catCatalogError = true;
       }
       render();
     }
@@ -1123,7 +1107,7 @@
               <div class="hero-honesty-note" role="note">
                 <span aria-hidden="true">ⓘ</span>
                 <span>
-                  القطة التفاعلية هنا عنصر ترحيبي بصري فقط. عينة هيكل القطة ثلاثية الأبعاد قيد المراجعة التشريحية والحقوقية (PR #6)، بينما تتاح صفحة استوديو الدراسة <a href="/cat/skeleton/"><bdi dir="ltr">/cat/skeleton/</bdi></a> الآن للفحص المحلي لملفات GLB.
+                  القطة التفاعلية هنا عنصر ترحيبي بصري فقط. العينة التشريحية ثلاثية الأبعاد (<strong>${count} عقدة قابلة للتحديد — حالة مسودة بانتظار مراجعة اختصاصي</strong>) متاحة في صفحة الدراسة المستقلة <a href="/cat/skeleton/"><bdi dir="ltr">/cat/skeleton/</bdi></a>.
                 </span>
               </div>
             </div>
@@ -1166,7 +1150,7 @@
                   </div>
                   <p class="species-desc">${cat.summaryAr}</p>
                   <div class="species-meta-list">
-                    <span class="meta-chip">العينة قيد المراجعة التشريحية والحقوقية</span>
+                    <span class="meta-chip">26 عقدة (10 عظام منفردة + 16 مجموعة مندمجة)</span>
                     <span class="meta-chip">NAV الطبعة السادسة (2017)</span>
                   </div>
                   <div class="species-footer">
@@ -1243,7 +1227,7 @@
     function renderCatDetail() {
       const sp = SPECIES_REGISTRY.find(x => x.id === "cat");
       const cat = appState.catCatalog;
-      const regions = (cat?.regions && cat.regions.length) ? cat.regions : STANDARD_CAT_REGIONS;
+      const regions = cat?.regions || [];
       const structures = cat?.structures || [];
       const countByRegion = (rid) => structures.filter(s => s.region === rid).length;
       const singleCount = structures.filter(s => s.nodeKind === "single-bone").length;
@@ -1263,7 +1247,7 @@
                 <span class="section-kicker">المسار الجاري • الحيوان ← الجهاز ← المنطقة ← العينة ← البنية</span>
                 <h1 class="section-title">القطة المنزلية <bdi dir="ltr" class="latin-term">(Felis catus)</bdi></h1>
                 <p class="section-lead">
-                  الأولوية الحالية للأطلس هي الجهاز الهيكلي الكامل للقطة المنزلية (<bdi dir="ltr">Felis catus</bdi>). لم تُنشر عينة معتمدة في الإنتاج بعد (المسودة قيد المراجعة التشريحية والحقوقية في PR #6)، بينما يتاح استوديو الدراسة في <a href="/cat/skeleton/"><bdi dir="ltr">/cat/skeleton/</bdi></a> لفتح ملفات GLB محليًا داخل المتصفح.
+                  الأولوية الحالية للأطلس هي الجهاز الهيكلي الكامل للقطة المنزلية، المستند إلى مسح فوتوغرامتري حقيقي (${structures.length || 26} عقدة تشريحية: ${singleCount || 10} عظام منفردة و${mergedCount || 16} مجموعة عظام مندمجة سطحيًا) بحالة <strong>مسودة (draft)</strong> بانتظار مراجعة اختصاصي تشريح بيطري وحسم الحقوق.
                 </p>
               </div>
               <a class="btn btn-primary" href="/cat/skeleton/">افتح استوديو الجهاز الهيكلي ←</a>
@@ -1293,7 +1277,7 @@
               ${regions.map(r => `
                 <a class="system-card" href="/cat/skeleton/?region=${encodeURIComponent(r.id)}" style="text-decoration:none;color:inherit;">
                   <strong style="font-size:1.05rem;">${esc(r.labelAr)}</strong>
-                  <span style="font-size:0.86rem;color:var(--ink-muted);">${structures.length ? `${countByRegion(r.id)} عقد تشريحية ←` : "افتح استوديو الدراسة ←"}</span>
+                  <span style="font-size:0.86rem;color:var(--ink-muted);">${countByRegion(r.id)} عقد تشريحية قابلة للتحديد ←</span>
                 </a>
               `).join("")}
             </div>
@@ -1370,7 +1354,7 @@
             <nav class="breadcrumb"><a href="#/">الرئيسية</a><span>/</span><span aria-current="page">البحث</span></nav>
             <h1 class="section-title" style="margin-bottom:8px;">البحث في كتالوج القطة المنزلية (<bdi dir="ltr" class="latin-term">Felis catus</bdi>)</h1>
             <p class="section-lead" style="margin-bottom:18px;">
-              يبحث في الكتالوج المنشور والمعتمد للقطة المنزلية بالعربية والإنجليزية واللاتينية (<bdi dir="ltr">NAV 6th ed</bdi>). لا تُعرض هنا أي نتائج تجريبية للكلب أو مسودات غير معتمدة بوصفها منشورة علميًا.
+              يبحث مباشرةً في الـ ${structures.length || 26} عقدة تشريحية الفعلية للقطة بالعربية والإنجليزية واللاتينية (NAV الطبعة السادسة)، ويفتح النتيجة مباشرة على البنية المحددة داخل <bdi dir="ltr">/cat/skeleton/</bdi>. جميع السجلات الحالية في حالة <strong>مسودة (draft)</strong>.
             </p>
             <input id="global-search-input" class="search-input" style="margin-bottom:18px;" type="search" value="${esc(qRaw)}" placeholder="ابحث مثلًا: الجمجمة، الفخذ، Humerus، Scapula، الذيل..." />
             ${appState.catCatalogError
@@ -1392,7 +1376,7 @@
                       </a>
                     `).join("")}
                   </div>`
-                : `<div class="empty-state-box"><p style="margin:0;color:var(--ink-secondary);">${structures.length === 0 ? "الكتالوج الإنتاجي للقطة ما زال فارغًا بانتظار إغلاق المراجعة التشريحية والحقوقية لعينة الهيكل (PR #6). يمكنك فتح استوديو الفحص المحلي في /cat/skeleton/ أو استعراض صفحة القطة." : `لا توجد عقدة تشريحية مطابقة لـ «${esc(qRaw)}» في الكتالوج الحالي.`}</p></div>`
+                : `<div class="empty-state-box"><p style="margin:0;color:var(--ink-secondary);">لا توجد عقدة تشريحية مطابقة لـ «${esc(qRaw)}» في كتالوج القطة الحالي.</p></div>`
             }
           </div>
         </section>
