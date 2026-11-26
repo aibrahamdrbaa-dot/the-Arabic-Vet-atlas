@@ -715,7 +715,14 @@
         "status": "draft"
       },
       "rightsReview": {
-        "status": "draft"
+        "status": "expert-reviewed",
+        "reviewer": "Ibrahim Darbaa",
+        "role": "project-maintainer",
+        "reviewedAt": "2026-11-26",
+        "evidence": [
+          "https://sketchfab.com/3d-models/cat-skeleton-7106115b299649e992476f2d3b4fc602",
+          "https://creativecommons.org/licenses/by-nc-sa/4.0/"
+        ]
       }
     }
   ]
