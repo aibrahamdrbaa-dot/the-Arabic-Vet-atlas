@@ -43,15 +43,34 @@
     },
     "arteriesStatusAr": "لم تُضَف طبقة الشرايين في هذا الإصدار لعدم توفر هندسة شرايين موثّقة لقطة وبيانات مطابقة مكانية متسقة؛ مسجّل كنقص مفتوح في سجل المشروع.",
     "missingOrMergedAr": [
-      "العظم اللامي (Apparatus hyoideus): غير موجود في المسح الأصلي.",
-      "الترقوتان الأثريتان (Claviculae): غير موجودتين في المسح الأصلي.",
-      "الرضفتان (Patellae) والعظام السمسمانية (Ossa sesamoidea) والغضاريف الضلعية المنفصلة: غير قابلة للتمييز كعظام مستقلة في المسح السطحي.",
-      "الفقرات الفردية داخل كل منطقة، والأضلاع الفردية عند المفاصل، والكعبرة مع الزند، والظنبوب مع الشظية، وعظام الكفوف والقدمين: مندمجة سطحيًا في المسح الفوتوغرامتري وفُصلت وفق الحدود القابلة للتمييز فقط دون اختلاق هندسة.",
-      "آثار قواعد التثبيت السفلية: توجد رقع تثبيت رقيقة أسفل الكفوف الأربع في العينة المثبّتة."
+      "العظام المرمّمة هندسيًا وفق الكتاب (procedural): اليدان الأماميتان (5 أمشاط و5 أصابع بإبهام مرتفع ومخالب منكمشة)، القدمان الخلفيتان (4 أمشاط مكتملة + MT I أثري و4 أصابع II–V وعقب بارز)، الترقوتان الأثريتان، الرضفتان (بطرف مدبب قاصٍ)، العظام السمسمية للركبة، والجهاز اللامي.",
+      "العظام المندمجة سطحيًا من المسح الفوتوغرامتري: القحف، الفقرات، الأضلاع، القص، الساعدان (كعبرة+زند)، والساقان (ظنبوب+شظية).",
+      "طبقة العضلات والأوتار (46 عقدة) قابلة للإظهار والإخفاء ومُعاد بناؤها تشريحيًا من لوحات Hudson & Hamilton (3-8 إلى 3-18) — ليست مسح MRI."
     ],
     "nodeBreakdownAr": "26 عقدة تشريحية قابلة للتحديد: 10 عظام منفردة و16 مجموعة عظام مندمجة سطحيًا في المسح الفوتوغرامتري.",
     "licenseSeparationAr": "كود الأطلس مرخّص تحت MIT، بينما المجسم المشتق لـ Felis catus مرخّص بشكل مستقل تحت CC BY-NC-SA 4.0 (غير تجاري مع الإسناد والمشاركة بالمثل).",
-    "governanceNoteAr": "هذه العينة في حالة مسودة (draft) ومستضافة في معاينة الفرع فقط لأغراض الفحص والمراجعة البشرية؛ لم تُرقَّ إلى public/models/ أو الإنتاج بانتظار اعتماد اختصاصي تشريح بيطري ومراجع الحقوق."
+    "governanceNoteAr": "هذه العينة في حالة مسودة (draft) ومستضافة في معاينة الفرع فقط لأغراض الفحص والمراجعة البشرية؛ لم تُرقَّ إلى public/models/ أو الإنتاج بانتظار اعتماد اختصاصي تشريح بيطري ومراجع الحقوق.",
+    "derivativeSha256": "e59e517be3d0f1f207294d3dbf071aba9eaca3f8dad063d85947f97735b50be5",
+    "musclesLayer": {
+      "id": "felis-catus-muscles-tendons",
+      "titleAr": "طبقة العضلات والأوتار (46 عقدة — إعادة بناء تشريحي من الكتاب)",
+      "modelUrl": "./models/felis-catus-muscles-tendons.glb",
+      "catalogUrl": "./muscles-catalog.json",
+      "sha256": "54f140c4dd373fd39dfd416410556d6a626b8a53af213d1b5cf21c72ae49d688",
+      "geometryType": "procedural"
+    },
+    "restoredBonesLayer": {
+      "id": "felis-catus-restored-bones",
+      "modelUrl": "./models/felis-catus-restored-bones.glb",
+      "sha256": "245658e703b86a4740b502dd796338d2975e027d344a8ffe7552892776b4694a",
+      "replacesNodes": [
+        "manus_sinistra",
+        "manus_dextra",
+        "pes_sinister",
+        "pes_dexter"
+      ],
+      "geometryType": "procedural"
+    }
   },
   "regions": [
     {
@@ -108,7 +127,11 @@
       "coverageNoteAr": "القحف والفك العلوي؛ الفك السفلي متمفصل معه بوضع إغلاق في المسح الفوتوغرامتري.",
       "triangles": 6673,
       "nodeKind": "merged-group",
-      "nodeKindAr": "مجموعة عظام مندمجة سطحيًا"
+      "nodeKindAr": "مجموعة عظام مندمجة سطحيًا",
+      "bookRef": "Hudson & Hamilton (2nd Ed.), pp. 24–25; Plate 3-2 (pp. 28–29, Figs. A–D)",
+      "felineLandmarksAr": "يتكوّن القحف من عظام قصيرة الوجه والحنك مع غياب القناة الجناحية (Alar canal)، وبقاء الثقبة المدورة خارجية، ووجود حاجز عظمي غير مكتمل داخل الفقاعة الطبلية (Septum bullae)، وخيمة مخيخ عظمية واسعة (Tentorium cerebelli osseum)، وحجاج غير مكتمل يُغلقه الرباط الحجاجي.",
+      "muscleAttachmentsAr": "منشأ العضلتين الصدغية والماضغة (Mm. temporalis, masseter) والعضلات الجناحية وعضلات التعبير الوجهي وعضلات العين الخارجية (اللوحتان 3-9 و3-10، ص 50–53).",
+      "adjacentVesselsNervesAr": "الشبكة العجيبة الفكية (Rete mirabile maxillaris) التي تعوّض ضمور الشريان السباتي الباطن، والأعصاب القحفية الـ12 الخارجة من ثقوب القحف (اللوحة 4-4 ص 94–95؛ الجدول 10-1 ص 207)."
     },
     {
       "node": "mandibula",
@@ -130,7 +153,11 @@
       "coverageNoteAr": "الفك السفلي مفصول عند الخط الإطباقي السفلي؛ متمفصل بوضع مغلق مع الجمجمة في العينة.",
       "triangles": 3859,
       "nodeKind": "single-bone",
-      "nodeKindAr": "عظم منفرد"
+      "nodeKindAr": "عظم منفرد",
+      "bookRef": "Hudson & Hamilton (2nd Ed.), p. 25; Plate 3-2 (pp. 28–29, Fig. E); Ch. 8 p. 154",
+      "felineLandmarksAr": "يتألف من نصفين يلتقيان بالارتفاق الفكي، ويحمل في كل نصف 3 قواطع ونابًا واحدًا وضاحكين وضرسًا واحدًا (نصف الصيغة السنية السفلية من أصل 30 سنًا في القطة)، مع ناتئ منقاري بارز ولقمة فكية مفصلية.",
+      "muscleAttachmentsAr": "ارتكاز العضلة الماضغة في الحفرة الماضغية، والصدغية على الناتئ المنقاري، والجناحيتين وذات البطنين على السطح الإنسي والحافة البطنية (اللوحتان 3-9 و3-10، ص 50–53).",
+      "adjacentVesselsNervesAr": "العصب الفكي السفلي (الفرع الثالث لمثلث التوائم) والشريان السنخي السفلي الماران في القناة الفكية السفلية وخروجهما عبر الثقوب الذقنية (اللوحتان 4-4 و10-6)."
     },
     {
       "node": "vertebrae_cervicales",
@@ -152,7 +179,11 @@
       "coverageNoteAr": "الفقرات العنقية (C1–C7) كوحدة إقليمية متصلة لاندماج الفواصل بين الفقرات في المسح السطحي.",
       "triangles": 3499,
       "nodeKind": "merged-group",
-      "nodeKindAr": "مجموعة عظام مندمجة سطحيًا"
+      "nodeKindAr": "مجموعة عظام مندمجة سطحيًا",
+      "bookRef": "Hudson & Hamilton (2nd Ed.), pp. 30–31; Plate 3-3 (pp. 32–33, Figs. A–E)",
+      "felineLandmarksAr": "7 فقرات عنقية (C1–C7)؛ تمتاز القطة بغياب الرباط القفوي (No nuchal ligament)، وبأجنحة واسعة للأطلس (C1) ومحور (C2) ذي ناتئ شوكي طويل، وثقوب مستعرضة في C1–C6.",
+      "muscleAttachmentsAr": "ارتكاز ومنشأ العضلات الطويلة للرقبة والرأس، والطحالية، والمعينية العنقية، والعضلة الذراعية الرأسية (اللوحات 3-9 إلى 3-11، ص 50–57).",
+      "adjacentVesselsNervesAr": "الشريان والوريد الفقريان داخل القناة المستعرضة (C1–C6)، وجذور الأعصاب الشوكية العنقية الثمانية (C1–C8) بما فيها بداية الضفيرة العضدية عند C6–C8 (الجدول 10-2، ص 216–217)."
     },
     {
       "node": "vertebrae_thoracicae",
@@ -174,7 +205,11 @@
       "coverageNoteAr": "العمود الفقري الصدري (T1–T13)؛ الفواصل الفردية بين الفقرات مندمجة في السطح الأصلي.",
       "triangles": 3921,
       "nodeKind": "merged-group",
-      "nodeKindAr": "مجموعة عظام مندمجة سطحيًا"
+      "nodeKindAr": "مجموعة عظام مندمجة سطحيًا",
+      "bookRef": "Hudson & Hamilton (2nd Ed.), pp. 30–31; Plate 3-3 (pp. 32–33, Figs. F–G)",
+      "felineLandmarksAr": "13 فقرة صدرية (T1–T13)؛ تميل النواتئ الشوكية ذيليًا حتى الفقرة الصدرية الحادية عشرة (T11) التي تمثّل الفقرة المائلة العكسية (Anticlinal vertebra) في القطة.",
+      "muscleAttachmentsAr": "منشأ العضلات فوق المحورية (الشوكية والطولية والحرقفية الضلعية) والعضلتين شبه المنحرفة والمعينية والظهرية العريضة (اللوحتان 3-8 و3-11، ص 46–47 و56–57).",
+      "adjacentVesselsNervesAr": "الشريان الأورطي الصدري والوريد الفرد (Azygous v.) والجذع الودي الصدري على الجانب البطني، وجذور الأعصاب الصدرية T1–T13 ومنها T1 للضفيرة العضدية (اللوحتان 4-3 و10-7)."
     },
     {
       "node": "vertebrae_lumbales",
@@ -196,7 +231,11 @@
       "coverageNoteAr": "الفقرات القطنية (L1–L7) بنواتئها الشوكية والمستعرضة؛ مندمجة كوحدة إقليمية دون اختلاق فواصل.",
       "triangles": 5210,
       "nodeKind": "merged-group",
-      "nodeKindAr": "مجموعة عظام مندمجة سطحيًا"
+      "nodeKindAr": "مجموعة عظام مندمجة سطحيًا",
+      "bookRef": "Hudson & Hamilton (2nd Ed.), pp. 30–31; Plate 3-3 (pp. 32–33, Fig. H)",
+      "felineLandmarksAr": "7 فقرات قطنية (L1–L7) ذات أجسام قوية ونواتئ مستعرضة طويلة مائلة قحفيًا وبطنيًا تمنح العمود القطني للقطة مرونة عالية في الثني والقفز.",
+      "muscleAttachmentsAr": "العضلات فوق المحورية القطنية والعضلات تحت المحورية (البسواس الكبرى والصغرى والمربعة القطنية) وساقا الحجاب الحاجز (اللوحتان 3-11 و3-12، ص 56–59).",
+      "adjacentVesselsNervesAr": "الأورطي البطني والوريد الأجوف الخلفي بطنيًا؛ تقابل L1–L4 الكلية اليمنى وL2–L5 الكلية اليسرى؛ وتنشأ من L4–L7 بدايات الضفيرة القطنية العجزية (اللوحات 4-6، 9-1، 10-9)."
     },
     {
       "node": "os_sacrum",
@@ -218,7 +257,11 @@
       "coverageNoteAr": "العظم العجزي بين جناحي الحرقفة في المنطقة الظهرية الوسطية للحوض.",
       "triangles": 2116,
       "nodeKind": "single-bone",
-      "nodeKindAr": "عظم منفرد"
+      "nodeKindAr": "عظم منفرد",
+      "bookRef": "Hudson & Hamilton (2nd Ed.), pp. 30–31; Plate 3-3 (pp. 32–33, Fig. I)",
+      "felineLandmarksAr": "يتكوّن من التحام 3 فقرات عجزية (S1–S3) ويتمفصل جانبيًا مع جناحي الحرقفة في المفصل العجزي الحرقفي؛ وتنتهي المخروطة النخاعية للحبل الشوكي في القطة قرابة S1.",
+      "muscleAttachmentsAr": "منشأ العضلة الألوية الفخذية (M. gluteofemoralis) والعضلة الكمثرية وعضلات رفع الذيل العجزية الذيلية (اللوحتان 3-16 و3-17، ص 70–75).",
+      "adjacentVesselsNervesAr": "الشريان العجزي الوسطي وتفرعات الحرقفي الغائر، والأعصاب العجزية S1–S3 المغذية للضفيرة العجزية والعصب الوركي والفرجي (اللوحتان 4-9 و10-10)."
     },
     {
       "node": "vertebrae_caudales",
@@ -240,7 +283,11 @@
       "coverageNoteAr": "سلسلة الفقرات الذيلية المتدلية خلف الحوض؛ الفواصل الدقيقة بين الفقرات الذيلية مندمجة سطحيًا.",
       "triangles": 3171,
       "nodeKind": "merged-group",
-      "nodeKindAr": "مجموعة عظام مندمجة سطحيًا"
+      "nodeKindAr": "مجموعة عظام مندمجة سطحيًا",
+      "bookRef": "Hudson & Hamilton (2nd Ed.), pp. 30–31; Plate 3-1 (pp. 26–27)",
+      "felineLandmarksAr": "18 إلى 20 فقرة ذيلية عادة في القطط ذات الذيل الكامل؛ تحتفظ الفقرات القريبة بأقواس عصبية ونواتئ مفصلية ثم تتبسط تدريجيًا إلى قضبان أسطوانية.",
+      "muscleAttachmentsAr": "العضلات العجزية الذيلية الظهرية والبطنية والعضلات بين المستعرضة للذيل والعضلة العصعصية (اللوحة 3-16، ص 70–71).",
+      "adjacentVesselsNervesAr": "الشريان والوريد الذيليان الوسطيان على الوجه البطني، وذيل الفرس والأعصاب الذيلية الشوكية (اللوحة 4-9 ص 112–113؛ ص 200)."
     },
     {
       "node": "costae_sinistrae",
@@ -262,7 +309,11 @@
       "coverageNoteAr": "أقواس الأضلاع اليسرى؛ بعض الحواف الدقيقة للأضلاع تحوي شظايا فوتوغرامتريّة أُلحقت بها دون اختلاق هندسة.",
       "triangles": 4775,
       "nodeKind": "merged-group",
-      "nodeKindAr": "مجموعة عظام مندمجة سطحيًا"
+      "nodeKindAr": "مجموعة عظام مندمجة سطحيًا",
+      "bookRef": "Hudson & Hamilton (2nd Ed.), p. 31; Plate 3-1 (pp. 26–27); Plate 3-12 (pp. 58–59)",
+      "felineLandmarksAr": "13 ضلعًا يسريًا (1–9 أضلاع قصّية تتصل بالقص، 10–12 تشكّل القوس الضلعي، والضلع 13 سائب) ذات تقوّس يمنح قفص القطة الصدري مرونة ملحوظة.",
+      "muscleAttachmentsAr": "العضلات الوربية الظاهرة والباطنة، المسننة البطنية والظهرية، المستقيمة الصدرية، ومنشأ الحجاب الحاجز على القوس الضلعي (اللوحتان 3-11 و3-12، ص 56–59).",
+      "adjacentVesselsNervesAr": "الشرايين والأوردة والأعصاب الوربية المارة على الحافة الذيلية لكل ضلع، وتجاورها داخليًا الرئة اليسرى ذات الفصّين والقلب (اللوحتان 4-3 و7-3)."
     },
     {
       "node": "costae_dextrae",
@@ -284,7 +335,11 @@
       "coverageNoteAr": "أقواس الأضلاع اليمنى؛ الغضاريف الضلعية غير مفصولة عن الأضلاع العظمية في هذا المسح.",
       "triangles": 6329,
       "nodeKind": "merged-group",
-      "nodeKindAr": "مجموعة عظام مندمجة سطحيًا"
+      "nodeKindAr": "مجموعة عظام مندمجة سطحيًا",
+      "bookRef": "Hudson & Hamilton (2nd Ed.), p. 31; Plate 3-1 (pp. 26–27); Plate 3-12 (pp. 58–59)",
+      "felineLandmarksAr": "13 ضلعًا يمنيًا (1–9 قصّية، 10–12 قوس ضلعي، 13 سائب) تحمي الرئة اليمنى ذات الفصوص الأربعة والجانب الأيمن من القلب والكبد.",
+      "muscleAttachmentsAr": "العضلات الوربية الظاهرة والباطنة، المسننة البطنية والظهرية، المائلة البطنية الظاهرة، وارتكاز الحجاب الحاجز الضلعي (اللوحتان 3-11 و3-12، ص 56–59).",
+      "adjacentVesselsNervesAr": "الحزم الوعائية العصبية الوربية على الحافة الذيلية لكل ضلع، وتجاورها داخليًا الرئة اليمنى (4 فصوص) والوريد الأجوف القحفي والخلفي (اللوحتان 4-3 و7-3)."
     },
     {
       "node": "sternum",
@@ -306,7 +361,11 @@
       "coverageNoteAr": "شريط القص البطني أسفل القفص الصدري؛ القطع القصية الفردية (Sternebrae) مندمجة في السطح.",
       "triangles": 1205,
       "nodeKind": "merged-group",
-      "nodeKindAr": "مجموعة عظام مندمجة سطحيًا"
+      "nodeKindAr": "مجموعة عظام مندمجة سطحيًا",
+      "bookRef": "Hudson & Hamilton (2nd Ed.), p. 31; Plate 3-1 (pp. 26–27)",
+      "felineLandmarksAr": "يتكوّن من 8 قُصيبات أسطوانية (Sternebrae) تبدأ بقبضة القص (Manubrium) وتنتهي بالناتئ الرهابي (Processus xiphoideus) وغضروفه.",
+      "muscleAttachmentsAr": "منشأ العضلات الصدرية السطحية والعميقة، والقصية الرأسية والقصية اللامية والدرقية، وارتكاز المستقيمة البطنية (اللوحتان 3-11 و3-13، ص 56–57 و62–63).",
+      "adjacentVesselsNervesAr": "الشريان والوريد الصدريان الباطنان الممتدان على السطح الظهري للقص، والعقد اللمفية القصية القحفية (اللوحتان 4-3 و5-2)."
     },
     {
       "node": "os_coxae_sinistrum",
@@ -328,7 +387,11 @@
       "coverageNoteAr": "نصف الحوض الأيسر (الحرقفة والورك والعانة مندمجة تشريحيًا في القط البالغ).",
       "triangles": 2823,
       "nodeKind": "single-bone",
-      "nodeKindAr": "عظم منفرد"
+      "nodeKindAr": "عظم منفرد",
+      "bookRef": "Hudson & Hamilton (2nd Ed.), p. 35, 67; Plate 3-5 (pp. 38–39, Fig. A); Plate 3-18B (pp. 76–77)",
+      "felineLandmarksAr": "التحام الحرقفة والإسك والعانة؛ يمتاز حوض القطة بشكله الصندوقي الضيق وأرضيته بشكل V وبغياب الرباط العجزي الحدبي (No sacrotuberous ligament).",
+      "muscleAttachmentsAr": "منشأ العضلات الألوية والخياطية غير المنقسمة والمستقيمة الفخذية وذات الرأسين الفخذية وشبه الوترية وشبه الغشائية والمقربات (اللوحات 3-16 إلى 3-18B).",
+      "adjacentVesselsNervesAr": "الشريان والوريد الحرقفيان الظاهر والغائر، والعصب الوركي المار فوق الثلمة الإسكية الكبرى، والعصب السدادي عبر الثقبة السدادية (اللوحتان 4-9 و10-10)."
     },
     {
       "node": "os_coxae_dextrum",
@@ -350,7 +413,11 @@
       "coverageNoteAr": "نصف الحوض الأيمن (الحرقفة والورك والعانة مندمجة تشريحيًا في القط البالغ).",
       "triangles": 1388,
       "nodeKind": "single-bone",
-      "nodeKindAr": "عظم منفرد"
+      "nodeKindAr": "عظم منفرد",
+      "bookRef": "Hudson & Hamilton (2nd Ed.), p. 35, 67; Plate 3-5 (pp. 38–39, Fig. A); Plate 3-18B (pp. 76–77)",
+      "felineLandmarksAr": "نصف الحوض الأيمن (الحرقفة والإسك والعانة) المتصل بالجانب الأيسر عند الارتفاق الحوضي مع حق عميق لمفصل الورك وغياب الرباط العجزي الحدبي.",
+      "muscleAttachmentsAr": "منشأ العضلات الألوية والخياطية والمستقيمة الفخذية ومجموعة أوتار المأبض (ذات الرأسين وشبه الوترية وشبه الغشائية) والمقربات (اللوحات 3-16 إلى 3-18B).",
+      "adjacentVesselsNervesAr": "الشريانان الحرقفيان الظاهر والغائر والأعصاب الوركي والفخذي والسدادي (اللوحتان 4-9 و10-10)."
     },
     {
       "node": "scapula_sinistra",
@@ -372,7 +439,11 @@
       "coverageNoteAr": "لوح الكتف الأيسر متموضع على الجانب الأمامي الوحشي للقفص الصدري.",
       "triangles": 896,
       "nodeKind": "single-bone",
-      "nodeKindAr": "عظم منفرد"
+      "nodeKindAr": "عظم منفرد",
+      "bookRef": "Hudson & Hamilton (2nd Ed.), p. 34; Plate 3-4 (pp. 36–37, Fig. A); Plate 3-18A (pp. 76–77)",
+      "felineLandmarksAr": "ترتفع حافتها الظهرية فوق النواتئ الشوكية الصدرية؛ وتمتاز شوكة الكتف في القطة بناتئين مميزين: الناتئ الشصي (Hamate process) والناتئ فوق الشصي (Suprahamate process).",
+      "muscleAttachmentsAr": "منشأ العضلات فوق وتحت الشوكة والدالية وتحت الكتفية والمدورتين وذات الرأسين العضدية؛ وارتكاز شبه المنحرفة والمعينية والمسننة البطنية (اللوحتان 3-13 و3-18A).",
+      "adjacentVesselsNervesAr": "العصب فوق الكتف المار عبر الثلمة الكتفية، والعصب الإبطي والشريان تحت الكتف في المنطقة الذيلية لعنق الكتف (اللوحتان 4-5 و10-8)."
     },
     {
       "node": "scapula_dextra",
@@ -394,7 +465,11 @@
       "coverageNoteAr": "لوح الكتف الأيمن متموضع على الجانب الأمامي الوحشي للقفص الصدري.",
       "triangles": 3860,
       "nodeKind": "single-bone",
-      "nodeKindAr": "عظم منفرد"
+      "nodeKindAr": "عظم منفرد",
+      "bookRef": "Hudson & Hamilton (2nd Ed.), p. 34; Plate 3-4 (pp. 36–37, Fig. A); Plate 3-18A (pp. 76–77)",
+      "felineLandmarksAr": "لوح الكتف الأيمن بحافة ظهرية مرتفعة وناتئ شصي (Hamate) وفوق شصي (Suprahamate) وحق كتفي ضحل يتمفصل مع رأس العضد.",
+      "muscleAttachmentsAr": "فوق وتحت الشوكة والدالية وتحت الكتفية والمدورتان وذات الرأسين العضدية؛ وارتكاز شبه المنحرفة والمعينية والمسننة البطنية (اللوحتان 3-13 و3-18A).",
+      "adjacentVesselsNervesAr": "العصب فوق الكتف والشريان والوريد تحت الكتف والعصب الإبطي وتفرعات الضفيرة العضدية (اللوحتان 4-5 و10-8)."
     },
     {
       "node": "humerus_sinister",
@@ -416,7 +491,11 @@
       "coverageNoteAr": "عظم العضد الأيسر الممتد من مفصل الكتف إلى مفصل المرفق.",
       "triangles": 1116,
       "nodeKind": "single-bone",
-      "nodeKindAr": "عظم منفرد"
+      "nodeKindAr": "عظم منفرد",
+      "bookRef": "Hudson & Hamilton (2nd Ed.), p. 34; Plate 3-4 (pp. 36–37, Fig. B); Plate 3-18A (pp. 76–77)",
+      "felineLandmarksAr": "سمة قططية فارقة: وجود الثقبة فوق اللقمة الإنسية القاصية (Supracondylar foramen) وغياب الثقبة فوق البكرة (No supratrochlear foramen).",
+      "muscleAttachmentsAr": "ارتكاز الدالية والصدرية والظهرية العريضة وفوق وتحت الشوكة؛ ومنشأ العضدية ورؤوس ثلاثية الرؤوس (4 رؤوس في القطة) وباسطات وقابضات الرسغ والأصابع (اللوحتان 3-14 و3-18A).",
+      "adjacentVesselsNervesAr": "يمر الشريان العضدي والعصب المتوسط معًا عبر الثقبة فوق اللقمة (دون الوريد العضدي)، بينما يلتف العصب الكعبري وحشيًا في الثلم العضدي (اللوحة 4-5 ص 96–99؛ اللوحة 10-8)."
     },
     {
       "node": "humerus_dexter",
@@ -438,7 +517,11 @@
       "coverageNoteAr": "عظم العضد الأيمن الممتد من مفصل الكتف إلى مفصل المرفق (الطرف الأيمن متقدم في وقفة المشي).",
       "triangles": 1090,
       "nodeKind": "single-bone",
-      "nodeKindAr": "عظم منفرد"
+      "nodeKindAr": "عظم منفرد",
+      "bookRef": "Hudson & Hamilton (2nd Ed.), p. 34; Plate 3-4 (pp. 36–37, Fig. B); Plate 3-18A (pp. 76–77)",
+      "felineLandmarksAr": "يمتاز العضد الأيمن بوجود الثقبة فوق اللقمة الإنسية القاصية وغياب الثقبة فوق البكرة، مع حديبة كبرى وصغرى متقاربتين قرب الرأس.",
+      "muscleAttachmentsAr": "ارتكاز الدالية والصدرية والظهرية العريضة؛ ومنشأ العضدية وثلاثية الرؤوس (4 رؤوس في القطة) والعضدية الكعبرية (اللوحتان 3-14 و3-18A).",
+      "adjacentVesselsNervesAr": "الشريان العضدي والعصب المتوسط عبر الثقبة فوق اللقمة (دون الوريد العضدي)، والعصب الكعبري وحشيًا، والوريد الرأسي سطحيًا (اللوحتان 4-5 و10-8)."
     },
     {
       "node": "antebrachium_sinistrum",
@@ -460,7 +543,11 @@
       "coverageNoteAr": "الكعبرة والزند اليسرى مجمّعتان كوحدة ساعد لاندماجهما السطحي في المسح الفوتوغرامتري.",
       "triangles": 1997,
       "nodeKind": "merged-group",
-      "nodeKindAr": "مجموعة عظام مندمجة سطحيًا"
+      "nodeKindAr": "مجموعة عظام مندمجة سطحيًا",
+      "bookRef": "Hudson & Hamilton (2nd Ed.), pp. 34–35; Plate 3-4 (pp. 36–37, Fig. C); Plate 3-14 (pp. 64–65)",
+      "felineLandmarksAr": "الكعبرة والزند منفصلتان بوضوح في القطة مع مساحة واسعة بين العظمين تتيح مدى كبيرًا من الكبّ والاستلقاء؛ وفي المسح الفوتوغرامتري الحالي اندمجتا سطحيًا في عقدة واحدة.",
+      "muscleAttachmentsAr": "ارتكاز ثلاثية الرؤوس على الناتئ المرفقي للزند، وذات الرأسين العضدية على الأحدوبة الكعبرية، والعضدية والترقوية العضدية (M. cleidobrachialis) على الزند، وارتكاز العضدية الكعبرية (M. brachioradialis) على الكعبرة القاصية؛ ومنشأ باسطات وقابضات الرسغ والأصابع العميقة (اللوحتان 3-14 و3-18A).",
+      "adjacentVesselsNervesAr": "الوريد الرأسي (Cephalic v.) على الوجه القحفي الوحشي (موقع الحقن الوريدي)، والشريان المتوسط، والأعصاب الكعبري والمتوسط والزندي (اللوحتان 4-5 و10-8)."
     },
     {
       "node": "antebrachium_dextrum",
@@ -482,7 +569,11 @@
       "coverageNoteAr": "الكعبرة والزند اليمنى مجمّعتان كوحدة ساعد لاندماجهما السطحي في المسح الفوتوغرامتري.",
       "triangles": 2235,
       "nodeKind": "merged-group",
-      "nodeKindAr": "مجموعة عظام مندمجة سطحيًا"
+      "nodeKindAr": "مجموعة عظام مندمجة سطحيًا",
+      "bookRef": "Hudson & Hamilton (2nd Ed.), pp. 34–35; Plate 3-4 (pp. 36–37, Fig. C); Plate 3-14 (pp. 64–65)",
+      "felineLandmarksAr": "عظما الكعبرة والزند الأيمنان (منفصلان تشريحيًا للكبّ والاستلقاء، ومندمجان سطحيًا في هذه العينة الفوتوغرامتريّة).",
+      "muscleAttachmentsAr": "ارتكاز ثلاثية الرؤوس على المرفق، وذات الرأسين على الأحدوبة الكعبرية، والعضدية والترقوية العضدية على الزند، وارتكاز العضدية الكعبرية (M. brachioradialis) على الكعبرة القاصية؛ ومنشأ الكابّة والمستلقية وباسطات وقابضات الأصابع (اللوحتان 3-14 و3-18A).",
+      "adjacentVesselsNervesAr": "الوريد الرأسي سطحيًا قحفيًا، والشريان المتوسط والشريان بين العظمين، والأعصاب الكعبري والمتوسط والزندي (اللوحتان 4-5 و10-8)."
     },
     {
       "node": "manus_sinistra",
@@ -501,10 +592,14 @@
       "sourceUrl": "https://sketchfab.com/3d-models/cat-skeleton-7106115b299649e992476f2d3b4fc602",
       "reviewStatus": "draft",
       "reviewStatusAr": "مسودة (بانتظار مراجعة اختصاصي)",
-      "coverageNoteAr": "عظام الرسغ والمشط والسلاميات اليسرى مجمّعة؛ توجد آثار رقيقة لقاعدة التثبيت أسفل الكف.",
-      "triangles": 1963,
-      "nodeKind": "merged-group",
-      "nodeKindAr": "مجموعة عظام مندمجة سطحيًا"
+      "coverageNoteAr": "رمّمت تشريحيًا وفق اللوحة 3-4: الرسغ والرسغي الإضافي + 5 أمشاط + 5 أصابع (الإبهام الإنسي المرتفع بسلاميتين و4 أصابع بثلاث سلاميات ومخالب منكمشة).",
+      "triangles": 2840,
+      "nodeKind": "restored-procedural",
+      "nodeKindAr": "يد مرمّمة تشريحيًا (5 أصابع — procedural)",
+      "bookRef": "Hudson & Hamilton (2nd Ed.), p. 35; Plate 3-4 (pp. 36–37, Fig. D); Plate 3-15 (pp. 68–69)",
+      "felineLandmarksAr": "7 عظام رسغية، 5 أمشاط، و5 أصابع (الأول بسلاميتين والثاني–الخامس بثلاث سلاميات)؛ تمتاز السلاميات البعيدة بأربطة مرنة ظهرية تُبقي المخالب منكمشة في وضع الراحة.",
+      "muscleAttachmentsAr": "ارتكاز أوتار قابضات وباسطات الرسغ والأصابع السطحية والعميقة والعضلات بين العظام والعضلة القابضة العميقة المسؤولة عن إبراز المخلب (اللوحة 3-15، ص 68–69).",
+      "adjacentVesselsNervesAr": "القوس الراحية الشريانية السطحية والعميقة، والأوردة الرقمية الظهرية، وفروع الأعصاب الكعبري والمتوسط والزندي للأصابع (اللوحتان 4-5 و10-8)."
     },
     {
       "node": "manus_dextra",
@@ -523,10 +618,14 @@
       "sourceUrl": "https://sketchfab.com/3d-models/cat-skeleton-7106115b299649e992476f2d3b4fc602",
       "reviewStatus": "draft",
       "reviewStatusAr": "مسودة (بانتظار مراجعة اختصاصي)",
-      "coverageNoteAr": "عظام الرسغ والمشط والسلاميات اليمنى مجمّعة؛ توجد آثار رقيقة لقاعدة التثبيت أسفل الكف.",
-      "triangles": 1785,
-      "nodeKind": "merged-group",
-      "nodeKindAr": "مجموعة عظام مندمجة سطحيًا"
+      "coverageNoteAr": "رمّمت تشريحيًا وفق اللوحة 3-4: الرسغ والرسغي الإضافي + 5 أمشاط + 5 أصابع (الإبهام الإنسي المرتفع بسلاميتين و4 أصابع بثلاث سلاميات ومخالب منكمشة).",
+      "triangles": 2840,
+      "nodeKind": "restored-procedural",
+      "nodeKindAr": "يد مرمّمة تشريحيًا (5 أصابع — procedural)",
+      "bookRef": "Hudson & Hamilton (2nd Ed.), p. 35; Plate 3-4 (pp. 36–37, Fig. D); Plate 3-15 (pp. 68–69)",
+      "felineLandmarksAr": "اليد اليمنى (7 رسغيات، 5 أمشاط، 5 أصابع) ذات آلية انكماش المخالب بالأربطة المرنة الظهرية للسلامى البعيدة.",
+      "muscleAttachmentsAr": "أوتار باسطات وقابضات الرسغ والأصابع، والعضلات بين العظام؛ ويبرز المخلب بانقباض القابضة العميقة للأصابع (اللوحة 3-15، ص 68–69).",
+      "adjacentVesselsNervesAr": "الشرايين والأعصاب الراحية والظهرية للأصابع القادمة من المتوسط والزندي والكعبري (اللوحتان 4-5 و10-8)."
     },
     {
       "node": "femur_sinister",
@@ -548,7 +647,11 @@
       "coverageNoteAr": "عظم الفخذ الأيسر الممتد من مفصل الورك إلى الركبة؛ الرضفة غير مفصولة كعظم مستقل في المسح.",
       "triangles": 2005,
       "nodeKind": "single-bone",
-      "nodeKindAr": "عظم منفرد"
+      "nodeKindAr": "عظم منفرد",
+      "bookRef": "Hudson & Hamilton (2nd Ed.), p. 35; Plate 3-5 (pp. 38–39, Fig. B); Plate 3-18B (pp. 76–77)",
+      "felineLandmarksAr": "جسم أسطواني مستقيم نسبيًا في القطة، مع رأس يتمفصل بالحق عبر رباط رأس الفخذ، ومدوّران كبير وصغير، وبكرة رضفية ولقمتان قاصيتان (الرضفة والسمسميات ناقصة في المسح).",
+      "muscleAttachmentsAr": "ارتكاز الألوية والإليوبسواس والمقربات؛ ومنشأ العضلات المتسعات (الوحشية والإنسية والمتوسطة) والساقية (Gastrocnemius) والركبية (اللوحات 3-16 إلى 3-18B).",
+      "adjacentVesselsNervesAr": "الشريان والوريد الفخذیان والعصب الصافن في المثلث الفخذي إنسيًا، والعصب الوركي ذيليًا، والشريان المأبضي خلف الركبة (اللوحتان 4-8 و10-10)."
     },
     {
       "node": "femur_dexter",
@@ -570,7 +673,11 @@
       "coverageNoteAr": "عظم الفخذ الأيمن الممتد من مفصل الورك إلى الركبة؛ الرضفة غير مفصولة كعظم مستقل في المسح.",
       "triangles": 1643,
       "nodeKind": "single-bone",
-      "nodeKindAr": "عظم منفرد"
+      "nodeKindAr": "عظم منفرد",
+      "bookRef": "Hudson & Hamilton (2nd Ed.), p. 35; Plate 3-5 (pp. 38–39, Fig. B); Plate 3-18B (pp. 76–77)",
+      "felineLandmarksAr": "الفخذ الأيمن بجسم مستقيم وبكرة رضفية ولقمتين قاصيتين لمفصل الركبة (الرضفة وعظام فابيلا السمسمية ناقصة في هذا المسح).",
+      "muscleAttachmentsAr": "ارتكاز الألوية والمقربات والإليوبسواس؛ ومنشأ المتسعات الثلاث والساقية والركبية (اللوحات 3-16 إلى 3-18B).",
+      "adjacentVesselsNervesAr": "الشريان والوريد الفخذیان والعصب الفخذي/الصافن إنسيًا، والعصب الوركي وتفرعه إلى الظنبوبي والشظوي ذيليًا (اللوحتان 4-8 و10-10)."
     },
     {
       "node": "crus_sinistrum",
@@ -592,7 +699,11 @@
       "coverageNoteAr": "الظنبوب والشظية اليسرى مجمّعتان لاندماج الشظية الدقيقة سطحيًا مع الظنبوب في المسح.",
       "triangles": 1859,
       "nodeKind": "merged-group",
-      "nodeKindAr": "مجموعة عظام مندمجة سطحيًا"
+      "nodeKindAr": "مجموعة عظام مندمجة سطحيًا",
+      "bookRef": "Hudson & Hamilton (2nd Ed.), p. 35; Plate 3-5 (pp. 38–39, Fig. B); Plate 3-17 (pp. 74–75)",
+      "felineLandmarksAr": "الظنبوب والشظية منفصلان بطول الساق مع شظية مكتملة نحيلة في القطة؛ وفي هذه العينة اندمجا سطحيًا في عقدة واحدة.",
+      "muscleAttachmentsAr": "ارتكاز الخياطية غير المنقسمة والرشيقة وشبه الوترية ورباط الرضفة على أحدوبة الظنبوب؛ ومنشأ الظنبوبية القحفية وباسطات وقابضات الأصابع والعضلة النعلية النامية (M. soleus) الفارقة في القطط (اللوحتان 3-17 و3-18B).",
+      "adjacentVesselsNervesAr": "الوريد الصافن الإنسي (Medial saphenous v. — موقع سحب الدم الشائع بالقطط) والشريان الصافن، والعصبان الظنبوبي والشظوي المشترك (اللوحتان 4-8 و10-10)."
     },
     {
       "node": "crus_dextrum",
@@ -614,7 +725,11 @@
       "coverageNoteAr": "الظنبوب والشظية اليمنى مجمّعتان لاندماج الشظية الدقيقة سطحيًا مع الظنبوب في المسح.",
       "triangles": 2286,
       "nodeKind": "merged-group",
-      "nodeKindAr": "مجموعة عظام مندمجة سطحيًا"
+      "nodeKindAr": "مجموعة عظام مندمجة سطحيًا",
+      "bookRef": "Hudson & Hamilton (2nd Ed.), p. 35; Plate 3-5 (pp. 38–39, Fig. B); Plate 3-17 (pp. 74–75)",
+      "felineLandmarksAr": "الظنبوب والشظية اليمنيان (شظية مكتملة منفصلة تشريحيًا؛ مندمجان سطحيًا في هذا المسح الفوتوغرامتري).",
+      "muscleAttachmentsAr": "ارتكاز رباعية الرؤوس (عبر الرباط الرضفي) والخياطية وشبه الوترية؛ ومنشأ النعلية النامية (M. soleus) والظنبوبية القحفية والشظوية الطويلة (اللوحتان 3-17 و3-18B).",
+      "adjacentVesselsNervesAr": "الوريد الصافن الإنسي والشريان الظنبوبي القحفي، والعصبان الظنبوبي والشظوي المشترك (اللوحتان 4-8 و10-10)."
     },
     {
       "node": "pes_sinister",
@@ -633,10 +748,14 @@
       "sourceUrl": "https://sketchfab.com/3d-models/cat-skeleton-7106115b299649e992476f2d3b4fc602",
       "reviewStatus": "draft",
       "reviewStatusAr": "مسودة (بانتظار مراجعة اختصاصي)",
-      "coverageNoteAr": "عظام الرصغ والمشط والسلاميات للقدم الخلفية اليسرى؛ توجد آثار رقيقة لقاعدة التثبيت أسفل القدم.",
-      "triangles": 3081,
-      "nodeKind": "merged-group",
-      "nodeKindAr": "مجموعة عظام مندمجة سطحيًا"
+      "coverageNoteAr": "رمّمت تشريحيًا وفق اللوحة 3-5: العقب البارز والكاحل + 4 أمشاط مكتملة (MT II–V) + مشط أول أثري (MT I) + 4 أصابع وظيفية (II–V) بمخالب منكمشة.",
+      "triangles": 2792,
+      "nodeKind": "restored-procedural",
+      "nodeKindAr": "قدم مرمّمة تشريحيًا (4 أصابع — procedural)",
+      "bookRef": "Hudson & Hamilton (2nd Ed.), p. 35; Plate 3-5 (pp. 38–39, Fig. C); Plate 3-17 (pp. 74–75)",
+      "felineLandmarksAr": "7 عظام رسغ قدم (Tarsals)، و4 أمشاط مكتملة (MT II–V) مع مشط أول أثري (Rudimentary MT I)، و4 أصابع وظيفية (II–V) بمخالب قابلة للانكماش.",
+      "muscleAttachmentsAr": "ارتكاز وتر العرقوب المشترك (من الساقية والنعلية والقابضة السطحية) على حدبة العقب، وأوتار باسطات وقابضات أصابع القدم (اللوحة 3-17، ص 74–75).",
+      "adjacentVesselsNervesAr": "الشريان الظهري للقدم وتفرعات الشريان الصافن والأعصاب الأخمصية والظهرية للأصابع (اللوحتان 4-8 و10-10)."
     },
     {
       "node": "pes_dexter",
@@ -655,10 +774,196 @@
       "sourceUrl": "https://sketchfab.com/3d-models/cat-skeleton-7106115b299649e992476f2d3b4fc602",
       "reviewStatus": "draft",
       "reviewStatusAr": "مسودة (بانتظار مراجعة اختصاصي)",
-      "coverageNoteAr": "عظام الرصغ والمشط والسلاميات للقدم الخلفية اليمنى؛ توجد آثار رقيقة لقاعدة التثبيت أسفل القدم.",
-      "triangles": 3450,
-      "nodeKind": "merged-group",
-      "nodeKindAr": "مجموعة عظام مندمجة سطحيًا"
+      "coverageNoteAr": "رمّمت تشريحيًا وفق اللوحة 3-5: العقب البارز والكاحل + 4 أمشاط مكتملة (MT II–V) + مشط أول أثري (MT I) + 4 أصابع وظيفية (II–V) بمخالب منكمشة.",
+      "triangles": 2792,
+      "nodeKind": "restored-procedural",
+      "nodeKindAr": "قدم مرمّمة تشريحيًا (4 أصابع — procedural)",
+      "bookRef": "Hudson & Hamilton (2nd Ed.), p. 35; Plate 3-5 (pp. 38–39, Fig. C); Plate 3-17 (pp. 74–75)",
+      "felineLandmarksAr": "القدم اليمنى (7 عظام رسغ قدم، 4 أمشاط مكتملة + MT I أثري، 4 أصابع II–V) بآلية انكماش المخالب.",
+      "muscleAttachmentsAr": "ارتكاز وتر العرقوب المشترك على العقب وأوتار الباسطات والقابضات لأصابع القدم (اللوحة 3-17، ص 74–75).",
+      "adjacentVesselsNervesAr": "الشريان الظهري للقدم والشرايين الأخمصية وفروع العصبين الظنبوبي والشظوي (اللوحتان 4-8 و10-10)."
+    },
+    {
+      "node": "clavicula_sinistra",
+      "id": "felis-catus.skeletal.clavicula.left",
+      "region": "thoracic-limb",
+      "regionAr": "الطرف الأمامي",
+      "laterality": "left",
+      "lateralityAr": "أيسر",
+      "names": {
+        "ar": "الترقوة الأثرية (اليسرى)",
+        "en": "Left Clavicle",
+        "la": "Clavicula sinistra"
+      },
+      "navEdition": "NAV 6th edition (2017)",
+      "sourceLabel": "ترميم تشريحي وفق Hudson & Hamilton (2nd Ed., 2010) — procedural",
+      "sourceUrl": "https://www.wava-amav.org/wava-documents.html",
+      "reviewStatus": "draft",
+      "reviewStatusAr": "مسودة (ترميم تشريحي بانتظار اختصاصي)",
+      "coverageNoteAr": "عظم ناقص من المسح الفوتوغرامتري أُعيد بناؤه تشريحيًا ومُوضِع على نقاطه المرجعية في الهيكل.",
+      "triangles": 192,
+      "nodeKind": "restored-procedural",
+      "nodeKindAr": "عظم مرمّم من الأطلس (procedural)",
+      "bookRef": "Hudson & Hamilton (2nd Ed.), p. 34; Plate 3-4",
+      "felineLandmarksAr": "ترقوة أثرية ثابتة غير متمفصلة عظميًا تنغرس في التقاطع الوتري أمام الكتف.",
+      "muscleAttachmentsAr": "ارتكاز ومنشأ M. cleidocephalicus وM. cleidobrachialis.",
+      "adjacentVesselsNervesAr": "الوريد الوداجي الظاهر والشريان الإبطي."
+    },
+    {
+      "node": "clavicula_dextra",
+      "id": "felis-catus.skeletal.clavicula.right",
+      "region": "thoracic-limb",
+      "regionAr": "الطرف الأمامي",
+      "laterality": "right",
+      "lateralityAr": "أيمن",
+      "names": {
+        "ar": "الترقوة الأثرية (اليمنى)",
+        "en": "Right Clavicle",
+        "la": "Clavicula dextra"
+      },
+      "navEdition": "NAV 6th edition (2017)",
+      "sourceLabel": "ترميم تشريحي وفق Hudson & Hamilton (2nd Ed., 2010) — procedural",
+      "sourceUrl": "https://www.wava-amav.org/wava-documents.html",
+      "reviewStatus": "draft",
+      "reviewStatusAr": "مسودة (ترميم تشريحي بانتظار اختصاصي)",
+      "coverageNoteAr": "عظم ناقص من المسح الفوتوغرامتري أُعيد بناؤه تشريحيًا ومُوضِع على نقاطه المرجعية في الهيكل.",
+      "triangles": 192,
+      "nodeKind": "restored-procedural",
+      "nodeKindAr": "عظم مرمّم من الأطلس (procedural)",
+      "bookRef": "Hudson & Hamilton (2nd Ed.), p. 34; Plate 3-4",
+      "felineLandmarksAr": "ترقوة أثرية ثابتة غير متمفصلة عظميًا تُرى بوضوح على الأشعة السينية للقطة.",
+      "muscleAttachmentsAr": "ارتكاز ومنشأ M. cleidocephalicus وM. cleidobrachialis.",
+      "adjacentVesselsNervesAr": "الوريد الوداجي الظاهر والشريان الإبطي."
+    },
+    {
+      "node": "patella_sinistra",
+      "id": "felis-catus.skeletal.patella.left",
+      "region": "pelvic-limb",
+      "regionAr": "الطرف الخلفي",
+      "laterality": "left",
+      "lateralityAr": "أيسر",
+      "names": {
+        "ar": "الرضفة (اليسرى)",
+        "en": "Left Patella",
+        "la": "Patella sinistra"
+      },
+      "navEdition": "NAV 6th edition (2017)",
+      "sourceLabel": "ترميم تشريحي وفق Hudson & Hamilton (2nd Ed., 2010) — procedural",
+      "sourceUrl": "https://www.wava-amav.org/wava-documents.html",
+      "reviewStatus": "draft",
+      "reviewStatusAr": "مسودة (ترميم تشريحي بانتظار اختصاصي)",
+      "coverageNoteAr": "عظم ناقص من المسح الفوتوغرامتري أُعيد بناؤه تشريحيًا ومُوضِع على نقاطه المرجعية في الهيكل.",
+      "triangles": 240,
+      "nodeKind": "restored-procedural",
+      "nodeKindAr": "عظم مرمّم من الأطلس (procedural)",
+      "bookRef": "Hudson & Hamilton (2nd Ed.), p. 35; Plate 3-5",
+      "felineLandmarksAr": "يتجه طرفها المدبب قاصيًا نحو أحدوبة الظنبوب وللقطة رباط رضفي واحد فقط.",
+      "muscleAttachmentsAr": "مرتكز العضلة رباعية الرؤوس الفخذية والرباط الرضفي.",
+      "adjacentVesselsNervesAr": "تفرعات الشريان الركبي النازل والعصب الصافن."
+    },
+    {
+      "node": "patella_dextra",
+      "id": "felis-catus.skeletal.patella.right",
+      "region": "pelvic-limb",
+      "regionAr": "الطرف الخلفي",
+      "laterality": "right",
+      "lateralityAr": "أيمن",
+      "names": {
+        "ar": "الرضفة (اليمنى)",
+        "en": "Right Patella",
+        "la": "Patella dextra"
+      },
+      "navEdition": "NAV 6th edition (2017)",
+      "sourceLabel": "ترميم تشريحي وفق Hudson & Hamilton (2nd Ed., 2010) — procedural",
+      "sourceUrl": "https://www.wava-amav.org/wava-documents.html",
+      "reviewStatus": "draft",
+      "reviewStatusAr": "مسودة (ترميم تشريحي بانتظار اختصاصي)",
+      "coverageNoteAr": "عظم ناقص من المسح الفوتوغرامتري أُعيد بناؤه تشريحيًا ومُوضِع على نقاطه المرجعية في الهيكل.",
+      "triangles": 240,
+      "nodeKind": "restored-procedural",
+      "nodeKindAr": "عظم مرمّم من الأطلس (procedural)",
+      "bookRef": "Hudson & Hamilton (2nd Ed.), p. 35; Plate 3-5",
+      "felineLandmarksAr": "يتجه طرفها المدبب قاصيًا نحو أحدوبة الظنبوب وللقطة رباط رضفي واحد فقط.",
+      "muscleAttachmentsAr": "مرتكز العضلة رباعية الرؤوس الفخذية والرباط الرضفي.",
+      "adjacentVesselsNervesAr": "تفرعات الشريان الركبي النازل والعصب الصافن."
+    },
+    {
+      "node": "sesamoidea_genus_sinistra",
+      "id": "felis-catus.skeletal.sesamoidea-genus.left",
+      "region": "pelvic-limb",
+      "regionAr": "الطرف الخلفي",
+      "laterality": "left",
+      "lateralityAr": "أيسر",
+      "names": {
+        "ar": "العظام السمسمية للركبة (اليسرى)",
+        "en": "Left Stifle Sesamoids (Fabellae & Popliteus)",
+        "la": "Ossa sesamoidea genus sinistra"
+      },
+      "navEdition": "NAV 6th edition (2017)",
+      "sourceLabel": "ترميم تشريحي وفق Hudson & Hamilton (2nd Ed., 2010) — procedural",
+      "sourceUrl": "https://www.wava-amav.org/wava-documents.html",
+      "reviewStatus": "draft",
+      "reviewStatusAr": "مسودة (ترميم تشريحي بانتظار اختصاصي)",
+      "coverageNoteAr": "عظم ناقص من المسح الفوتوغرامتري أُعيد بناؤه تشريحيًا ومُوضِع على نقاطه المرجعية في الهيكل.",
+      "triangles": 420,
+      "nodeKind": "restored-procedural",
+      "nodeKindAr": "عظم مرمّم من الأطلس (procedural)",
+      "bookRef": "Hudson & Hamilton (2nd Ed.), p. 35; Plate 3-7 Fig. D (#9, #10)",
+      "felineLandmarksAr": "عظمتا فابيلا في رأسي العضلة الساقية ذيليًا للفخذ + سمسمية وتر العضلة الركبية وحشيًا.",
+      "muscleAttachmentsAr": "رؤوس العضلة الساقية والعضلة الركبية.",
+      "adjacentVesselsNervesAr": "الشريان المأبضي والعصب الظنبوبي."
+    },
+    {
+      "node": "sesamoidea_genus_dextra",
+      "id": "felis-catus.skeletal.sesamoidea-genus.right",
+      "region": "pelvic-limb",
+      "regionAr": "الطرف الخلفي",
+      "laterality": "right",
+      "lateralityAr": "أيمن",
+      "names": {
+        "ar": "العظام السمسمية للركبة (اليمنى)",
+        "en": "Right Stifle Sesamoids (Fabellae & Popliteus)",
+        "la": "Ossa sesamoidea genus dextra"
+      },
+      "navEdition": "NAV 6th edition (2017)",
+      "sourceLabel": "ترميم تشريحي وفق Hudson & Hamilton (2nd Ed., 2010) — procedural",
+      "sourceUrl": "https://www.wava-amav.org/wava-documents.html",
+      "reviewStatus": "draft",
+      "reviewStatusAr": "مسودة (ترميم تشريحي بانتظار اختصاصي)",
+      "coverageNoteAr": "عظم ناقص من المسح الفوتوغرامتري أُعيد بناؤه تشريحيًا ومُوضِع على نقاطه المرجعية في الهيكل.",
+      "triangles": 420,
+      "nodeKind": "restored-procedural",
+      "nodeKindAr": "عظم مرمّم من الأطلس (procedural)",
+      "bookRef": "Hudson & Hamilton (2nd Ed.), p. 35; Plate 3-7 Fig. D (#9, #10)",
+      "felineLandmarksAr": "عظمتا فابيلا في رأسي العضلة الساقية ذيليًا للفخذ + سمسمية وتر العضلة الركبية وحشيًا.",
+      "muscleAttachmentsAr": "رؤوس العضلة الساقية والعضلة الركبية.",
+      "adjacentVesselsNervesAr": "الشريان المأبضي والعصب الظنبوبي."
+    },
+    {
+      "node": "apparatus_hyoideus",
+      "id": "felis-catus.skeletal.apparatus-hyoideus",
+      "region": "head",
+      "regionAr": "الرأس",
+      "laterality": "midline",
+      "lateralityAr": "وسطي",
+      "names": {
+        "ar": "الجهاز اللامي",
+        "en": "Hyoid Apparatus",
+        "la": "Apparatus hyoideus"
+      },
+      "navEdition": "NAV 6th edition (2017)",
+      "sourceLabel": "ترميم تشريحي وفق Hudson & Hamilton (2nd Ed., 2010) — procedural",
+      "sourceUrl": "https://www.wava-amav.org/wava-documents.html",
+      "reviewStatus": "draft",
+      "reviewStatusAr": "مسودة (ترميم تشريحي بانتظار اختصاصي)",
+      "coverageNoteAr": "عظم ناقص من المسح الفوتوغرامتري أُعيد بناؤه تشريحيًا ومُوضِع على نقاطه المرجعية في الهيكل.",
+      "triangles": 800,
+      "nodeKind": "restored-procedural",
+      "nodeKindAr": "عظم مرمّم من الأطلس (procedural)",
+      "bookRef": "Hudson & Hamilton (2nd Ed.), p. 25; Plate 7-1 (pp. 142–143)",
+      "felineLandmarksAr": "العظم اللامي القاعدي (Basihyoid) هو العنصر المفرد الوحيد العابر للخط الوسطي، وبقية القرون مزدوجة تربط القحف بالحنجرة.",
+      "muscleAttachmentsAr": "عضلات اللسان والبلعوم والقصية اللامية والدرقية اللامية.",
+      "adjacentVesselsNervesAr": "الشريان اللساني والعصب تحت اللساني (XII)."
     }
   ]
 }

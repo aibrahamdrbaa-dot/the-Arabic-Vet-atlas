@@ -80,6 +80,10 @@ function updateBoneCard(id) {
     get('card-source').textContent = part ? 'ملف محلي تجريبي' : (catalog?.specimen?.source?.author ?? '—');
     get('card-review').textContent = part ? 'ملف محلي غير مراجع' : (catalog?.specimen?.reviewStatusAr ?? '—');
     get('card-coverage').textContent = '—';
+    get('card-book-ref').textContent = '—';
+    get('card-landmarks').textContent = '—';
+    get('card-muscles').textContent = '—';
+    get('card-vessels-nerves').textContent = '—';
     return;
   }
   get('card-title').textContent = s.names.ar;
@@ -92,6 +96,10 @@ function updateBoneCard(id) {
   get('card-source').textContent = s.sourceLabel;
   get('card-review').textContent = s.reviewStatusAr;
   get('card-coverage').textContent = s.coverageNoteAr;
+  get('card-book-ref').textContent = s.bookRef || '—';
+  get('card-landmarks').textContent = s.felineLandmarksAr || '—';
+  get('card-muscles').textContent = s.muscleAttachmentsAr || '—';
+  get('card-vessels-nerves').textContent = s.adjacentVesselsNervesAr || '—';
 }
 
 function updateBoneListSelection(id) {
@@ -198,7 +206,7 @@ function renderBoneList() {
     const s = part.structure;
     if (region !== 'all' && part.region !== region) continue;
     const hay = s
-      ? `${s.names.ar} ${s.names.en} ${s.names.la} ${s.id} ${s.regionAr} ${s.lateralityAr}`.toLowerCase()
+      ? `${s.names.ar} ${s.names.en} ${s.names.la} ${s.id} ${s.regionAr} ${s.lateralityAr} ${s.bookRef || ''} ${s.felineLandmarksAr || ''}`.toLowerCase()
       : `${part.label} ${id}`.toLowerCase();
     if (query && !hay.includes(query)) continue;
     const btn = document.createElement('button');
@@ -544,9 +552,15 @@ async function initAtlasSpecimen() {
     const root = await viewer.loadBuffer(buffer);
     const layerIds = new Set();
 
+    const replacedPaws = new Set(catalog.specimen.restoredBonesLayer?.replacesNodes || []);
     root.traverse(obj => {
       if (!obj.isMesh) return;
       const nodeName = obj.name || obj.parent?.name || '';
+      if (replacedPaws.has(nodeName)) {
+        obj.visible = false;
+        obj.layers.set(1);
+        return;
+      }
       const structure = byNode.get(nodeName);
       if (!structure) return;
       const id = structure.id;
@@ -566,7 +580,83 @@ async function initAtlasSpecimen() {
       get('part').add(new Option(`${structure.names.ar} — ${structure.names.la}`, id));
     });
 
-    addLayerToggle(specimenId, `العينة الأساسية: ${catalog.specimen.titleAr}`, root, layerIds);
+    // Load restored paws (5-digit manus, 4-digit pes) + 7 missing feline bones into skeleton layer
+    if (catalog.specimen.restoredBonesLayer) {
+      try {
+        const rl = catalog.specimen.restoredBonesLayer;
+        const rGlbResp = await fetch(rl.modelUrl);
+        if (rGlbResp.ok) {
+          const rRoot = await viewer.loadBuffer(await rGlbResp.arrayBuffer());
+          root.add(rRoot);
+          rRoot.traverse(obj => {
+            if (!obj.isMesh) return;
+            const nodeName = obj.name || obj.parent?.name || '';
+            const structure = byNode.get(nodeName);
+            if (!structure) return;
+            const id = structure.id;
+            const mats = (Array.isArray(obj.material) ? obj.material : [obj.material]).map(m => m.clone());
+            obj.material = Array.isArray(obj.material) ? mats : mats[0];
+            layerIds.add(id);
+            meshIds.set(obj, id);
+            parts.set(id, {
+              mesh: obj,
+              label: `${structure.names.ar} (${structure.names.la})`,
+              structure,
+              specimenId,
+              layerId: specimenId,
+              region: structure.region,
+              materials: mats.filter(m => m.color).map(m => ({ material: m, original: m.color.clone() })),
+            });
+            get('part').add(new Option(`${structure.names.ar} — ${structure.names.la}`, id));
+          });
+        }
+      } catch (rErr) {
+        console.warn('Restored bones addon skipped:', rErr);
+      }
+    }
+
+    addLayerToggle(specimenId, `الهيكل العظمي المرمّم (${layerIds.size} عقدة)`, root, layerIds);
+
+    // Load Phase 2 toggleable Muscles & Tendons layer (46 nodes)
+    if (catalog.specimen.musclesLayer) {
+      try {
+        const ml = catalog.specimen.musclesLayer;
+        const [mCatResp, mGlbResp] = await Promise.all([
+          fetch(ml.catalogUrl, { cache: 'no-cache' }),
+          fetch(ml.modelUrl),
+        ]);
+        if (mCatResp.ok && mGlbResp.ok) {
+          const mCat = await mCatResp.json();
+          const mByNode = new Map(mCat.structures.map(s => [s.node, s]));
+          const mRoot = await viewer.loadBuffer(await mGlbResp.arrayBuffer());
+          const mLayerIds = new Set();
+          mRoot.traverse(obj => {
+            if (!obj.isMesh) return;
+            const nodeName = obj.name || obj.parent?.name || '';
+            const structure = mByNode.get(nodeName);
+            if (!structure) return;
+            const id = structure.id;
+            const mats = (Array.isArray(obj.material) ? obj.material : [obj.material]).map(m => m.clone());
+            obj.material = Array.isArray(obj.material) ? mats : mats[0];
+            mLayerIds.add(id);
+            meshIds.set(obj, id);
+            parts.set(id, {
+              mesh: obj,
+              label: `${structure.names.ar} (${structure.names.la})`,
+              structure,
+              specimenId,
+              layerId: ml.id,
+              region: structure.region,
+              materials: mats.filter(m => m.color).map(m => ({ material: m, original: m.color.clone() })),
+            });
+            get('part').add(new Option(`${structure.names.ar} — ${structure.names.la}`, id));
+          });
+          addLayerToggle(ml.id, ml.titleAr, mRoot, mLayerIds);
+        }
+      } catch (mErr) {
+        console.warn('Muscles layer load skipped:', mErr);
+      }
+    }
     get('stage-overlay').hidden = true;
     get('reset').disabled = false;
     get('show-all').disabled = false;
@@ -586,7 +676,7 @@ async function initAtlasSpecimen() {
     viewer.fit();
     statusEl.textContent = reqStruct && parts.has(reqStruct)
       ? `تم فتح العينة تلقائيًا وتحديد: ${parts.get(reqStruct).structure.names.ar} (${parts.size} عقدة تشريحية).`
-      : `تم فتح العينة تلقائيًا (${parts.size} عقدة تشريحية قابلة للتحديد: 10 عظام منفردة و16 مجموعة مندمجة). انقر على أي عقدة أو اخترها من القائمة.`;
+      : `تم فتح الهيكل المرمّم (33 عقدة) وطبقة العضلات والأوتار (46 عقدة) — إجمالي ${parts.size} عقدة قابلة للتحديد والعزل والتلوين وإخفاء الطبقات.`;
   } catch (err) {
     get('empty').textContent = `تعذّر تشغيل العارض ثلاثي الأبعاد (${err.message || 'WebGL غير متاح'}). يمكنك متابعة تصفح الـ 26 عقدة تشريحية وبطاقاتها وتدوين ملاحظاتك من القائمة الجانبية.`;
     statusEl.textContent = 'وضع البديل النصي مفعّل (WebGL غير متاح).';
