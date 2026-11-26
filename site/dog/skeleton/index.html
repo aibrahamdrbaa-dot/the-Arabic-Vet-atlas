@@ -1,0 +1,494 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>الجهاز الهيكلي للقطة (Felis catus) | الأطلس البيطري العربي</title>
+  <style>
+    :root {
+      --bg: #f6f3eb;
+      --surface: #ffffff;
+      --surface-soft: #f9f7f2;
+      --ink: #172334;
+      --muted: #4b5a70;
+      --border: #dadce2;
+      --accent: #1d4ed8;
+      --accent-soft: #e8f0fe;
+      --warn-bg: #fff8e6;
+      --warn-border: #e6c670;
+      --warn-ink: #6a4d08;
+      --radius: 16px;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font: 1rem/1.6 system-ui, -apple-system, "Segoe UI", Tahoma, sans-serif;
+    }
+    main {
+      max-width: 1360px;
+      margin: auto;
+      padding: clamp(14px, 3vw, 36px);
+    }
+    a { color: var(--accent); text-underline-offset: 3px; }
+    .topbar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 12px;
+    }
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      min-height: 44px;
+      padding: 6px 12px;
+      border-radius: 10px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      text-decoration: none;
+      font-weight: 600;
+    }
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 12px;
+      border-radius: 999px;
+      font-size: 0.875rem;
+      background: var(--warn-bg);
+      border: 1px solid var(--warn-border);
+      color: var(--warn-ink);
+    }
+    h1 {
+      margin: 4px 0 6px;
+      font-size: clamp(1.5rem, 3vw, 2.15rem);
+      line-height: 1.25;
+    }
+    .subtitle {
+      margin: 0 0 18px;
+      color: var(--muted);
+      max-width: 78ch;
+    }
+    .workspace {
+      display: grid;
+      grid-template-columns: minmax(0, 1.85fr) minmax(300px, 1fr);
+      gap: 16px;
+      align-items: start;
+    }
+    .panel, #stage {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+    }
+    .stage-wrap {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    #stage {
+      position: relative;
+      display: grid;
+      place-items: center;
+      min-height: clamp(320px, 62vh, 660px);
+      overflow: hidden;
+      background: radial-gradient(circle at 50% 35%, #f4f7fb 0%, #e4eaf3 100%);
+    }
+    #stage canvas {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      touch-action: none;
+      cursor: grab;
+    }
+    #stage canvas:active { cursor: grabbing; }
+    #stage-overlay {
+      position: relative;
+      z-index: 2;
+      padding: 16px 20px;
+      text-align: center;
+      max-width: 44ch;
+      background: rgba(255, 255, 255, 0.92);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+    }
+    .stage-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 14px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+    }
+    .btn-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-items: center;
+    }
+    button {
+      min-height: 44px;
+      padding: 8px 14px;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      color: var(--ink);
+      font: inherit;
+      font-size: 0.94rem;
+      cursor: pointer;
+    }
+    button:hover:not(:disabled) { background: var(--surface-soft); border-color: #aeb6c4; }
+    button:disabled { opacity: 0.5; cursor: not-allowed; }
+    button.primary {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #fff;
+    }
+    button.primary:hover:not(:disabled) { background: #1842b8; }
+    button[aria-pressed="true"] {
+      background: var(--accent-soft);
+      border-color: var(--accent);
+      color: var(--accent);
+      font-weight: 600;
+    }
+    aside.panel {
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+    .card {
+      background: var(--surface-soft);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 12px 14px;
+    }
+    .card h2, .card h3 {
+      margin: 0 0 8px;
+      font-size: 1.05rem;
+    }
+    .meta-grid {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 4px 10px;
+      font-size: 0.9rem;
+      margin: 0;
+    }
+    .meta-grid dt { color: var(--muted); font-weight: 600; }
+    .meta-grid dd { margin: 0; overflow-wrap: anywhere; }
+    .latin { font-style: italic; direction: ltr; unicode-bidi: isolate; }
+    .mono { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 0.84rem; direction: ltr; unicode-bidi: isolate; }
+    label { display: block; font-weight: 600; font-size: 0.92rem; margin-bottom: 4px; }
+    input[type="search"], select, textarea {
+      width: 100%;
+      min-height: 44px;
+      padding: 8px 10px;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      background: #fff;
+      color: var(--ink);
+      font: inherit;
+    }
+    textarea { min-height: 92px; resize: vertical; }
+    input[type="color"] {
+      width: 52px;
+      height: 44px;
+      padding: 2px;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      background: #fff;
+      cursor: pointer;
+    }
+    .bone-list {
+      max-height: 220px;
+      overflow-y: auto;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      background: #fff;
+      padding: 4px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .bone-item {
+      width: 100%;
+      min-height: 44px;
+      text-align: right;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      padding: 7px 10px;
+      border-radius: 8px;
+      border: 1px solid transparent;
+      background: transparent;
+    }
+    .bone-item:hover { background: var(--surface-soft); }
+    .bone-item[aria-current="true"] {
+      background: var(--accent-soft);
+      border-color: var(--accent);
+    }
+    .bone-item .sub {
+      font-size: 0.82rem;
+      color: var(--muted);
+      display: flex;
+      justify-content: space-between;
+      gap: 8px;
+    }
+    fieldset {
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 10px 12px;
+      margin: 0;
+    }
+    legend { font-weight: 600; font-size: 0.94rem; padding: 0 6px; }
+    .layer-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      min-height: 36px;
+    }
+    .layer-row label {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin: 0;
+      font-weight: 400;
+      cursor: pointer;
+      flex: 1;
+    }
+    .layer-row input[type="checkbox"] {
+      width: 20px;
+      height: 20px;
+      flex: 0 0 auto;
+    }
+    .status-msg {
+      margin: 0;
+      font-size: 0.9rem;
+      color: var(--muted);
+      min-height: 1.4em;
+    }
+    .artery-note {
+      margin: 8px 0 0;
+      padding: 8px 10px;
+      border-radius: 8px;
+      background: var(--warn-bg);
+      border: 1px solid var(--warn-border);
+      color: var(--warn-ink);
+      font-size: 0.86rem;
+    }
+    details.upload-box {
+      border: 1px dashed var(--border);
+      border-radius: 12px;
+      padding: 10px 12px;
+      background: var(--surface-soft);
+    }
+    details.upload-box summary {
+      cursor: pointer;
+      font-weight: 600;
+      min-height: 32px;
+      display: flex;
+      align-items: center;
+    }
+    .sources-section {
+      margin-top: 28px;
+      padding: clamp(16px, 3vw, 28px);
+    }
+    .sources-section h2 {
+      margin: 0 0 12px;
+      font-size: 1.35rem;
+    }
+    .sources-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 16px;
+      margin-top: 12px;
+    }
+    .sources-box {
+      background: var(--surface-soft);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 14px 16px;
+    }
+    .sources-box h3 { margin: 0 0 8px; font-size: 1.05rem; }
+    .sources-box ul { margin: 8px 0 0; padding-inline-start: 20px; }
+    .sources-box li { margin-bottom: 6px; font-size: 0.93rem; }
+    .thanks-quote {
+      margin: 0 0 10px;
+      padding: 10px 14px;
+      border-inline-start: 4px solid var(--accent);
+      background: #fff;
+      border-radius: 8px;
+      font-weight: 600;
+    }
+    .coverage-list { margin: 8px 0 0; padding-inline-start: 20px; font-size: 0.9rem; color: var(--muted); }
+    .kbd-hint { font-size: 0.83rem; color: var(--muted); }
+    @media (max-width: 900px) {
+      .workspace { grid-template-columns: 1fr; }
+      #stage { min-height: 360px; }
+    }
+  </style>
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://cdn.jsdelivr.net/npm/three@0.179.1/build/three.module.js",
+      "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.179.1/examples/jsm/"
+    }
+  }
+  </script>
+</head>
+<body>
+<main>
+  <div class="topbar">
+    <nav aria-label="التنقل" style="display:flex;flex-wrap:wrap;gap:8px;align-items:center"><a class="back-link" href="/#/">الرئيسية</a><a class="back-link" href="/#/animals/dog">← صفحة القطة</a><a class="back-link" href="/#/search">البحث</a><a class="back-link" href="/#/sources">المصادر والمنهجية</a></nav>
+    <span class="badge" id="review-badge">متاح للجميع (معتمد حقوقيًا من المالك • بانتظار المراجعة التشريحية التخصصية)</span>
+  </div>
+
+  <h1>الجهاز الهيكلي للقطة المنزلية (<span class="latin">Felis catus</span>)</h1>
+  <p class="subtitle">
+    استوديو دراسة ثلاثي الأبعاد يستضيف نسخة مشتقة من مسح فوتوغرامتري حقيقي لهيكل كلب كامل،
+    مفصولة إلى 26 عقدة تشريحية قابلة للتحديد (10 عظام منفردة + 16 مجموعة عظام مندمجة سطحيًا) ومربوطة بتسميات NAV (الطبعة السادسة، 2017) دون اختلاق هندسة. لم تُرقَّ العينة إلى الإصدار الإنتاجي بعد بانتظار مراجعة اختصاصي تشريح بيطري وحسم الحقوق.
+  </p>
+
+  <div class="workspace">
+    <div class="stage-wrap">
+      <section id="stage" tabindex="0" aria-label="عارض الجهاز الهيكلي للقطة ثلاثي الأبعاد">
+        <div id="stage-overlay">
+          <p id="empty" style="margin:0">جارٍ تحميل عينة هيكل القطة من استضافة الأطلس…</p>
+        </div>
+      </section>
+
+      <div class="stage-bar">
+        <div class="btn-row">
+          <button id="reset" type="button" disabled>إعادة ضبط العرض (R)</button>
+          <button id="isolate" type="button" aria-pressed="false" disabled>عزل العظم المحدد</button>
+          <button id="show-all" type="button" disabled>إظهار الكل</button>
+        </div>
+        <span class="kbd-hint">لوحة المفاتيح: الأسهم للتدوير، +/− للتقريب، R لإعادة الضبط</span>
+      </div>
+
+      <section class="panel" style="padding:14px 16px" aria-label="تغطية العينة وحدود المسح">
+        <h2 style="margin:0 0 6px;font-size:1.05rem">تغطية العينة الفعلية والأجزاء الناقصة أو المندمجة</h2>
+        <p style="margin:0;font-size:0.9rem;color:var(--muted)">
+          المسح الأصلي سطح فوتوغرامتري واحد متصل (74,235 وجهًا). فُصلت فقط العظام والمناطق التي يمكن تمييز حدودها من البيانات،
+          وسُجّلت الأجزاء الناقصة أو المندمجة بوضوح دون اختلاق هندستها:
+        </p>
+        <ul class="coverage-list" id="coverage-list"></ul>
+      </section>
+    </div>
+
+    <aside class="panel" aria-label="أدوات الدراسة وكتالوج العظام">
+      <p id="status" class="status-msg" role="status" aria-live="polite"></p>
+
+      <section class="card" aria-label="بطاقة العظم المحدد">
+        <h2 id="card-title">بطاقة العظم</h2>
+        <dl class="meta-grid" id="card-meta">
+          <dt>العربي</dt><dd id="card-ar">اختر عظمًا بالنقر على المجسم أو من القائمة</dd>
+          <dt>الإنجليزي</dt><dd id="card-en">—</dd>
+          <dt>اللاتيني (NAV)</dt><dd id="card-la" class="latin">—</dd>
+          <dt>نوع العقدة</dt><dd id="card-kind">—</dd>
+          <dt>المعرّف الثابت</dt><dd id="card-id" class="mono">—</dd>
+          <dt>المنطقة / الجهة</dt><dd id="card-region">—</dd>
+          <dt>المصدر</dt><dd id="card-source">—</dd>
+          <dt>حالة المراجعة</dt><dd id="card-review">—</dd>
+          <dt>ملاحظة التغطية</dt><dd id="card-coverage">—</dd>
+          <dt>المرجع في الأطلس المطبوع</dt><dd id="card-book-ref" class="latin">—</dd>
+          <dt>معالم القطة التشريحية</dt><dd id="card-landmarks">—</dd>
+          <dt>العضلات المرتبطة</dt><dd id="card-muscles">—</dd>
+          <dt>الأوعية والأعصاب المجاورة</dt><dd id="card-vessels-nerves">—</dd>
+        </dl>
+      </section>
+
+      <section aria-label="قائمة العظام والبحث">
+        <label for="bone-search">البحث في العظام (عربي / إنجليزي / لاتيني)</label>
+        <input id="bone-search" type="search" placeholder="مثال: الجمجمة، Humerus، الفخذ…">
+        <label for="region-filter" style="margin-top:8px">تصفية حسب المنطقة</label>
+        <select id="region-filter"><option value="all">جميع المناطق (26 عقدة)</option></select>
+        <label for="part" style="margin-top:8px">العظم المحدد</label>
+        <select id="part"><option value="">ملاحظات عامة على العينة</option></select>
+        <div id="bone-list" class="bone-list" role="listbox" aria-label="قائمة العظام القابلة للتحديد" style="margin-top:8px"></div>
+      </section>
+
+      <section class="card" aria-label="تلوين العظم والملاحظات">
+        <div class="btn-row" style="margin-bottom:10px">
+          <div>
+            <label for="color">لون العظم المحدد</label>
+            <input id="color" type="color" value="#3b74d9" disabled>
+          </div>
+          <button id="clear-color" type="button" disabled style="margin-top:22px">استعادة اللون الأصلي</button>
+        </div>
+
+        <label for="note">ملاحظاتي (مرتبطة بالعينة ومعرّف العظم)</label>
+        <textarea id="note" maxlength="4000" placeholder="اكتب ملاحظاتك التشريحية هنا…"></textarea>
+        <div class="btn-row" style="margin-top:8px">
+          <button id="save" type="button" class="primary">حفظ الملاحظة</button>
+          <button id="export" type="button">تصدير الملاحظات والألوان (JSON)</button>
+        </div>
+      </section>
+
+      <fieldset>
+        <legend>إدارة الطبقات</legend>
+        <div id="layer-list">جارٍ تهيئة الطبقات…</div>
+        <div id="region-layers" style="margin-top:6px;padding-top:6px;border-top:1px solid var(--border)"></div>
+        <p class="artery-note" id="arteries-status">
+          طبقة الشرايين: غير مضافة حاليًا لعدم توفر هندسة شرايين موثّقة لقطة وبيانات مطابقة مكانية متسقة.
+        </p>
+      </fieldset>
+
+      <details class="upload-box">
+        <summary>رفع ملف GLB محلي (خيار إضافي للتجربة)</summary>
+        <p style="margin:6px 0 8px;font-size:0.86rem;color:var(--muted)">
+          يمكنك إضافة ملف GLB من جهازك كطبقة تجريبية داخل المتصفح فقط دون رفعه إلى الخادم (حد أقصى 25 ميغابايت).
+        </p>
+        <label for="file">اختيار ملف GLB</label>
+        <input id="file" type="file" accept=".glb">
+      </details>
+    </aside>
+  </div>
+
+  <section id="sources-and-acknowledgements" class="panel sources-section" aria-labelledby="sources-heading">
+    <h2 id="sources-heading">المصادر والشكر</h2>
+    <p style="margin:0;color:var(--muted);font-size:0.94rem">
+      تُفصل أدناه مصادر الهندسة ثلاثية الأبعاد عن مراجع المصطلحات والتدقيق لتمكين القارئ من تتبّع أصل المجسم وأصل التسميات العلمية كلٌّ على حدة.
+    </p>
+
+    <div class="sources-grid">
+      <div class="sources-box">
+        <h3>مصدر الهندسة ثلاثية الأبعاد</h3>
+        <p class="thanks-quote">
+          نشكر Tavernier Amaury (@svtavernier) على إتاحة مسح Chien (هيكل كلب كامل — Lycée Hoche, Versailles). استُخدم المسح أساسًا هندسيًا لهيكل الكلب في الأطلس البيطري العربي.
+        </p>
+        <ul>
+          <li><strong>اسم المجسم:</strong> Chien (هيكل كلب كامل — Lycée Hoche, Versailles)</li>
+          <li><strong>المؤلف:</strong> <a href="https://sketchfab.com/svtavernier" target="_blank" rel="noopener noreferrer">Tavernier Amaury (@svtavernier)</a></li>
+          <li><strong>صفحة الأصل الرسمية:</strong> <a href="https://sketchfab.com/3d-models/chien-98674668eede4a9dad6b7d368575f883" target="_blank" rel="noopener noreferrer">sketchfab.com/3d-models/chien-98674668eede4a9dad6b7d368575f883</a></li>
+          <li><strong>الترخيص:</strong> <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="noopener noreferrer">Creative Commons Attribution–NonCommercial–ShareAlike 4.0 (CC BY-NC-SA 4.0)</a> (غير تجاري مع الإسناد والمشاركة بالمثل).</li>
+          <li><strong>التعديلات التي نفّذها الأطلس:</strong> إزالة لوح القاعدة المسطّح (7,765 وجهًا) وتدوير المحاور إلى معيار الأطلس (الأمام ‎-Z، الأعلى ‎+Y، اليسار ‎-X، الأرضية عند y=0) بطول كلي 0.646 م وارتفاع 0.425 م، تقسيم السطح الفوتوغرامتري (80,159 وجهًا) إلى 26 عقدة تشريحية قابلة للتحديد، دمج الرؤوس المكررة وإزالة الامتداد <span class="mono">KHR_materials_ior</span> لمعيار glTF 2.0 الأساسي، وتحسين خامة الألبيدو المدمجة (JPEG 2048px).</li>
+          <li><strong>بصمات التحقق (SHA-256):</strong><br>
+            الأصل (<span class="mono">chien.glb</span>): <span class="mono" id="src-sha">b8eb7f428e556a73d92e4825a4260c51efb796b6570844e1bac5a65891300aa6</span><br>
+            المشتق (<span class="mono">canis-familiaris-tavernier-skeleton.glb</span>): <span class="mono" id="drv-sha">19c8674f6ebe9877bf8b89862beb393ca2e76f8fd2a5c5ecca01f36e66a11346</span>
+          </li>
+        </ul>
+      </div>
+
+      <div class="sources-box">
+        <h3>مراجع المصطلحات والتدقيق</h3>
+        <ul>
+          <li><strong>المرجع الاصطلاحي اللاتيني:</strong> نشكر الرابطة العالمية لعلماء التشريح البيطري (WAVA) على إتاحة <a href="https://www.wava-amav.org/wava-documents.html" target="_blank" rel="noopener noreferrer">Nomina Anatomica Veterinaria (NAV)، الطبعة السادسة (2017)</a> المعتمدة لضبط الأسماء اللاتينية لعظام الكلب المنزلي في هذا الإصدار.</li>
+          <li><strong>المرجع التشريحي لتدقيق المواضع والعلاقات:</strong> Lola C. Hudson &amp; William P. Hamilton، <em>Atlas of Feline Anatomy for Veterinarians</em>، الطبعة الثانية (2010)، Teton NewMedia / Taylor &amp; Francis (ISBN <span class="mono">1-59161-044-3</span>) — استُخدم لتدقيق المعالم العظمية الخاصة بالقطط وارتباطات العضلات والأوعية والأعصاب وأرقام الألواح في بطاقات العظام وخارطة الطريق دون نسخ أي رسومات أو صور من الكتاب.</li>
+          <li><strong>مرجع تنظيم العقد وخط التجهيز:</strong> <a href="https://github.com/Ketbome/vet-atlas/blob/main/scripts/build-cat-skeletal.ts" target="_blank" rel="noopener noreferrer">Ketbome/vet-atlas (scripts/build-cat-skeletal.ts)</a> — استُخدم مرجعًا لمقارنة اصطلاحات المحاور وتنظيم العقد فقط دون نسخ ملف GLB الخاص بهم.</li>
+          <li><strong>فصل التراخيص:</strong> كود الأطلس الأصلي مرخّص تحت <span class="mono">MIT</span>، بينما يخضع المجسم المشتق للكلب بشكل مستقل لترخيص <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="noopener noreferrer">CC BY-NC-SA 4.0</a> (انظر <a href="/#/sources">صفحة المصادر والمنهجية</a>).</li>
+          <li><strong>حالة الاعتماد العلمي والحقوقي:</strong> جميع التسميات وفواصل العقد في هذا الإصدار تحمل حالة <em>مسودة (draft)</em> بانتظار المراجعة والتوقيع الفعلي من اختصاصي تشريح بيطري ومراجع الحقوق قبل أي نقل إلى الإنتاج.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+</main>
+<script type="module" src="./study.js"></script>
+</body>
+</html>

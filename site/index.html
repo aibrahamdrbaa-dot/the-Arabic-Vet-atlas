@@ -1019,15 +1019,17 @@
         slug: "dog",
         nameAr: "الكلب المنزلي",
         latin: "Canis lupus familiaris",
-        status: "planned",
-        statusLabelAr: "قيد التخطيط — مؤجّل لما بعد القطة",
-        badgeClass: "badge-planned",
+        status: "active-draft",
+        statusLabelAr: "عينة متاحة للجميع (26 عقدة)",
+        badgeClass: "badge-pilot",
         image: SPECIES_ASSETS.dog,
-        imageAlt: "صورة تحريرية توضيحية لكلب — مسار مخطط له لاحقًا",
-        summaryAr: "مسار مستقبلي مؤجّل حتى استكمال واعتماد مسار القطة المنزلية. لا توجد عينات أو إحصاءات منشورة له حاليًا.",
-        catalogUrl: null,
-        studyUrl: null,
-        systems: []
+        imageAlt: "صورة تحريرية ترحيبية للكلب المنزلي — منفصلة عن المجسم التشريحي العلمي",
+        summaryAr: "الجهاز الهيكلي الكامل للكلب المنزلي المشتق من مسح فوتوغرامتري حقيقي (مجموعة ثانوية Hoche — فرساي، Tavernier Amaury، CC BY-NC-SA 4.0) بـ 26 عقدة تشريحية وفق NAV الطبعة السادسة (مسودة بانتظار مراجعة اختصاصي).",
+        catalogUrl: "./dog/skeleton/catalog.json",
+        studyUrl: "/dog/skeleton/",
+        systems: [
+          { id: "skeletal", ar: "الجهاز الهيكلي", latin: "Systema skeletale", status: "draft-preview", statusAr: "مسودة معاينة (26 عقدة)", url: "/dog/skeleton/", desc: "عينة مسح فوتوغرامتري لهيكل كلب كامل (Tavernier Amaury، CC BY-NC-SA 4.0) مفصولة إلى 10 عظام منفردة و16 مجموعة عظام مندمجة سطحيًا بانتظار اعتماد اختصاصي." }
+        ]
       }
     ];
 
