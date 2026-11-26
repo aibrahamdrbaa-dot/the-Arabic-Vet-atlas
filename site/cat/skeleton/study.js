@@ -80,6 +80,10 @@ function updateBoneCard(id) {
     get('card-source').textContent = part ? 'ملف محلي تجريبي' : (catalog?.specimen?.source?.author ?? '—');
     get('card-review').textContent = part ? 'ملف محلي غير مراجع' : (catalog?.specimen?.reviewStatusAr ?? '—');
     get('card-coverage').textContent = '—';
+    get('card-book-ref').textContent = '—';
+    get('card-landmarks').textContent = '—';
+    get('card-muscles').textContent = '—';
+    get('card-vessels-nerves').textContent = '—';
     return;
   }
   get('card-title').textContent = s.names.ar;
@@ -92,6 +96,10 @@ function updateBoneCard(id) {
   get('card-source').textContent = s.sourceLabel;
   get('card-review').textContent = s.reviewStatusAr;
   get('card-coverage').textContent = s.coverageNoteAr;
+  get('card-book-ref').textContent = s.bookRef || '—';
+  get('card-landmarks').textContent = s.felineLandmarksAr || '—';
+  get('card-muscles').textContent = s.muscleAttachmentsAr || '—';
+  get('card-vessels-nerves').textContent = s.adjacentVesselsNervesAr || '—';
 }
 
 function updateBoneListSelection(id) {
@@ -198,7 +206,7 @@ function renderBoneList() {
     const s = part.structure;
     if (region !== 'all' && part.region !== region) continue;
     const hay = s
-      ? `${s.names.ar} ${s.names.en} ${s.names.la} ${s.id} ${s.regionAr} ${s.lateralityAr}`.toLowerCase()
+      ? `${s.names.ar} ${s.names.en} ${s.names.la} ${s.id} ${s.regionAr} ${s.lateralityAr} ${s.bookRef || ''} ${s.felineLandmarksAr || ''}`.toLowerCase()
       : `${part.label} ${id}`.toLowerCase();
     if (query && !hay.includes(query)) continue;
     const btn = document.createElement('button');
