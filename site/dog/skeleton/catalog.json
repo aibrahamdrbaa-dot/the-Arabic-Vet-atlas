@@ -1,0 +1,637 @@
+{
+  "schemaVersion": 1,
+  "specimen": {
+    "id": "canis-familiaris-tavernier-2024",
+    "speciesAr": "الكلب المنزلي",
+    "speciesLa": "Canis lupus familiaris",
+    "titleAr": "الهيكل العظمي للكلب المنزلي (Canis lupus familiaris)",
+    "modelUrl": "./models/canis-familiaris-tavernier-skeleton.glb",
+    "originalArchiveSha256": "b0b85f852f4269781c71c1e97b312eca714e63352f45d2aebbe1d122cecd635d",
+    "originalGlbSha256": "b8eb7f428e556a73d92e4825a4260c51efb796b6570844e1bac5a65891300aa6",
+    "derivativeSha256": "19c8674f6ebe9877bf8b89862beb393ca2e76f8fd2a5c5ecca01f36e66a11346",
+    "reviewStatus": "draft",
+    "reviewStatusAr": "مسودة — بانتظار مراجعة اختصاصي تشريح بيطري وحسم الترخيص",
+    "source": {
+      "title": "Chien",
+      "author": "Tavernier Amaury (@svtavernier)",
+      "url": "https://sketchfab.com/3d-models/chien-98674668eede4a9dad6b7d368575f883",
+      "license": "CC-BY-NC-SA-4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-nc-sa/4.0/",
+      "collection": "Squelette entier de chien (race inconnue) XIXème siècle, collection du lycée Hoche, Versailles"
+    },
+    "arteriesStatusAr": "طبقة الشرايين والأنسجة الرخوة للكلب: غير متاحة حاليًا بانتظار مصدر قطعي/وعائي مرخّص ومطابق مكانيًا.",
+    "missingOrMergedAr": [
+      "العينة مسح فوتوغرامتري حقيقي لهيكل كلب كامل من القرن التاسع عشر (مجموعة ثانوية Hoche — فرساي، Tavernier Amaury، ترخيص CC BY-NC-SA 4.0).",
+      "العقد الـ26 تمثّل 10 عظام منفردة و16 مجموعة عظام مندمجة سطحيًا (القحف، الفقرات، الأضلاع، القص، الساعدان، اليدان، الساقان، والقدمان) دون اختلاق هندسة.",
+      "أُزيل لوح القاعدة المسطّح فقط وضُبطت المحاور إلى معيار الأطلس (-Z أمام، +Y أعلى، الأرضية y=0) مع الحفاظ على خامة العظم الأصلية."
+    ]
+  },
+  "regions": [
+    {
+      "id": "head",
+      "labelAr": "الرأس"
+    },
+    {
+      "id": "neck",
+      "labelAr": "الرقبة"
+    },
+    {
+      "id": "thorax",
+      "labelAr": "الصدر"
+    },
+    {
+      "id": "abdomen",
+      "labelAr": "القطن"
+    },
+    {
+      "id": "pelvis",
+      "labelAr": "الحوض"
+    },
+    {
+      "id": "tail",
+      "labelAr": "الذيل"
+    },
+    {
+      "id": "thoracic-limb",
+      "labelAr": "الطرف الأمامي"
+    },
+    {
+      "id": "pelvic-limb",
+      "labelAr": "الطرف الخلفي"
+    }
+  ],
+  "structures": [
+    {
+      "node": "cranium",
+      "id": "canis-familiaris.skeletal.cranium",
+      "region": "head",
+      "regionAr": "الرأس",
+      "laterality": "midline",
+      "lateralityAr": "وسطي",
+      "names": {
+        "ar": "الجمجمة (القحف)",
+        "en": "Cranium",
+        "la": "Cranium"
+      },
+      "navEdition": "NAV 6th edition (2017)",
+      "sourceLabel": "Tavernier Amaury (@svtavernier) — Chien (Sketchfab)",
+      "sourceUrl": "https://sketchfab.com/3d-models/chien-98674668eede4a9dad6b7d368575f883",
+      "reviewStatus": "draft",
+      "reviewStatusAr": "مسودة (بانتظار مراجعة اختصاصي)",
+      "coverageNoteAr": "القحف والفك العلوي للكلب (يمتاز بوجود القناة الجناحية Alar canal و42 سنًا دائمة مع الفك السفلي).",
+      "triangles": 13263,
+      "nodeKind": "merged-group",
+      "nodeKindAr": "مجموعة عظام مندمجة سطحيًا"
+    },
+    {
+      "node": "mandibula",
+      "id": "canis-familiaris.skeletal.mandibula",
+      "region": "head",
+      "regionAr": "الرأس",
+      "laterality": "midline",
+      "lateralityAr": "وسطي",
+      "names": {
+        "ar": "الفك السفلي",
+        "en": "Mandible",
+        "la": "Mandibula"
+      },
+      "navEdition": "NAV 6th edition (2017)",
+      "sourceLabel": "Tavernier Amaury (@svtavernier) — Chien (Sketchfab)",
+      "sourceUrl": "https://sketchfab.com/3d-models/chien-98674668eede4a9dad6b7d368575f883",
+      "reviewStatus": "draft",
+      "reviewStatusAr": "مسودة (بانتظار مراجعة اختصاصي)",
+      "coverageNoteAr": "الفك السفلي للكلب متمفصل بوضع مفتوح جزئيًا في المسح الفوتوغرامتري.",
+      "triangles": 1266,
+      "nodeKind": "single-bone",
+      "nodeKindAr": "عظمة منفردة"
+    },
+    {
+      "node": "vertebrae_cervicales",
+      "id": "canis-familiaris.skeletal.vertebrae-cervicales",
+      "region": "neck",
+      "regionAr": "الرقبة",
+      "laterality": "midline",
+      "lateralityAr": "وسطي",
+      "names": {
+        "ar": "الفقرات العنقية (C1–C7)",
+        "en": "Cervical Vertebrae",
+        "la": "Vertebrae cervicales"
+      },
+      "navEdition": "NAV 6th edition (2017)",
+      "sourceLabel": "Tavernier Amaury (@svtavernier) — Chien (Sketchfab)",
+      "sourceUrl": "https://sketchfab.com/3d-models/chien-98674668eede4a9dad6b7d368575f883",
+      "reviewStatus": "draft",
+      "reviewStatusAr": "مسودة (بانتظار مراجعة اختصاصي)",
+      "coverageNoteAr": "7 فقرات عنقية (C1–C7)؛ يمتلك الكلب رباطًا قفويًا (Ligamentum nuchae) خلافًا للقطة.",
+      "triangles": 5260,
+      "nodeKind": "merged-group",
+      "nodeKindAr": "مجموعة عظام مندمجة سطحيًا"
+    },
+    {
+      "node": "vertebrae_thoracicae",
+      "id": "canis-familiaris.skeletal.vertebrae-thoracicae",
+      "region": "thorax",
+      "regionAr": "الصدر",
+      "laterality": "midline",
+      "lateralityAr": "وسطي",
+      "names": {
+        "ar": "الفقرات الصدرية (T1–T13)",
+        "en": "Thoracic Vertebrae",
+        "la": "Vertebrae thoracicae"
+      },
+      "navEdition": "NAV 6th edition (2017)",
+      "sourceLabel": "Tavernier Amaury (@svtavernier) — Chien (Sketchfab)",
+      "sourceUrl": "https://sketchfab.com/3d-models/chien-98674668eede4a9dad6b7d368575f883",
+      "reviewStatus": "draft",
+      "reviewStatusAr": "مسودة (بانتظار مراجعة اختصاصي)",
+      "coverageNoteAr": "13 فقرة صدرية (T1–T13) مع الفقرة المائلة العكسية عند T11.",
+      "triangles": 8972,
+      "nodeKind": "merged-group",
+      "nodeKindAr": "مجموعة عظام مندمجة سطحيًا"
+    },
+    {
+      "node": "vertebrae_lumbales",
+      "id": "canis-familiaris.skeletal.vertebrae-lumbales",
+      "region": "abdomen",
+      "regionAr": "القطن",
+      "laterality": "midline",
+      "lateralityAr": "وسطي",
+      "names": {
+        "ar": "الفقرات القطنية (L1–L7)",
+        "en": "Lumbar Vertebrae",
+        "la": "Vertebrae lumbales"
+      },
+      "navEdition": "NAV 6th edition (2017)",
+      "sourceLabel": "Tavernier Amaury (@svtavernier) — Chien (Sketchfab)",
+      "sourceUrl": "https://sketchfab.com/3d-models/chien-98674668eede4a9dad6b7d368575f883",
+      "reviewStatus": "draft",
+      "reviewStatusAr": "مسودة (بانتظار مراجعة اختصاصي)",
+      "coverageNoteAr": "7 فقرات قطنية قوية النواتئ المستعرضة.",
+      "triangles": 7617,
+      "nodeKind": "merged-group",
+      "nodeKindAr": "مجموعة عظام مندمجة سطحيًا"
+    },
+    {
+      "node": "os_sacrum",
+      "id": "canis-familiaris.skeletal.os-sacrum",
+      "region": "pelvis",
+      "regionAr": "الحوض",
+      "laterality": "midline",
+      "lateralityAr": "وسطي",
+      "names": {
+        "ar": "العجز (S1–S3)",
+        "en": "Sacrum",
+        "la": "Os sacrum"
+      },
+      "navEdition": "NAV 6th edition (2017)",
+      "sourceLabel": "Tavernier Amaury (@svtavernier) — Chien (Sketchfab)",
+      "sourceUrl": "https://sketchfab.com/3d-models/chien-98674668eede4a9dad6b7d368575f883",
+      "reviewStatus": "draft",
+      "reviewStatusAr": "مسودة (بانتظار مراجعة اختصاصي)",
+      "coverageNoteAr": "التحام 3 فقرات عجزية يتمفصل جانبيًا مع الحرقفة.",
+      "triangles": 6947,
+      "nodeKind": "single-bone",
+      "nodeKindAr": "عظمة منفردة"
+    },
+    {
+      "node": "vertebrae_caudales",
+      "id": "canis-familiaris.skeletal.vertebrae-caudales",
+      "region": "tail",
+      "regionAr": "الذيل",
+      "laterality": "midline",
+      "lateralityAr": "وسطي",
+      "names": {
+        "ar": "الفقرات الذيلية",
+        "en": "Caudal Vertebrae",
+        "la": "Vertebrae caudales"
+      },
+      "navEdition": "NAV 6th edition (2017)",
+      "sourceLabel": "Tavernier Amaury (@svtavernier) — Chien (Sketchfab)",
+      "sourceUrl": "https://sketchfab.com/3d-models/chien-98674668eede4a9dad6b7d368575f883",
+      "reviewStatus": "draft",
+      "reviewStatusAr": "مسودة (بانتظار مراجعة اختصاصي)",
+      "coverageNoteAr": "الفقرات الذيلية المحفوظة في العينة الفوتوغرامترية.",
+      "triangles": 2240,
+      "nodeKind": "merged-group",
+      "nodeKindAr": "مجموعة عظام مندمجة سطحيًا"
+    },
+    {
+      "node": "costae_sinistrae",
+      "id": "canis-familiaris.skeletal.costae.left",
+      "region": "thorax",
+      "regionAr": "الصدر",
+      "laterality": "left",
+      "lateralityAr": "أيسر",
+      "names": {
+        "ar": "الأضلاع اليسرى (1–13)",
+        "en": "Left Ribs",
+        "la": "Costae sinistrae"
+      },
+      "navEdition": "NAV 6th edition (2017)",
+      "sourceLabel": "Tavernier Amaury (@svtavernier) — Chien (Sketchfab)",
+      "sourceUrl": "https://sketchfab.com/3d-models/chien-98674668eede4a9dad6b7d368575f883",
+      "reviewStatus": "draft",
+      "reviewStatusAr": "مسودة (بانتظار مراجعة اختصاصي)",
+      "coverageNoteAr": "13 ضلعًا يسريًا (9 قصّية + 3 قوس ضلعي + 1 سائب).",
+      "triangles": 4941,
+      "nodeKind": "merged-group",
+      "nodeKindAr": "مجموعة عظام مندمجة سطحيًا"
+    },
+    {
+      "node": "costae_dextrae",
+      "id": "canis-familiaris.skeletal.costae.right",
+      "region": "thorax",
+      "regionAr": "الصدر",
+      "laterality": "right",
+      "lateralityAr": "أيمن",
+      "names": {
+        "ar": "الأضلاع اليمنى (1–13)",
+        "en": "Right Ribs",
+        "la": "Costae dextrae"
+      },
+      "navEdition": "NAV 6th edition (2017)",
+      "sourceLabel": "Tavernier Amaury (@svtavernier) — Chien (Sketchfab)",
+      "sourceUrl": "https://sketchfab.com/3d-models/chien-98674668eede4a9dad6b7d368575f883",
+      "reviewStatus": "draft",
+      "reviewStatusAr": "مسودة (بانتظار مراجعة اختصاصي)",
+      "coverageNoteAr": "13 ضلعًا يمنيًا (9 قصّية + 3 قوس ضلعي + 1 سائب).",
+      "triangles": 4379,
+      "nodeKind": "merged-group",
+      "nodeKindAr": "مجموعة عظام مندمجة سطحيًا"
+    },
+    {
+      "node": "sternum",
+      "id": "canis-familiaris.skeletal.sternum",
+      "region": "thorax",
+      "regionAr": "الصدر",
+      "laterality": "midline",
+      "lateralityAr": "وسطي",
+      "names": {
+        "ar": "القص (8 قُصيبات)",
+        "en": "Sternum",
+        "la": "Sternum"
+      },
+      "navEdition": "NAV 6th edition (2017)",
+      "sourceLabel": "Tavernier Amaury (@svtavernier) — Chien (Sketchfab)",
+      "sourceUrl": "https://sketchfab.com/3d-models/chien-98674668eede4a9dad6b7d368575f883",
+      "reviewStatus": "draft",
+      "reviewStatusAr": "مسودة (بانتظار مراجعة اختصاصي)",
+      "coverageNoteAr": "القص المكوّن من 8 قُصيبات (قبضة القص حتى الناتئ الرهابي).",
+      "triangles": 2006,
+      "nodeKind": "merged-group",
+      "nodeKindAr": "مجموعة عظام مندمجة سطحيًا"
+    },
+    {
+      "node": "os_coxae_sinistrum",
+      "id": "canis-familiaris.skeletal.os-coxae.left",
+      "region": "pelvis",
+      "regionAr": "الحوض",
+      "laterality": "left",
+      "lateralityAr": "أيسر",
+      "names": {
+        "ar": "عظم الورك الأيسر",
+        "en": "Left Hip Bone",
+        "la": "Os coxae sinistrum"
+      },
+      "navEdition": "NAV 6th edition (2017)",
+      "sourceLabel": "Tavernier Amaury (@svtavernier) — Chien (Sketchfab)",
+      "sourceUrl": "https://sketchfab.com/3d-models/chien-98674668eede4a9dad6b7d368575f883",
+      "reviewStatus": "draft",
+      "reviewStatusAr": "مسودة (بانتظار مراجعة اختصاصي)",
+      "coverageNoteAr": "الحرقفة والإسك والعانة اليسرى (يمتلك الكلب رباطًا عجزيًا حدبيًا خلافًا للقطة).",
+      "triangles": 1593,
+      "nodeKind": "single-bone",
+      "nodeKindAr": "عظمة منفردة"
+    },
+    {
+      "node": "os_coxae_dextrum",
+      "id": "canis-familiaris.skeletal.os-coxae.right",
+      "region": "pelvis",
+      "regionAr": "الحوض",
+      "laterality": "right",
+      "lateralityAr": "أيمن",
+      "names": {
+        "ar": "عظم الورك الأيمن",
+        "en": "Right Hip Bone",
+        "la": "Os coxae dextrum"
+      },
+      "navEdition": "NAV 6th edition (2017)",
+      "sourceLabel": "Tavernier Amaury (@svtavernier) — Chien (Sketchfab)",
+      "sourceUrl": "https://sketchfab.com/3d-models/chien-98674668eede4a9dad6b7d368575f883",
+      "reviewStatus": "draft",
+      "reviewStatusAr": "مسودة (بانتظار مراجعة اختصاصي)",
+      "coverageNoteAr": "الحرقفة والإسك والعانة اليمنى.",
+      "triangles": 1554,
+      "nodeKind": "single-bone",
+      "nodeKindAr": "عظمة منفردة"
+    },
+    {
+      "node": "scapula_sinistra",
+      "id": "canis-familiaris.skeletal.scapula.left",
+      "region": "thoracic-limb",
+      "regionAr": "الطرف الأمامي",
+      "laterality": "left",
+      "lateralityAr": "أيسر",
+      "names": {
+        "ar": "لوح الكتف الأيسر",
+        "en": "Left Scapula",
+        "la": "Scapula sinistra"
+      },
+      "navEdition": "NAV 6th edition (2017)",
+      "sourceLabel": "Tavernier Amaury (@svtavernier) — Chien (Sketchfab)",
+      "sourceUrl": "https://sketchfab.com/3d-models/chien-98674668eede4a9dad6b7d368575f883",
+      "reviewStatus": "draft",
+      "reviewStatusAr": "مسودة (بانتظار مراجعة اختصاصي)",
+      "coverageNoteAr": "لوح الكتف الأيسر؛ يغيب الناتئ فوق الشصي الموجود في القطط.",
+      "triangles": 192,
+      "nodeKind": "single-bone",
+      "nodeKindAr": "عظمة منفردة"
+    },
+    {
+      "node": "scapula_dextra",
+      "id": "canis-familiaris.skeletal.scapula.right",
+      "region": "thoracic-limb",
+      "regionAr": "الطرف الأمامي",
+      "laterality": "right",
+      "lateralityAr": "أيمن",
+      "names": {
+        "ar": "لوح الكتف الأيمن",
+        "en": "Right Scapula",
+        "la": "Scapula dextra"
+      },
+      "navEdition": "NAV 6th edition (2017)",
+      "sourceLabel": "Tavernier Amaury (@svtavernier) — Chien (Sketchfab)",
+      "sourceUrl": "https://sketchfab.com/3d-models/chien-98674668eede4a9dad6b7d368575f883",
+      "reviewStatus": "draft",
+      "reviewStatusAr": "مسودة (بانتظار مراجعة اختصاصي)",
+      "coverageNoteAr": "لوح الكتف الأيمن.",
+      "triangles": 1302,
+      "nodeKind": "single-bone",
+      "nodeKindAr": "عظمة منفردة"
+    },
+    {
+      "node": "humerus_sinister",
+      "id": "canis-familiaris.skeletal.humerus.left",
+      "region": "thoracic-limb",
+      "regionAr": "الطرف الأمامي",
+      "laterality": "left",
+      "lateralityAr": "أيسر",
+      "names": {
+        "ar": "عظم العضد الأيسر",
+        "en": "Left Humerus",
+        "la": "Humerus sinister"
+      },
+      "navEdition": "NAV 6th edition (2017)",
+      "sourceLabel": "Tavernier Amaury (@svtavernier) — Chien (Sketchfab)",
+      "sourceUrl": "https://sketchfab.com/3d-models/chien-98674668eede4a9dad6b7d368575f883",
+      "reviewStatus": "draft",
+      "reviewStatusAr": "مسودة (بانتظار مراجعة اختصاصي)",
+      "coverageNoteAr": "يمتاز عضد الكلب بوجود الثقبة فوق البكرة (Supratrochlear foramen) وغياب الثقبة فوق اللقمة الإنسية.",
+      "triangles": 1324,
+      "nodeKind": "single-bone",
+      "nodeKindAr": "عظمة منفردة"
+    },
+    {
+      "node": "humerus_dexter",
+      "id": "canis-familiaris.skeletal.humerus.right",
+      "region": "thoracic-limb",
+      "regionAr": "الطرف الأمامي",
+      "laterality": "right",
+      "lateralityAr": "أيمن",
+      "names": {
+        "ar": "عظم العضد الأيمن",
+        "en": "Right Humerus",
+        "la": "Humerus dexter"
+      },
+      "navEdition": "NAV 6th edition (2017)",
+      "sourceLabel": "Tavernier Amaury (@svtavernier) — Chien (Sketchfab)",
+      "sourceUrl": "https://sketchfab.com/3d-models/chien-98674668eede4a9dad6b7d368575f883",
+      "reviewStatus": "draft",
+      "reviewStatusAr": "مسودة (بانتظار مراجعة اختصاصي)",
+      "coverageNoteAr": "يمتاز عضد الكلب بوجود الثقبة فوق البكرة (Supratrochlear foramen).",
+      "triangles": 1133,
+      "nodeKind": "single-bone",
+      "nodeKindAr": "عظمة منفردة"
+    },
+    {
+      "node": "antebrachium_sinistrum",
+      "id": "canis-familiaris.skeletal.ossa-antebrachii.left",
+      "region": "thoracic-limb",
+      "regionAr": "الطرف الأمامي",
+      "laterality": "left",
+      "lateralityAr": "أيسر",
+      "names": {
+        "ar": "عظما الساعد الأيسر (الكعبرة والزند)",
+        "en": "Left Forearm (Radius & Ulna)",
+        "la": "Ossa antebrachii sinistra"
+      },
+      "navEdition": "NAV 6th edition (2017)",
+      "sourceLabel": "Tavernier Amaury (@svtavernier) — Chien (Sketchfab)",
+      "sourceUrl": "https://sketchfab.com/3d-models/chien-98674668eede4a9dad6b7d368575f883",
+      "reviewStatus": "draft",
+      "reviewStatusAr": "مسودة (بانتظار مراجعة اختصاصي)",
+      "coverageNoteAr": "الكعبرة والزند اليسريان متقاربتان ومندمجتان سطحيًا في المسح.",
+      "triangles": 2019,
+      "nodeKind": "merged-group",
+      "nodeKindAr": "مجموعة عظام مندمجة سطحيًا"
+    },
+    {
+      "node": "antebrachium_dextrum",
+      "id": "canis-familiaris.skeletal.ossa-antebrachii.right",
+      "region": "thoracic-limb",
+      "regionAr": "الطرف الأمامي",
+      "laterality": "right",
+      "lateralityAr": "أيمن",
+      "names": {
+        "ar": "عظما الساعد الأيمن (الكعبرة والزند)",
+        "en": "Right Forearm (Radius & Ulna)",
+        "la": "Ossa antebrachii dextra"
+      },
+      "navEdition": "NAV 6th edition (2017)",
+      "sourceLabel": "Tavernier Amaury (@svtavernier) — Chien (Sketchfab)",
+      "sourceUrl": "https://sketchfab.com/3d-models/chien-98674668eede4a9dad6b7d368575f883",
+      "reviewStatus": "draft",
+      "reviewStatusAr": "مسودة (بانتظار مراجعة اختصاصي)",
+      "coverageNoteAr": "الكعبرة والزند اليمنيان.",
+      "triangles": 1627,
+      "nodeKind": "merged-group",
+      "nodeKindAr": "مجموعة عظام مندمجة سطحيًا"
+    },
+    {
+      "node": "manus_sinistra",
+      "id": "canis-familiaris.skeletal.skeleton-manus.left",
+      "region": "thoracic-limb",
+      "regionAr": "الطرف الأمامي",
+      "laterality": "left",
+      "lateralityAr": "أيسر",
+      "names": {
+        "ar": "عظام اليد اليسرى",
+        "en": "Left Forepaw (Manus)",
+        "la": "Skeleton manus sinistrae"
+      },
+      "navEdition": "NAV 6th edition (2017)",
+      "sourceLabel": "Tavernier Amaury (@svtavernier) — Chien (Sketchfab)",
+      "sourceUrl": "https://sketchfab.com/3d-models/chien-98674668eede4a9dad6b7d368575f883",
+      "reviewStatus": "draft",
+      "reviewStatusAr": "مسودة (بانتظار مراجعة اختصاصي)",
+      "coverageNoteAr": "7 رسغيات + 5 أمشاط + 5 أصابع (الإبهام غير حامل للوزن).",
+      "triangles": 1044,
+      "nodeKind": "merged-group",
+      "nodeKindAr": "مجموعة عظام مندمجة سطحيًا"
+    },
+    {
+      "node": "manus_dextra",
+      "id": "canis-familiaris.skeletal.skeleton-manus.right",
+      "region": "thoracic-limb",
+      "regionAr": "الطرف الأمامي",
+      "laterality": "right",
+      "lateralityAr": "أيمن",
+      "names": {
+        "ar": "عظام اليد اليمنى",
+        "en": "Right Forepaw (Manus)",
+        "la": "Skeleton manus dextrae"
+      },
+      "navEdition": "NAV 6th edition (2017)",
+      "sourceLabel": "Tavernier Amaury (@svtavernier) — Chien (Sketchfab)",
+      "sourceUrl": "https://sketchfab.com/3d-models/chien-98674668eede4a9dad6b7d368575f883",
+      "reviewStatus": "draft",
+      "reviewStatusAr": "مسودة (بانتظار مراجعة اختصاصي)",
+      "coverageNoteAr": "7 رسغيات + 5 أمشاط + 5 أصابع.",
+      "triangles": 1191,
+      "nodeKind": "merged-group",
+      "nodeKindAr": "مجموعة عظام مندمجة سطحيًا"
+    },
+    {
+      "node": "femur_sinister",
+      "id": "canis-familiaris.skeletal.os-femoris.left",
+      "region": "pelvic-limb",
+      "regionAr": "الطرف الخلفي",
+      "laterality": "left",
+      "lateralityAr": "أيسر",
+      "names": {
+        "ar": "عظم الفخذ الأيسر",
+        "en": "Left Femur",
+        "la": "Os femoris sinistrum"
+      },
+      "navEdition": "NAV 6th edition (2017)",
+      "sourceLabel": "Tavernier Amaury (@svtavernier) — Chien (Sketchfab)",
+      "sourceUrl": "https://sketchfab.com/3d-models/chien-98674668eede4a9dad6b7d368575f883",
+      "reviewStatus": "draft",
+      "reviewStatusAr": "مسودة (بانتظار مراجعة اختصاصي)",
+      "coverageNoteAr": "عظم الفخذ الأيسر (أكثر تقوّسًا قليلًا من فخذ القطة).",
+      "triangles": 1492,
+      "nodeKind": "single-bone",
+      "nodeKindAr": "عظمة منفردة"
+    },
+    {
+      "node": "femur_dexter",
+      "id": "canis-familiaris.skeletal.os-femoris.right",
+      "region": "pelvic-limb",
+      "regionAr": "الطرف الخلفي",
+      "laterality": "right",
+      "lateralityAr": "أيمن",
+      "names": {
+        "ar": "عظم الفخذ الأيمن",
+        "en": "Right Femur",
+        "la": "Os femoris dextrum"
+      },
+      "navEdition": "NAV 6th edition (2017)",
+      "sourceLabel": "Tavernier Amaury (@svtavernier) — Chien (Sketchfab)",
+      "sourceUrl": "https://sketchfab.com/3d-models/chien-98674668eede4a9dad6b7d368575f883",
+      "reviewStatus": "draft",
+      "reviewStatusAr": "مسودة (بانتظار مراجعة اختصاصي)",
+      "coverageNoteAr": "عظم الفخذ الأيمن.",
+      "triangles": 2004,
+      "nodeKind": "single-bone",
+      "nodeKindAr": "عظمة منفردة"
+    },
+    {
+      "node": "crus_sinistrum",
+      "id": "canis-familiaris.skeletal.ossa-cruris.left",
+      "region": "pelvic-limb",
+      "regionAr": "الطرف الخلفي",
+      "laterality": "left",
+      "lateralityAr": "أيسر",
+      "names": {
+        "ar": "عظما الساق اليسرى (الظنبوب والشظية)",
+        "en": "Left Crus (Tibia & Fibula)",
+        "la": "Ossa cruris sinistra"
+      },
+      "navEdition": "NAV 6th edition (2017)",
+      "sourceLabel": "Tavernier Amaury (@svtavernier) — Chien (Sketchfab)",
+      "sourceUrl": "https://sketchfab.com/3d-models/chien-98674668eede4a9dad6b7d368575f883",
+      "reviewStatus": "draft",
+      "reviewStatusAr": "مسودة (بانتظار مراجعة اختصاصي)",
+      "coverageNoteAr": "الظنبوب والشظية اليسريان.",
+      "triangles": 1670,
+      "nodeKind": "merged-group",
+      "nodeKindAr": "مجموعة عظام مندمجة سطحيًا"
+    },
+    {
+      "node": "crus_dextrum",
+      "id": "canis-familiaris.skeletal.ossa-cruris.right",
+      "region": "pelvic-limb",
+      "regionAr": "الطرف الخلفي",
+      "laterality": "right",
+      "lateralityAr": "أيمن",
+      "names": {
+        "ar": "عظما الساق اليمنى (الظنبوب والشظية)",
+        "en": "Right Crus (Tibia & Fibula)",
+        "la": "Ossa cruris dextra"
+      },
+      "navEdition": "NAV 6th edition (2017)",
+      "sourceLabel": "Tavernier Amaury (@svtavernier) — Chien (Sketchfab)",
+      "sourceUrl": "https://sketchfab.com/3d-models/chien-98674668eede4a9dad6b7d368575f883",
+      "reviewStatus": "draft",
+      "reviewStatusAr": "مسودة (بانتظار مراجعة اختصاصي)",
+      "coverageNoteAr": "الظنبوب والشظية اليمنيان.",
+      "triangles": 2511,
+      "nodeKind": "merged-group",
+      "nodeKindAr": "مجموعة عظام مندمجة سطحيًا"
+    },
+    {
+      "node": "pes_sinister",
+      "id": "canis-familiaris.skeletal.skeleton-pedis.left",
+      "region": "pelvic-limb",
+      "regionAr": "الطرف الخلفي",
+      "laterality": "left",
+      "lateralityAr": "أيسر",
+      "names": {
+        "ar": "عظام القدم اليسرى",
+        "en": "Left Hindpaw (Pes)",
+        "la": "Skeleton pedis sinistri"
+      },
+      "navEdition": "NAV 6th edition (2017)",
+      "sourceLabel": "Tavernier Amaury (@svtavernier) — Chien (Sketchfab)",
+      "sourceUrl": "https://sketchfab.com/3d-models/chien-98674668eede4a9dad6b7d368575f883",
+      "reviewStatus": "draft",
+      "reviewStatusAr": "مسودة (بانتظار مراجعة اختصاصي)",
+      "coverageNoteAr": "7 رسغيات قدم + 4 أمشاط وظيفية (II–V) وأصابع II–V.",
+      "triangles": 583,
+      "nodeKind": "merged-group",
+      "nodeKindAr": "مجموعة عظام مندمجة سطحيًا"
+    },
+    {
+      "node": "pes_dexter",
+      "id": "canis-familiaris.skeletal.skeleton-pedis.right",
+      "region": "pelvic-limb",
+      "regionAr": "الطرف الخلفي",
+      "laterality": "right",
+      "lateralityAr": "أيمن",
+      "names": {
+        "ar": "عظام القدم اليمنى",
+        "en": "Right Hindpaw (Pes)",
+        "la": "Skeleton pedis dextri"
+      },
+      "navEdition": "NAV 6th edition (2017)",
+      "sourceLabel": "Tavernier Amaury (@svtavernier) — Chien (Sketchfab)",
+      "sourceUrl": "https://sketchfab.com/3d-models/chien-98674668eede4a9dad6b7d368575f883",
+      "reviewStatus": "draft",
+      "reviewStatusAr": "مسودة (بانتظار مراجعة اختصاصي)",
+      "coverageNoteAr": "7 رسغيات قدم + 4 أمشاط وظيفية (II–V) وأصابع II–V.",
+      "triangles": 2029,
+      "nodeKind": "merged-group",
+      "nodeKindAr": "مجموعة عظام مندمجة سطحيًا"
+    }
+  ]
+}
