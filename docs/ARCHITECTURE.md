@@ -1,0 +1,6 @@
+# ADR-001 — foundation
+2026-11-26 — proposed and implemented as minimal baseline, subject to Gemini validation.
+Vite + React + TypeScript + Three.js (direct renderer, not R3F yet). Static SPA, JSON catalog, no backend/account/AI runtime initially. Direct Three.js keeps the first GLB path small; migrate to R3F only if justified. Node 22+. Hosting target Netlify or Cloudflare Pages after size/performance test. No deployment configured yet.
+Assets: keep original downloads outside Git history; source URLs/checksums + per-asset licenses in catalog; optimized GLB by specimen and region. Do not store huge binary files in git; consider object storage after testing limits.
+Viewer: dynamically import renderer on selection, GLTFLoader, OrbitControls, responsive canvas, cleanup. Initial catalog intentionally empty. Future: semantic mesh IDs, picking, layers, isolation, sections, LOD, offline packs and structured anatomy. Separate specimen scenes by default.
+Mobile acceptance: no horizontal scrolling at 360px; usable touch and keyboard controls; WebGL unsupported fallback; measure time to first render, GPU memory and FPS on actual low-end phone; choose budgets after pilot. GitHub Actions for CI, Blender headless via scripts later. No runtime paid dependency.

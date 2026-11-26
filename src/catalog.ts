@@ -1,0 +1,1 @@
+export type Asset = {id:string; species:'dog'; titleAr:string; titleEn:string; specimen:string; region:string; geometry:string; review:'draft'|'expert-reviewed'; license:string; attribution:string; sourceUrl:string; sha256:string; modelPath:string};
