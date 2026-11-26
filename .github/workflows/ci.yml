@@ -47,7 +47,7 @@ jobs:
       - run: npm run build
       - name: Install CI-only Khronos glTF-Validator & Playwright Chromium
         run: |
-          npm install --no-save --no-audit --no-fund gltf-validator@2.0.0-dev.3.10 playwright@1.56.1
+          npm install --no-save --no-audit --no-fund gltf-validator playwright
           npx playwright install chromium
       - name: Run Khronos glTF-Validator & 360px SwiftShader WebGL smoke
         run: node scripts/khronos-and-browser-smoke.mjs
