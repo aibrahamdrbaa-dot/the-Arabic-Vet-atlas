@@ -74,6 +74,7 @@ function updateBoneCard(id) {
     get('card-ar').textContent = part ? part.label : 'اختر عظمًا بالنقر على المجسم أو من القائمة';
     get('card-en').textContent = '—';
     get('card-la').textContent = '—';
+    get('card-kind').textContent = part ? 'طبقة محلية تجريبية' : '—';
     get('card-id').textContent = part ? id : specimenId;
     get('card-region').textContent = '—';
     get('card-source').textContent = part ? 'ملف محلي تجريبي' : (catalog?.specimen?.source?.author ?? '—');
@@ -85,6 +86,7 @@ function updateBoneCard(id) {
   get('card-ar').textContent = s.names.ar;
   get('card-en').textContent = s.names.en;
   get('card-la').textContent = `${s.names.la} (${s.navEdition})`;
+  get('card-kind').textContent = s.nodeKindAr || 'عقدة تشريحية';
   get('card-id').textContent = s.id;
   get('card-region').textContent = `${s.regionAr} · ${s.lateralityAr}`;
   get('card-source').textContent = s.sourceLabel;
@@ -210,7 +212,7 @@ function renderBoneList() {
     const sub = document.createElement('span');
     sub.className = 'sub';
     const leftSpan = document.createElement('span');
-    leftSpan.textContent = s ? `${s.regionAr} · ${s.lateralityAr}` : 'طبقة محلية';
+    leftSpan.textContent = s ? `${s.nodeKindAr} · ${s.regionAr} · ${s.lateralityAr}` : 'طبقة محلية';
     const rightSpan = document.createElement('span');
     rightSpan.className = 'latin';
     rightSpan.textContent = s ? s.names.la : '';
@@ -569,13 +571,35 @@ async function initAtlasSpecimen() {
     get('reset').disabled = false;
     get('show-all').disabled = false;
 
+    const urlParams = new URLSearchParams(window.location.search);
+    const reqRegion = urlParams.get('region');
+    if (reqRegion && catalog.regions.some(r => r.id === reqRegion)) {
+      get('region-filter').value = reqRegion;
+    }
+    const reqStruct = urlParams.get('structure');
+    if (reqStruct && parts.has(reqStruct)) {
+      get('part').value = reqStruct;
+    }
+
     renderBoneList();
     showSelection();
     viewer.fit();
-    statusEl.textContent = `تم فتح العينة تلقائيًا (${parts.size} عقدة تشريحية قابلة للتحديد). انقر على أي عظم أو اختره من القائمة.`;
+    statusEl.textContent = reqStruct && parts.has(reqStruct)
+      ? `تم فتح العينة تلقائيًا وتحديد: ${parts.get(reqStruct).structure.names.ar} (${parts.size} عقدة تشريحية).`
+      : `تم فتح العينة تلقائيًا (${parts.size} عقدة تشريحية قابلة للتحديد: 10 عظام منفردة و16 مجموعة مندمجة). انقر على أي عقدة أو اخترها من القائمة.`;
   } catch (err) {
-    get('empty').textContent = `تعذّر فتح العينة تلقائيًا: ${err.message || 'تحقق من دعم WebGL في المتصفح.'}`;
-    statusEl.textContent = 'تعذّر تحميل العينة التلقائية.';
+    get('empty').textContent = `تعذّر تشغيل العارض ثلاثي الأبعاد (${err.message || 'WebGL غير متاح'}). يمكنك متابعة تصفح الـ 26 عقدة تشريحية وبطاقاتها وتدوين ملاحظاتك من القائمة الجانبية.`;
+    statusEl.textContent = 'وضع البديل النصي مفعّل (WebGL غير متاح).';
+    if (catalog && parts.size === 0) {
+      for (const s of catalog.structures) {
+        parts.set(s.id, { mesh: { visible: true, layers: { set() {} } }, label: `${s.names.ar} (${s.names.la})`, structure: s, specimenId, layerId: specimenId, region: s.region, materials: [] });
+        get('part').add(new Option(`${s.names.ar} — ${s.names.la}`, s.id));
+      }
+      const reqStruct = new URLSearchParams(window.location.search).get('structure');
+      if (reqStruct && parts.has(reqStruct)) get('part').value = reqStruct;
+      renderBoneList();
+      showSelection();
+    }
   }
 }
 

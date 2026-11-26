@@ -32,3 +32,13 @@ Scope: domestic cat (*Felis catus*), a single documented specimen with full skel
 
 - **[University of Edinburgh Open.Ed — 3D Skeletons and Skulls](https://open.ed.ac.uk/3d-skeletons-and-skulls/) / [Domestic Cat (Felis catus) on Sketchfab](https://sketchfab.com/3d-models/domestic-cat-felis-catus-7c99ca836d834c39872ecf5e9b5e2087):** CT scan by Dr. Tobias Schwarz, adapted by Brian Mather (RDSVS, University of Edinburgh), CC BY 4.0 (`541,305` verts / `1,085,008` faces). Retained as a documented reserve candidate for future CT-level individual-bone upgrades; not used in this published release.
 - **[3D Anatomy Studios](https://3danatomystudios.com/portfolio/digital-rendering-of-a-complete-cat-skeleton/):** Excluded — combines multiple CT scans and a supplemental skull from a different specimen with unresolved rights.
+
+## Governance: Draft Preview vs. `AGENTS.md` Public-Assets Policy
+
+- **Review Gate Status:** Both `review` (veterinary anatomist) and `rightsReview` (rights auditor) remain **`draft`** in `data/catalog.json`. Neither an automated check nor an AI agent may mark `expert-reviewed`.
+- **Node Granularity Honesty:** The 26 selectable nodes comprise **10 single-bone nodes** (`mandibula`, `os_sacrum`, `os_coxae_sinistrum`, `os_coxae_dextrum`, `scapula_sinistra`, `scapula_dextra`, `humerus_sinister`, `humerus_dexter`, `femur_sinister`, `femur_dexter`) and **16 surface-merged multi-bone groups** (`cranium`, 4 spinal regions, left/right ribs, `sternum`, left/right forearms, left/right forepaws, left/right crura, left/right hindpaws).
+- **Resolving the Draft-in-Public-Preview Conflict:**
+  - `public/models/` remains strictly empty (enforced by `scripts/validate-catalog.mjs`).
+  - `site/cat/skeleton/models/felis-catus-tavernier-skeleton.glb` exists **only on PR #6 branch (`codex/cat-skeletal-viewer-page`)** so the owner and veterinary anatomist can inspect the 3D specimen on Cloudflare branch preview before sign-off.
+  - **Do NOT merge this draft GLB into `main` (production)** until both human scientific review and human CC BY-NC-SA 4.0 rights sign-off are recorded with reviewer name, scope, date, outcome, and evidence URL.
+  - Third-party asset licensing is separated from MIT code licensing in `THIRD_PARTY_LICENSES.md`.

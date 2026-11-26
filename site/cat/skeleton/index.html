@@ -345,14 +345,14 @@
 <body>
 <main>
   <div class="topbar">
-    <nav aria-label="التنقل"><a class="back-link" href="/#/animals/cat">← العودة إلى صفحة القطة</a></nav>
-    <span class="badge" id="review-badge">مسودة — بانتظار مراجعة اختصاصي تشريح بيطري</span>
+    <nav aria-label="التنقل" style="display:flex;flex-wrap:wrap;gap:8px;align-items:center"><a class="back-link" href="/#/">الرئيسية</a><a class="back-link" href="/#/animals/cat">← صفحة القطة</a><a class="back-link" href="/#/search">البحث</a><a class="back-link" href="/#/sources">المصادر والمنهجية</a></nav>
+    <span class="badge" id="review-badge">مسودة للمعاينة والمراجعة (draft) — غير معتمد للإنتاج بعد</span>
   </div>
 
   <h1>الجهاز الهيكلي للقطة المنزلية (<span class="latin">Felis catus</span>)</h1>
   <p class="subtitle">
     استوديو دراسة ثلاثي الأبعاد يستضيف نسخة مشتقة من مسح فوتوغرامتري حقيقي لهيكل قطة كاملة،
-    مفصولة إلى 26 عقدة تشريحية قابلة للتحديد ومربوطة بتسميات NAV (الطبعة السادسة، 2017) دون اختلاق هندسة.
+    مفصولة إلى 26 عقدة تشريحية قابلة للتحديد (10 عظام منفردة + 16 مجموعة عظام مندمجة سطحيًا) ومربوطة بتسميات NAV (الطبعة السادسة، 2017) دون اختلاق هندسة. لم تُرقَّ العينة إلى الإصدار الإنتاجي بعد بانتظار مراجعة اختصاصي تشريح بيطري وحسم الحقوق.
   </p>
 
   <div class="workspace">
@@ -391,6 +391,7 @@
           <dt>العربي</dt><dd id="card-ar">اختر عظمًا بالنقر على المجسم أو من القائمة</dd>
           <dt>الإنجليزي</dt><dd id="card-en">—</dd>
           <dt>اللاتيني (NAV)</dt><dd id="card-la" class="latin">—</dd>
+          <dt>نوع العقدة</dt><dd id="card-kind">—</dd>
           <dt>المعرّف الثابت</dt><dd id="card-id" class="mono">—</dd>
           <dt>المنطقة / الجهة</dt><dd id="card-region">—</dd>
           <dt>المصدر</dt><dd id="card-source">—</dd>
@@ -476,7 +477,8 @@
         <ul>
           <li><strong>المرجع الاصطلاحي اللاتيني:</strong> نشكر الرابطة العالمية لعلماء التشريح البيطري (WAVA) على إتاحة <a href="https://www.wava-amav.org/wava-documents.html" target="_blank" rel="noopener noreferrer">Nomina Anatomica Veterinaria (NAV)، الطبعة السادسة (2017)</a> المعتمدة لضبط الأسماء اللاتينية لعظام القطة المنزلية في هذا الإصدار.</li>
           <li><strong>مرجع تنظيم العقد وخط التجهيز:</strong> <a href="https://github.com/Ketbome/vet-atlas/blob/main/scripts/build-cat-skeletal.ts" target="_blank" rel="noopener noreferrer">Ketbome/vet-atlas (scripts/build-cat-skeletal.ts)</a> — استُخدم مرجعًا لمقارنة اصطلاحات المحاور وتنظيم العقد فقط دون نسخ ملف GLB الخاص بهم.</li>
-          <li><strong>حالة الاعتماد العلمي:</strong> جميع التسميات وفواصل العقد في هذا الإصدار تحمل حالة <em>مسودة (draft)</em> بانتظار المراجعة والتوقيع من اختصاصي تشريح بيطري.</li>
+          <li><strong>فصل التراخيص:</strong> كود الأطلس الأصلي مرخّص تحت <span class="mono">MIT</span>، بينما يخضع المجسم المشتق للقطة بشكل مستقل لترخيص <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="noopener noreferrer">CC BY-NC-SA 4.0</a> (انظر <a href="/#/sources">صفحة المصادر والمنهجية</a>).</li>
+          <li><strong>حالة الاعتماد العلمي والحقوقي:</strong> جميع التسميات وفواصل العقد في هذا الإصدار تحمل حالة <em>مسودة (draft)</em> بانتظار المراجعة والتوقيع الفعلي من اختصاصي تشريح بيطري ومراجع الحقوق قبل أي نقل إلى الإنتاج.</li>
         </ul>
       </div>
     </div>

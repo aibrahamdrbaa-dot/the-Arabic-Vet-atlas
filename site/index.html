@@ -733,13 +733,14 @@
       <nav class="nav-links" aria-label="التنقل الرئيسي">
         <a class="nav-link" href="#/" data-route="home">الرئيسية</a>
         <a class="nav-link" href="#/animals" data-route="animals">الكائنات</a>
+        <a class="nav-link" href="#/animals/cat" data-route="cat">القطة</a>
         <a class="nav-link" href="/cat/skeleton/">الجهاز الهيكلي</a>
         <a class="nav-link" href="#/search" data-route="search">البحث</a>
-        <a class="nav-link" href="#/about" data-route="about">عن المشروع</a>
+        <a class="nav-link" href="#/sources" data-route="sources">المصادر والمنهجية</a>
       </nav>
 
       <div class="nav-cta-wrap">
-        <a class="nav-cta" href="/cat/skeleton/">ابدأ بدراسة هيكل القطة</a>
+        <a class="nav-cta" href="#/animals/cat">استكشف تشريح القطة</a>
       </div>
 
       <button type="button" class="mobile-menu-btn" id="mobile-menu-btn" aria-expanded="false" aria-controls="mobile-drawer" aria-label="فتح قائمة التنقل">
@@ -754,10 +755,11 @@
     <div class="mobile-drawer" id="mobile-drawer" aria-label="قائمة الجوال">
       <a class="nav-link" href="#/" data-route="home">الرئيسية</a>
       <a class="nav-link" href="#/animals" data-route="animals">الكائنات</a>
-      <a class="nav-link" href="#/animals/dog" data-route="dog">الكلب</a>
-      <a class="nav-link" href="/cat/skeleton/">الجهاز الهيكلي</a>
+      <a class="nav-link" href="#/animals/cat" data-route="cat">القطة (Felis catus)</a>
+      <a class="nav-link" href="/cat/skeleton/">الجهاز الهيكلي للقطة</a>
       <a class="nav-link" href="#/search" data-route="search">البحث في المصطلحات</a>
-      <a class="nav-link" href="#/about" data-route="about">عن المشروع والمنهجية</a>
+      <a class="nav-link" href="#/sources" data-route="sources">المصادر والمنهجية</a>
+      <a class="nav-link" href="#/about" data-route="about">عن المشروع</a>
     </div>
   </header>
 
@@ -766,13 +768,15 @@
   <footer class="site-footer">
     <div class="container footer-inner">
       <div>
-        <strong>الأطلس البيطري العربي</strong> — مشروع تعليمي بيطري مفتوح المصدر يبدأ بالعربية.
-        <span style="display:block;font-size:0.8rem;margin-top:4px;">القطة الترحيبية وصور الأنواع لأغراض الهوية البصرية فقط ومفصولة تمامًا عن الأصول التشريحية العلمية.</span>
+        <strong>الأطلس البيطري العربي</strong> — مشروع تعليمي بيطري يبدأ بالعربية؛ مسار العمل الحالي مخصص للقطة المنزلية (<bdi dir="ltr">Felis catus</bdi>).
+        <span style="display:block;font-size:0.8rem;margin-top:4px;">القطة الترحيبية وصور الأنواع لأغراض الهوية البصرية فقط ومفصولة تمامًا عن الأصول التشريحية العلمية. الكود مرخّص تحت MIT، وتراخيص الأصول التشريحية مستقلة لكل عينة.</span>
       </div>
       <div class="footer-links">
         <a href="#/animals">الكائنات</a>
+        <a href="#/animals/cat">القطة</a>
+        <a href="/cat/skeleton/">استوديو الهيكل</a>
         <a href="#/search">البحث</a>
-        <a href="#/about">المنهجية والمصادر</a>
+        <a href="#/sources">المصادر والمنهجية</a>
         <a href="https://github.com/aibrahamdrbaa-dot/the-Arabic-Vet-atlas" target="_blank" rel="noopener noreferrer">GitHub</a>
       </div>
     </div>
@@ -792,62 +796,8 @@
     const CAT_PORTAL_ANGLE = 358.2; // exact angle of slot 203 where real return path begins
 
     const SPECIES_ASSETS = {
-      dog: "./assets/species-0.webp",
-      cat: "./assets/species-1.webp"
-    };
-
-    const PREVIEW_SPECIMEN = {
-      id: "canine-skull-preview",
-      titleAr: "جمجمة الكلب — معاينة مساحة الدراسة",
-      latin: "Cranium canis",
-      status: "معاينة واجهة فقط — بانتظار اعتماد أول عينة P1",
-      structures: [
-        {
-          id: "os-frontale", ar: "العظم الجبهي", en: "Frontal bone", latin: "Os frontale",
-          region: "القحف العصبي (Neurocranium)",
-          summary: "يشكّل سقف التجويف القحفي الأمامي والحافة العلوية للحجاج، ويحتوي على الجيب الجبهي.",
-          source: "Nomina Anatomica Veterinaria (NAV) — مرجع اصطلاحي للمعاينة",
-          reviewStatus: "بانتظار ربط عينة GLB موثقة في P1",
-          color: "#D8E4FA",
-          path: "M210,120 C260,92 330,96 375,130 L345,185 C300,168 250,170 212,175 Z"
-        },
-        {
-          id: "os-parietale", ar: "العظم الجداري", en: "Parietal bone", latin: "Os parietale",
-          region: "القحف العصبي (Neurocranium)",
-          summary: "يكوّن الجزء الخلفي الجانبي من سقف الجمجمة ويساهم في تشكيل العرف السهمي الخارجي.",
-          source: "Nomina Anatomica Veterinaria (NAV) — مرجع اصطلاحي للمعاينة",
-          reviewStatus: "بانتظار ربط عينة GLB موثقة في P1",
-          color: "#CBE0C9",
-          path: "M375,130 C435,138 485,175 492,225 L418,238 L345,185 Z"
-        },
-        {
-          id: "maxilla", ar: "عظم الفك العلوي", en: "Maxilla", latin: "Maxilla",
-          region: "القحف الوجهي (Viscerocranium)",
-          summary: "يحمل الأسنان العلوية الخلفية ويشكّل الجدار الجانبي لتجويف الأنف وجزءًا من الحنك الصلب.",
-          source: "Nomina Anatomica Veterinaria (NAV) — مرجع اصطلاحي للمعاينة",
-          reviewStatus: "بانتظار ربط عينة GLB موثقة في P1",
-          color: "#F7DFC4",
-          path: "M96,214 C135,186 178,176 212,175 L238,248 L108,255 Z"
-        },
-        {
-          id: "os-zygomaticum", ar: "العظم الوجني", en: "Zygomatic bone", latin: "Os zygomaticum",
-          region: "القحف الوجهي (Viscerocranium)",
-          summary: "يشكّل الحافة السفلية للحجاج ويمتد خلفيًا ليتصل بالنتوء الوجني للعظم الصدغي مكوّنًا القوس الوجنية.",
-          source: "Nomina Anatomica Veterinaria (NAV) — مرجع اصطلاحي للمعاينة",
-          reviewStatus: "بانتظار ربط عينة GLB موثقة في P1",
-          color: "#F2D2D8",
-          path: "M212,175 L345,185 L362,238 L238,248 Z"
-        },
-        {
-          id: "mandibula", ar: "عظم الفك السفلي", en: "Mandible", latin: "Mandibula",
-          region: "القحف الوجهي (Viscerocranium)",
-          summary: "العظم المتحرك الوحيد في الجمجمة، يتمفصل مع العظم الصدغي عند المفصل الصدغي الفكي ويحمل الأسنان السفلية.",
-          source: "Nomina Anatomica Veterinaria (NAV) — مرجع اصطلاحي للمعاينة",
-          reviewStatus: "بانتظار ربط عينة GLB موثقة في P1",
-          color: "#E4D8F4",
-          path: "M112,272 L352,258 L398,215 L418,252 L364,296 L118,302 Z"
-        }
-      ]
+      cat: "./assets/species-1.webp",
+      dog: "./assets/species-0.webp"
     };
 
     const appState = {
@@ -1052,54 +1002,123 @@
     }
 
     function parseHash() {
-      const raw = (window.location.hash || "#/").replace(/^#/, "");
-      const [pathPart, queryPart] = raw.split("?");
-      const path = pathPart.startsWith("/") ? pathPart : "/" + pathPart;
-      return { path, params: new URLSearchParams(queryPart || "") };
+
+    // Data-driven species registry (future species added via structured records, not manual page duplication)
+    const SPECIES_REGISTRY = [
+      {
+        id: "cat",
+        slug: "cat",
+        nameAr: "القطة المنزلية",
+        latin: "Felis catus",
+        status: "active-draft",
+        statusLabelAr: "المسار الجاري • مسودة معاينة (draft)",
+        badgeClass: "badge-pilot",
+        image: SPECIES_ASSETS.cat,
+        imageAlt: "صورة تحريرية ترحيبية للقطة المنزلية — منفصلة عن المجسم التشريحي العلمي",
+        summaryAr: "محور العمل الحالي في الأطلس، بدءًا بالجهاز الهيكلي الكامل المشتق من مسح فوتوغرامتري حقيقي بـ 26 عقدة تشريحية ومصطلحات NAV الطبعة السادسة (مسودة بانتظار مراجعة اختصاصي).",
+        catalogUrl: "./cat/skeleton/catalog.json",
+        studyUrl: "/cat/skeleton/",
+        systems: [
+          { id: "skeletal", ar: "الجهاز الهيكلي", latin: "Systema skeletale", status: "draft-preview", statusAr: "مسودة معاينة (26 عقدة)", url: "/cat/skeleton/", desc: "عينة مسح فوتوغرامتري لقطة كاملة (Tavernier Amaury، CC BY-NC-SA 4.0) مفصولة إلى 10 عظام منفردة و16 مجموعة عظام مندمجة سطحيًا بانتظار اعتماد اختصاصي." },
+          { id: "cardiovascular", ar: "الجهاز الوعائي (الشرايين)", latin: "Systema cardiovasculare", status: "unavailable", statusAr: "غير متاح حاليًا", url: null, desc: "معلّق بانتظار مصدر هندسي موثّق لشرايين القطة المنزلية وبيانات مطابقة مكانية متسقة؛ لا اشتقاق من الكلب ولا تخمين للمسارات." },
+          { id: "muscular", ar: "الجهاز العضلي", latin: "Systema musculare", status: "planned", statusAr: "قيد التخطيط", url: null, desc: "سيُضاف لاحقًا عند توفر عينة قططية موثّقة ومراجعة تشريحية." },
+          { id: "nervous", ar: "الجهاز العصبي", latin: "Systema nervosum", status: "planned", statusAr: "قيد التخطيط", url: null, desc: "سيُضاف لاحقًا عند توفر بيانات تشريحية موثّقة للقطة." }
+        ]
+      },
+      {
+        id: "dog",
+        slug: "dog",
+        nameAr: "الكلب المنزلي",
+        latin: "Canis lupus familiaris",
+        status: "planned",
+        statusLabelAr: "قيد التخطيط — مؤجّل لما بعد القطة",
+        badgeClass: "badge-planned",
+        image: SPECIES_ASSETS.dog,
+        imageAlt: "صورة تحريرية توضيحية لكلب — مسار مخطط له لاحقًا",
+        summaryAr: "مسار مستقبلي مؤجّل حتى استكمال واعتماد مسار القطة المنزلية. لا توجد عينات أو إحصاءات منشورة له حاليًا.",
+        catalogUrl: null,
+        studyUrl: null,
+        systems: []
+      }
+    ];
+
+    const appState = {
+      searchQuery: "",
+      catCatalog: null,
+      catCatalogError: false
+    };
+
+    async function loadCatCatalog() {
+      try {
+        const res = await fetch("./cat/skeleton/catalog.json", { cache: "no-cache" });
+        if (!res.ok) throw new Error("catalog fetch failed");
+        appState.catCatalog = await res.json();
+        appState.catCatalogError = false;
+      } catch {
+        appState.catCatalogError = true;
+      }
+      render();
+    }
+
+    function parseRoute() {
+      if (window.location.hash && window.location.hash.length > 1) {
+        const raw = window.location.hash.replace(/^#/, "");
+        const [pathPart, queryPart] = raw.split("?");
+        const clean = (pathPart.startsWith("/") ? pathPart : "/" + pathPart).replace(/\/+$/, "") || "/";
+        return { path: clean, params: new URLSearchParams(queryPart || "") };
+      }
+      const p = (window.location.pathname || "/").replace(/\/+$/, "") || "/";
+      return { path: p, params: new URLSearchParams(window.location.search || "") };
     }
 
     function updateActiveNav(path) {
       document.querySelectorAll(".nav-link").forEach((el) => {
         const r = el.getAttribute("data-route");
         let isActive = false;
-        if (r === "home" && (path === "/" || path === "")) isActive = true;
+        if (r === "home" && path === "/") isActive = true;
         else if (r === "animals" && path === "/animals") isActive = true;
-        else if (r === "dog" && path === "/animals/dog") isActive = true;
-        else if (r === "skeletal" && (path.startsWith("/animals/dog/skeletal") || path.startsWith("/specimens"))) isActive = true;
+        else if (r === "cat" && path === "/animals/cat") isActive = true;
         else if (r === "search" && path === "/search") isActive = true;
+        else if (r === "sources" && path === "/sources") isActive = true;
         else if (r === "about" && path === "/about") isActive = true;
         if (isActive) el.setAttribute("aria-current", "page");
         else el.removeAttribute("aria-current");
       });
     }
 
+    function esc(str) {
+      return String(str ?? "").replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+    }
+
     function renderHome() {
+      const cat = SPECIES_REGISTRY[0];
+      const count = appState.catCatalog?.structures?.length || 26;
       return `
         <section class="hero-section" aria-labelledby="hero-heading">
           <div class="container hero-grid">
             <div class="hero-copy">
               <span class="hero-eyebrow">
-                <span>متحف التشريح الرقمي الحيّ</span>
+                <span>الأطلس البيطري العربي</span>
                 <span aria-hidden="true">•</span>
-                <span>مفتوح المصدر</span>
+                <span>القطة المنزلية أولًا</span>
               </span>
               <h1 class="hero-title" id="hero-heading">
-                تعلّم التشريح البيطري <span class="accent-word">بوضوح وهدوء</span> يبدأ بالعربية
+                تعلّم تشريح <span class="accent-word">القطة المنزلية</span> بوضوح علمي يبدأ بالعربية
               </h1>
               <p class="hero-desc">
-                أطلس تشريح بيطري مجاني ومفتوح المصدر يجمع بين الدقة العلمية الموثّقة والمصطلحات العربية والإنجليزية واللاتينية في مساحة دراسة هادئة.
+                أطلس تشريح بيطري مجاني ومفتوح الكود يجمع المصطلحات العربية والإنجليزية واللاتينية (<bdi dir="ltr">NAV 6th ed</bdi>) مع عينات ثلاثية الأبعاد مشتقة من مسوح حقيقية موثّقة المصدر والترخيص.
               </p>
               <div class="hero-actions">
-                <a class="btn btn-primary" href="#/animals/dog">
-                  استكشف مسار الكلب التجريبي
+                <a class="btn btn-primary" href="#/animals/cat">
+                  استكشف تشريح القطة
                   <span aria-hidden="true">←</span>
                 </a>
-                <a class="btn btn-secondary" href="#/animals">تصفّح الكائنات</a>
+                <a class="btn btn-secondary" href="/cat/skeleton/">افتح استوديو هيكل القطة</a>
               </div>
               <div class="hero-honesty-note" role="note">
                 <span aria-hidden="true">ⓘ</span>
                 <span>
-                  مسار العمل الحالي مخصص لتشريح <strong>القطة المنزلية</strong>، ويبدأ بالجهاز الهيكلي.
+                  القطة التفاعلية هنا عنصر ترحيبي بصري فقط. العينة التشريحية ثلاثية الأبعاد (<strong>${count} عقدة قابلة للتحديد — حالة مسودة بانتظار مراجعة اختصاصي</strong>) متاحة في صفحة الدراسة المستقلة <a href="/cat/skeleton/"><bdi dir="ltr">/cat/skeleton/</bdi></a>.
                 </span>
               </div>
             </div>
@@ -1110,105 +1129,63 @@
               </div>
               <span class="cat-subtle-hint">
                 <span class="hint-pulse" aria-hidden="true"></span>
-                <span>حرّك المؤشر حول القطة لتتابعك بسلاسة</span>
+                <span>عنصر ترحيبي بصري • حرّك المؤشر حول القطة</span>
               </span>
             </div>
           </div>
         </section>
 
-        <section class="section" aria-labelledby="species-heading">
+        <section class="section" aria-labelledby="active-track-heading">
           <div class="container">
             <div class="section-header">
               <div>
-                <span class="section-kicker">الكائنات ومسارات الإطلاق</span>
-                <h2 class="section-title" id="species-heading">نبدأ بعمق علمي في الكلب، ثم نتوسّع إلى القطة</h2>
+                <span class="section-kicker">التسلسل المعتمد: الحيوان ← الجهاز ← المنطقة ← العينة ← البنية</span>
+                <h2 class="section-title" id="active-track-heading">المسار الجاري: القطة المنزلية (<bdi dir="ltr" class="latin-term">Felis catus</bdi>)</h2>
                 <p class="section-lead">
-                  نعرض حالة الجاهزية بشفافية تامة دون أرقام وهمية أو تراكيب مختلقة؛ كل عينة تُنشر فقط بعد التحقق الهندسي والمراجعة التشريحية.
+                  نركّز العمل الحالي بالكامل على الجهاز الهيكلي للقطة المنزلية قبل التوسع إلى أجهزة أو أنواع أخرى، مع توثيق صريح للتغطية والنواقص وحالة المراجعة.
                 </p>
               </div>
-              <a class="btn btn-secondary" href="#/animals">كل الكائنات</a>
+              <a class="btn btn-secondary" href="#/animals">دليل الكائنات</a>
             </div>
 
             <div class="species-grid">
               <article class="species-card">
                 <div class="species-media">
-                  <span class="status-badge badge-pilot badge-floating">المسار التجريبي الأول • P1</span>
-                  <img src="${SPECIES_ASSETS.dog}" alt="صورة تحريرية لكلب على خلفية عاجية دافئة — مسار التشريح التجريبي الأول" loading="lazy" />
+                  <span class="status-badge badge-pilot badge-floating">${cat.statusLabelAr}</span>
+                  <img src="${cat.image}" alt="${cat.imageAlt}" loading="lazy" />
                 </div>
                 <div class="species-body">
                   <div class="species-names">
-                    <h3 class="species-title">الكلب</h3>
-                    <bdi dir="ltr" class="latin-term">Canis lupus familiaris</bdi>
+                    <h3 class="species-title">${cat.nameAr}</h3>
+                    <bdi dir="ltr" class="latin-term">${cat.latin}</bdi>
                   </div>
-                  <p class="species-desc">
-                    نقطة الانطلاق العلمية للأطلس، بدءًا من الجهاز الهيكلي وتوثيق البنى العظمية بمصطلحات ثلاثية ومصادر محقّقة لكل ادعاء علمي.
-                  </p>
+                  <p class="species-desc">${cat.summaryAr}</p>
                   <div class="species-meta-list">
-                    <span class="meta-chip">الأولوية: الجهاز الهيكلي</span>
-                    <span class="meta-chip">توثيق على مستوى البنية</span>
+                    <span class="meta-chip">26 عقدة (10 عظام منفردة + 16 مجموعة مندمجة)</span>
+                    <span class="meta-chip">NAV الطبعة السادسة (2017)</span>
                   </div>
                   <div class="species-footer">
-                    <a class="btn btn-primary" href="#/animals/dog">فتح مسار الكلب</a>
-                    <a class="nav-link" href="#/animals/dog/skeletal">الجهاز الهيكلي ←</a>
+                    <a class="btn btn-primary" href="#/animals/cat">صفحة القطة والمناطق</a>
+                    <a class="nav-link" href="/cat/skeleton/">استوديو الهيكل ←</a>
                   </div>
                 </div>
               </article>
 
-              <article class="species-card">
-                <div class="species-media">
-                  <span class="status-badge badge-planned badge-floating">مخطط له • المرحلة اللاحقة</span>
-                  <img src="${SPECIES_ASSETS.cat}" alt="صورة تحريرية للقطة البرتقالية على خلفية عاجية دافئة — مسار مخطط له" loading="lazy" />
+              <article class="pillar-card" style="display:flex;flex-direction:column;justify-content:space-between;gap:14px;">
+                <div>
+                  <span class="section-kicker">طريقة الدراسة والمصادر</span>
+                  <h3 class="pillar-title" style="margin-top:6px;">كيف تدرس في الأطلس؟</h3>
+                  <ol style="margin:10px 0 0;padding-inline-start:20px;color:var(--ink-secondary);font-size:0.94rem;line-height:1.75;">
+                    <li>ابدأ من <a href="#/animals/cat">صفحة القطة</a> لاستعراض الأجهزة ومناطق الجسم وحدود التغطية.</li>
+                    <li>افتح <a href="/cat/skeleton/">استوديو الجهاز الهيكلي</a> لتحديد العقد بالنقر أو البحث، وعزلها وتلوينها وحفظ ملاحظاتك محليًا وتصديرها بصيغة JSON.</li>
+                    <li>استخدم <a href="#/search">البحث</a> للوصول مباشرة إلى أي عظم بالعربية أو الإنجليزية أو اللاتينية.</li>
+                    <li>راجع <a href="#/sources">المصادر والمنهجية</a> للتفريق بين «مسودة» و«مراجعة اختصاصي» وبين ترخيص الكود (MIT) وترخيص المجسم (CC BY-NC-SA 4.0).</li>
+                  </ol>
                 </div>
-                <div class="species-body">
-                  <div class="species-names">
-                    <h3 class="species-title">القطة</h3>
-                    <bdi dir="ltr" class="latin-term">Felis catus</bdi>
-                  </div>
-                  <p class="species-desc">
-                    ابدأ بمساحة دراسة الجهاز الهيكلي للقطة.
-                  </p>
-                  <div class="species-meta-list">
-                    <span class="meta-chip">الحالة: قيد التخطيط</span>
-                    <span class="meta-chip">صورة تحريرية توضيحية</span>
-                  </div>
-                  <div class="species-footer">
-                    <a class="btn btn-secondary" href="#/animals/cat">عرض تفاصيل المسار</a>
-                  </div>
+                <div style="display:flex;gap:10px;flex-wrap:wrap;">
+                  <a class="btn btn-secondary" href="#/search">ابحث في عظام القطة</a>
+                  <a class="btn btn-secondary" href="#/sources">المصادر والمنهجية</a>
                 </div>
-              </article>
-            </div>
-          </div>
-        </section>
-
-        <section class="section section-soft" aria-labelledby="pillars-heading">
-          <div class="container">
-            <div class="section-header">
-              <div>
-                <span class="section-kicker">مبادئ التصميم والمنهجية</span>
-                <h2 class="section-title" id="pillars-heading">واجهة ترحّب بالمتعلم وتصون الدقة العلمية</h2>
-              </div>
-            </div>
-            <div class="pillars-grid">
-              <article class="pillar-card">
-                <span class="pillar-num">01</span>
-                <h3 class="pillar-title">فصل صارم بين الترحيب والعلم</h3>
-                <p class="pillar-text">
-                  الصفحة الرئيسية سريعة ولا تحمّل WebGL أو Three.js إطلاقًا؛ بينما يُحمّل العارض ثلاثي الأبعاد كسولًا فقط داخل مساحة دراسة العينة.
-                </p>
-              </article>
-              <article class="pillar-card">
-                <span class="pillar-num">02</span>
-                <h3 class="pillar-title">ثلاثية المصطلحات بوضوح طباعي</h3>
-                <p class="pillar-text">
-                  تظهر المصطلحات العربية المعتمدة أولًا مع المقابل الإنجليزي واللاتيني (<bdi dir="ltr">NAV</bdi>) مضبوط الاتجاه وبحث ذكي يطبّع الحروف العربية للعثور فقط.
-                </p>
-              </article>
-              <article class="pillar-card">
-                <span class="pillar-num">03</span>
-                <h3 class="pillar-title">جاهزية كاملة للكتالوج الفارغ</h3>
-                <p class="pillar-text">
-                  تعمل كل المسارات والبحث ومساحة الدراسة بسلاسة سواء قبل نشر أول ملف <bdi dir="ltr">GLB</bdi> أو بعده، مع إظهار حالة المراجعة والمصدر بشفافية.
-                </p>
               </article>
             </div>
           </div>
@@ -1225,74 +1202,30 @@
             </nav>
             <div class="section-header">
               <div>
-                <span class="section-kicker">دليل الأنواع البيطرية</span>
-                <h1 class="section-title">اختر الكائن لاستكشاف الأجهزة التشريحية</h1>
+                <span class="section-kicker">الحيوان ← الجهاز ← المنطقة ← العينة ← البنية</span>
+                <h1 class="section-title">فهرس الكائنات في الأطلس</h1>
+                <p class="section-lead">يُبنى هذا الفهرس من سجل الأنواع والكتالوج الفعلي؛ القطة المنزلية هي المسار الجاري حاليًا، ولا تُعرض أي أرقام أو عينات وهمية للأنواع المخطط لها.</p>
               </div>
             </div>
             <div class="species-grid">
-              <article class="species-card">
-                <div class="species-media">
-                  <span class="status-badge badge-pilot badge-floating">المسار التجريبي الأول • P1</span>
-                  <img src="${SPECIES_ASSETS.dog}" alt="الكلب — صورة تحريرية" />
-                </div>
-                <div class="species-body">
-                  <div class="species-names">
-                    <h2 class="species-title">الكلب</h2>
-                    <bdi dir="ltr" class="latin-term">Canis lupus familiaris</bdi>
+              ${SPECIES_REGISTRY.map(sp => `
+                <article class="species-card">
+                  <div class="species-media">
+                    <span class="status-badge ${sp.badgeClass} badge-floating">${sp.statusLabelAr}</span>
+                    <img src="${sp.image}" alt="${sp.imageAlt}" loading="lazy" />
                   </div>
-                  <p class="species-desc">المسار النشط لتجهيز أولى عينات الجهاز الهيكلي ثلاثية الأبعاد مع بطاقات المصطلحات الموثقة.</p>
-                  <div class="species-footer"><a class="btn btn-primary" href="#/animals/dog">الدخول إلى أجهزة الكلب</a></div>
-                </div>
-              </article>
-              <article class="species-card">
-                <div class="species-media">
-                  <span class="status-badge badge-planned badge-floating">مخطط له</span>
-                  <img src="${SPECIES_ASSETS.cat}" alt="القطة — صورة تحريرية" />
-                </div>
-                <div class="species-body">
-                  <div class="species-names">
-                    <h2 class="species-title">القطة</h2>
-                    <bdi dir="ltr" class="latin-term">Felis catus</bdi>
-                  </div>
-                  <p class="species-desc">مسار مخطط له ضمن التوسّع القادم بعد اعتماد عينات المسار التجريبي الأول.</p>
-                  <div class="species-footer"><a class="btn btn-secondary" href="#/animals/cat">حالة المسار والخطوات القادمة</a></div>
-                </div>
-              </article>
-            </div>
-          </div>
-        </section>
-      `;
-    }
-
-    function renderDogDetail() {
-      const systems = [
-        { ar: "الجهاز الهيكلي", latin: "Systema skeletale", active: true, desc: "العظام والمفاصل والجمجمة والعمود الفقري — أولوية المسار التجريبي P1." },
-        { ar: "الجهاز العضلي", latin: "Systema musculare", active: false, desc: "مسارات العضلات السطحية والعميقة ومناشئها ومرتكزاتها — مخطط له." },
-        { ar: "الجهاز الوعائي", latin: "Systema cardiovasculare", active: false, desc: "الشرايين والأوردة الرئيسية وتفرعاتها التشريحية — مخطط له." },
-        { ar: "الجهاز العصبي", latin: "Systema nervosum", active: false, desc: "الأعصاب القحفية والشوكية والضفائر العصبية — مخطط له." }
-      ];
-      return `
-        <section class="section">
-          <div class="container">
-            <nav class="breadcrumb" aria-label="مسار التنقل">
-              <a href="#/">الرئيسية</a><span>/</span><a href="#/animals">الكائنات</a><span>/</span><span aria-current="page">الكلب</span>
-            </nav>
-            <div class="section-header">
-              <div>
-                <span class="section-kicker">المسار التجريبي الأول • P1</span>
-                <h1 class="section-title">تشريح الكلب <bdi dir="ltr" class="latin-term">(Canis lupus familiaris)</bdi></h1>
-              </div>
-              <a class="btn btn-primary" href="#/animals/dog/skeletal">فتح الجهاز الهيكلي</a>
-            </div>
-            <div class="systems-grid">
-              ${systems.map(s => `
-                <article class="system-card ${s.active ? "active-pilot" : ""}">
-                  <div><span class="status-badge ${s.active ? "badge-pilot" : "badge-planned"}">${s.active ? "نشط في P1" : "مخطط له"}</span></div>
-                  <h2 style="margin:6px 0 0;font-size:1.22rem;">${s.ar}</h2>
-                  <bdi dir="ltr" class="latin-term">${s.latin}</bdi>
-                  <p style="margin:4px 0 12px;color:var(--ink-secondary);font-size:0.93rem;">${s.desc}</p>
-                  <div style="margin-top:auto;">
-                    ${s.active ? `<a class="btn btn-primary" style="width:100%;" href="#/animals/dog/skeletal">استكشف عينات الجهاز الهيكلي</a>` : `<span style="font-size:0.84rem;color:var(--ink-muted);">سيُتاح بعد اعتماد عينات الجهاز الهيكلي</span>`}
+                  <div class="species-body">
+                    <div class="species-names">
+                      <h2 class="species-title">${sp.nameAr}</h2>
+                      <bdi dir="ltr" class="latin-term">${sp.latin}</bdi>
+                    </div>
+                    <p class="species-desc">${sp.summaryAr}</p>
+                    <div class="species-footer">
+                      ${sp.status === "active-draft"
+                        ? `<a class="btn btn-primary" href="#/animals/${sp.slug}">استكشف تشريح القطة</a><a class="nav-link" href="${sp.studyUrl}">الجهاز الهيكلي ←</a>`
+                        : `<span style="font-size:0.88rem;color:var(--ink-muted);">لم يبدأ العمل الفعلي على هذا النوع بعد.</span>`
+                      }
+                    </div>
                   </div>
                 </article>
               `).join("")}
@@ -1303,139 +1236,109 @@
     }
 
     function renderCatDetail() {
-      return `
-        <section class="section">
-          <div class="container">
-            <nav class="breadcrumb"><a href="#/">الرئيسية</a><span>/</span><a href="#/animals">الكائنات</a><span>/</span><span aria-current="page">القطة</span></nav>
-            <div class="empty-state-box">
-              <span class="status-badge badge-planned" style="margin-bottom:14px;">مسار الدراسة الأول • القطة</span>
-              <h1 class="section-title" style="margin-bottom:12px;">تشريح القطة <bdi dir="ltr" class="latin-term">(Felis catus)</bdi></h1>
-              <p style="max-width:65ch;color:var(--ink-secondary);margin-bottom:22px;">
-                افتح مساحة الدراسة لاستعراض ملفات التشريح ثلاثية الأبعاد وتدوين ملاحظاتك.
-              </p>
-              <div style="display:flex;gap:12px;flex-wrap:wrap;">
-                <a class="btn btn-primary" href="/cat/skeleton/">فتح الجهاز الهيكلي للقطة</a>
-                <a class="btn btn-secondary" href="#/about">قراءة معايير قبول العينات</a>
-              </div>
-            </div>
-          </div>
-        </section>
-      `;
-    }
+      const sp = SPECIES_REGISTRY.find(x => x.id === "cat");
+      const cat = appState.catCatalog;
+      const regions = cat?.regions || [];
+      const structures = cat?.structures || [];
+      const countByRegion = (rid) => structures.filter(s => s.region === rid).length;
+      const singleCount = structures.filter(s => s.nodeKind === "single-bone").length;
+      const mergedCount = structures.filter(s => s.nodeKind === "merged-group").length;
 
-    function renderSkeletalSystem() {
-      const isEmpty = appState.catalogMode === "empty";
       return `
         <section class="section">
           <div class="container">
-            <nav class="breadcrumb"><a href="#/">الرئيسية</a><span>/</span><a href="#/animals">الكائنات</a><span>/</span><a href="#/animals/dog">الكلب</a><span>/</span><span aria-current="page">الجهاز الهيكلي</span></nav>
+            <nav class="breadcrumb" aria-label="مسار التنقل">
+              <a href="#/">الرئيسية</a><span aria-hidden="true">/</span>
+              <a href="#/animals">الكائنات</a><span aria-hidden="true">/</span>
+              <span aria-current="page">القطة المنزلية</span>
+            </nav>
+
             <div class="section-header">
               <div>
-                <span class="section-kicker">الكلب • الجهاز الهيكلي</span>
-                <h1 class="section-title">عينات الجهاز الهيكلي <bdi dir="ltr" class="latin-term">(Systema skeletale)</bdi></h1>
+                <span class="section-kicker">المسار الجاري • الحيوان ← الجهاز ← المنطقة ← العينة ← البنية</span>
+                <h1 class="section-title">القطة المنزلية <bdi dir="ltr" class="latin-term">(Felis catus)</bdi></h1>
+                <p class="section-lead">
+                  الأولوية الحالية للأطلس هي الجهاز الهيكلي الكامل للقطة المنزلية، المستند إلى مسح فوتوغرامتري حقيقي (${structures.length || 26} عقدة تشريحية: ${singleCount || 10} عظام منفردة و${mergedCount || 16} مجموعة عظام مندمجة سطحيًا) بحالة <strong>مسودة (draft)</strong> بانتظار مراجعة اختصاصي تشريح بيطري وحسم الحقوق.
+                </p>
               </div>
+              <a class="btn btn-primary" href="/cat/skeleton/">افتح استوديو الجهاز الهيكلي ←</a>
             </div>
-            <div class="catalog-mode-bar">
-              <div><strong>حالة اختبار الكتالوج:</strong> <span style="color:var(--ink-secondary);font-size:0.9rem;">${isEmpty ? "الكتالوج الفارغ الفعلي (P0)" : "معاينة مساحة الدراسة التفاعلية"}</span></div>
-              <div class="mode-switch">
-                <button type="button" class="mode-btn" data-catalog-mode="empty" aria-pressed="${isEmpty}">الكتالوج الفارغ (P0)</button>
-                <button type="button" class="mode-btn" data-catalog-mode="preview" aria-pressed="${!isEmpty}">معاينة مساحة الدراسة</button>
-              </div>
-            </div>
-            ${isEmpty ? `
-              <div class="empty-state-box">
-                <span class="status-badge badge-pilot" style="margin-bottom:12px;">جاهز لاستقبال أول عينة موثقة</span>
-                <h2 style="margin:0 0 10px;font-size:1.35rem;">لا توجد عينات تشريحية منشورة في الكتالوج حتى الآن</h2>
-                <p style="max-width:66ch;color:var(--ink-secondary);margin-bottom:20px;">بمجرد اعتماد أول عينة في مسار <bdi dir="ltr">P1</bdi> وإضافتها إلى <bdi dir="ltr">data/catalog.json</bdi>، ستظهر هنا تلقائيًا مع بطاقات البنى الموثقة.</p>
-                <div style="display:flex;gap:12px;flex-wrap:wrap;">
-                  <button type="button" class="btn btn-primary" data-catalog-mode="preview">تجربة مساحة الدراسة (معاينة واجهة)</button>
-                  <a class="btn btn-secondary" href="#/about">الاطلاع على مسار الاعتماد العلمي</a>
-                </div>
-              </div>
-            ` : `
-              <div class="systems-grid">
-                <article class="system-card active-pilot">
-                  <div><span class="status-badge badge-planned">معاينة واجهة فقط</span></div>
-                  <h2 style="margin:6px 0 0;font-size:1.25rem;">${PREVIEW_SPECIMEN.titleAr}</h2>
-                  <bdi dir="ltr" class="latin-term">${PREVIEW_SPECIMEN.latin}</bdi>
-                  <p style="margin:4px 0 12px;color:var(--ink-secondary);font-size:0.93rem;">اختبر مساحة الدراسة الكاملة: تحديد البنى، العزل، التحكم بالاتجاهات المنطقية، البحث، وبديل غياب WebGL.</p>
-                  <div style="margin-top:auto;"><a class="btn btn-primary" href="#/specimens/${PREVIEW_SPECIMEN.id}?structure=os-frontale">فتح مساحة الدراسة</a></div>
+
+            <h2 style="font-size:1.25rem;margin:20px 0 12px;">الأجهزة التشريحية وحالاتها</h2>
+            <div class="systems-grid">
+              ${sp.systems.map(s => `
+                <article class="system-card ${s.url ? "active-pilot" : ""}">
+                  <div><span class="status-badge ${s.url ? "badge-pilot" : "badge-planned"}">${s.statusAr}</span></div>
+                  <h3 style="margin:6px 0 0;font-size:1.15rem;">${s.ar}</h3>
+                  <bdi dir="ltr" class="latin-term">${s.latin}</bdi>
+                  <p style="margin:6px 0 12px;color:var(--ink-secondary);font-size:0.92rem;">${s.desc}</p>
+                  <div style="margin-top:auto;">
+                    ${s.url
+                      ? `<a class="btn btn-primary" style="width:100%;" href="${s.url}">الدخول إلى عارض الجهاز الهيكلي</a>`
+                      : `<span style="font-size:0.84rem;color:var(--ink-muted);">${s.status === "unavailable" ? "غير متاح حاليًا — موثّق في سجل النواقص" : "مخطط له بعد استكمال الجهاز الهيكلي"}</span>`
+                    }
+                  </div>
                 </article>
+              `).join("")}
+            </div>
+
+            <h2 style="font-size:1.25rem;margin:28px 0 10px;">خريطة مناطق الجسم (الجهاز الهيكلي)</h2>
+            <p style="margin:0 0 14px;color:var(--ink-secondary);font-size:0.93rem;">اختر أي منطقة للانتقال مباشرة إلى استوديو الدراسة مع تصفية قائمة العظام عليها:</p>
+            <div class="systems-grid">
+              ${regions.map(r => `
+                <a class="system-card" href="/cat/skeleton/?region=${encodeURIComponent(r.id)}" style="text-decoration:none;color:inherit;">
+                  <strong style="font-size:1.05rem;">${esc(r.labelAr)}</strong>
+                  <span style="font-size:0.86rem;color:var(--ink-muted);">${countByRegion(r.id)} عقد تشريحية قابلة للتحديد ←</span>
+                </a>
+              `).join("")}
+            </div>
+
+            <div class="pillar-card" style="margin-top:24px;">
+              <h2 class="pillar-title">تغطية العينة الفعلية والنواقص المسجّلة</h2>
+              <p class="pillar-text" style="margin-bottom:10px;">
+                المسح الأصلي سطح فوتوغرامتري متصل واحد (74,235 وجهًا). لم تُختلق أي هندسة مفقودة، وسُجّلت النواقص والاندماجات السطحية بوضوح:
+              </p>
+              <ul style="margin:0;padding-inline-start:20px;color:var(--ink-secondary);font-size:0.92rem;line-height:1.7;">
+                ${(cat?.specimen?.missingOrMergedAr || []).map(item => `<li>${esc(item)}</li>`).join("")}
+                <li><strong>طبقة الشرايين:</strong> غير متاحة حاليًا لعدم توفر هندسة شرايين موثّقة لقطة وبيانات مطابقة مكانية متسقة.</li>
+              </ul>
+            </div>
+
+            <section class="pillar-card" style="margin-top:24px;" aria-labelledby="cat-sources-heading">
+              <h2 class="pillar-title" id="cat-sources-heading">المصادر والشكر — عينة هيكل القطة</h2>
+              <p class="pillar-text" style="font-weight:600;color:var(--ink-primary);margin-bottom:10px;">
+                نشكر Tavernier Amaury (@svtavernier) على إتاحة مسح cat skeleton. استُخدم المسح أساسًا هندسيًا لهيكل القطة في الأطلس البيطري العربي.
+              </p>
+              <ul style="margin:0 0 12px;padding-inline-start:20px;color:var(--ink-secondary);font-size:0.9rem;line-height:1.7;">
+                <li><strong>صفحة الأصل:</strong> <a href="https://sketchfab.com/3d-models/cat-skeleton-7106115b299649e992476f2d3b4fc602" target="_blank" rel="noopener noreferrer">cat skeleton — Tavernier Amaury على Sketchfab</a>.</li>
+                <li><strong>ترخيص المجسم المشتق (منفصل عن ترخيص MIT للكود):</strong> <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="noopener noreferrer">CC BY-NC-SA 4.0</a> (الإسناد، غير تجاري، المشاركة بالمثل).</li>
+                <li><strong>مرجع المصطلحات اللاتينية:</strong> نشكر الرابطة العالمية لعلماء التشريح البيطري (WAVA) على <a href="https://www.wava-amav.org/wava-documents.html" target="_blank" rel="noopener noreferrer">Nomina Anatomica Veterinaria (NAV)، الطبعة السادسة (2017)</a>.</li>
+              </ul>
+              <div style="display:flex;gap:10px;flex-wrap:wrap;">
+                <a class="btn btn-secondary" href="/cat/skeleton/#sources-and-acknowledgements">عرض سجل البصمات والتحويلات الكامل في صفحة الدراسة</a>
+                <a class="btn btn-secondary" href="#/sources">المنهجية وسياسة المراجعة والحقوق</a>
               </div>
-            `}
+            </section>
           </div>
         </section>
       `;
     }
 
-    function renderSpecimenWorkspace(params) {
-      const req = params.get("structure");
-      if (req && PREVIEW_SPECIMEN.structures.some(s => s.id === req)) appState.selectedStructureId = req;
-      const selected = PREVIEW_SPECIMEN.structures.find(s => s.id === appState.selectedStructureId) || PREVIEW_SPECIMEN.structures[0];
-      const nf = normalizeArabicForSearch(appState.structureFilter);
-      const filtered = PREVIEW_SPECIMEN.structures.filter(s => !nf || normalizeArabicForSearch(s.ar).includes(nf) || normalizeArabicForSearch(s.en).includes(nf) || normalizeArabicForSearch(s.latin).includes(nf));
-      const tr = { lateral: "scale(1)", cranial: "scale(0.95) scaleX(0.86)", caudal: "scale(0.95) scaleX(-0.86)", dorsal: "scale(0.96) rotate(-14deg)", ventral: "scale(0.96) rotate(14deg)" }[appState.viewAngle] || "scale(1)";
-
+    function renderDogLegacyNotice() {
       return `
-        <section class="section" style="padding-block:clamp(20px,3vw,36px);">
-          <div class="container">
-            <nav class="breadcrumb"><a href="#/">الرئيسية</a><span>/</span><a href="#/animals/dog">الكلب</a><span>/</span><a href="#/animals/dog/skeletal">الجهاز الهيكلي</a><span>/</span><span aria-current="page">${PREVIEW_SPECIMEN.titleAr}</span></nav>
-            <div class="workspace-shell">
-              <div class="viewer-stage">
-                <div class="viewer-topbar">
-                  <div>
-                    <h1 style="margin:0;font-size:1.2rem;">${PREVIEW_SPECIMEN.titleAr}</h1>
-                    <span style="font-size:0.82rem;color:var(--ink-muted);">${PREVIEW_SPECIMEN.status}</span>
-                  </div>
-                  <div style="display:flex;gap:8px;flex-wrap:wrap;">
-                    <button type="button" class="ctrl-btn" id="btn-isolate" aria-pressed="${appState.isolateMode}">${appState.isolateMode ? "إلغاء العزل" : "عزل البنية المحددة"}</button>
-                    <button type="button" class="ctrl-btn" id="btn-webgl-fallback" aria-pressed="${appState.webglFallbackMode}">${appState.webglFallbackMode ? "عرض المخطط التفاعلي" : "بديل غياب WebGL"}</button>
-                  </div>
-                </div>
-                <div class="viewer-canvas-wrap">
-                  ${appState.webglFallbackMode ? `
-                    <div style="max-width:520px;background:var(--bg-surface);border:1px solid var(--border-strong);border-radius:18px;padding:24px;">
-                      <span class="status-badge badge-planned" style="margin-bottom:10px;">البديل النصي المتاح عند غياب WebGL</span>
-                      <h2 style="margin:0 0 8px;font-size:1.15rem;">تعذّر تشغيل العارض ثلاثي الأبعاد</h2>
-                      <p style="margin:0 0 12px;color:var(--ink-secondary);font-size:0.92rem;">يمكنك متابعة دراسة جميع البنى التشريحية ومصطلحاتها ومراجعها عبر القائمة الجانبية.</p>
-                      <p style="margin:0;font-size:0.88rem;"><strong>البنية المحددة:</strong> ${selected.ar} (<bdi dir="ltr">${selected.latin}</bdi>)</p>
-                    </div>
-                  ` : `
-                    <svg viewBox="0 0 580 370" style="width:100%;max-width:540px;height:auto;transition:transform 320ms ease;transform:${tr};" role="img" aria-label="مخطط تفاعلي لمعاينة مساحة الدراسة">
-                      <g stroke="#172334" stroke-width="1.8" stroke-linejoin="round">
-                        ${PREVIEW_SPECIMEN.structures.map(s => `<path class="anat-part ${s.id === selected.id ? "selected" : ""} ${appState.isolateMode && s.id !== selected.id ? "dimmed" : ""}" data-select-struct="${s.id}" d="${s.path}" fill="${s.color}" tabindex="0" role="button" aria-label="${s.ar}" />`).join("")}
-                      </g>
-                    </svg>
-                  `}
-                </div>
-                <div class="viewer-controls">
-                  <div class="dir-controls">
-                    ${[["lateral","جانبي"],["cranial","أمامي (قحفي)"],["caudal","خلفي (ذنبي)"],["dorsal","ظهري"],["ventral","بطني"]].map(([v,l]) => `<button type="button" class="ctrl-btn" data-view-angle="${v}" aria-pressed="${appState.viewAngle === v}">${l}</button>`).join("")}
-                  </div>
-                  <button type="button" class="ctrl-btn" id="btn-reset-view">إعادة ضبط</button>
-                </div>
+        <section class="section">
+          <div class="container" style="max-width:780px;">
+            <nav class="breadcrumb"><a href="#/">الرئيسية</a><span>/</span><a href="#/animals">الكائنات</a><span>/</span><span aria-current="page">الكلب المنزلي</span></nav>
+            <div class="empty-state-box">
+              <span class="status-badge badge-planned" style="margin-bottom:12px;">مسار مؤجّل • قيد التخطيط</span>
+              <h1 class="section-title" style="margin-bottom:10px;">أولوية الأطلس الحالية هي القطة المنزلية (<bdi dir="ltr" class="latin-term">Felis catus</bdi>)</h1>
+              <p style="color:var(--ink-secondary);max-width:62ch;margin-bottom:18px;">
+                أُزيلت العينات التجريبية الوهمية للكلب حفاظًا على الصدق العلمي. سيُفتح مسار الكلب لاحقًا عند توفر عينة مرخّصة ومراجعة تشريحية مستقلة.
+              </p>
+              <div style="display:flex;gap:12px;flex-wrap:wrap;">
+                <a class="btn btn-primary" href="#/animals/cat">الانتقال إلى صفحة القطة</a>
+                <a class="btn btn-secondary" href="/cat/skeleton/">فتح استوديو هيكل القطة</a>
               </div>
-
-              <aside class="inspector-panel">
-                <div>
-                  <label for="struct-filter" style="display:block;font-weight:600;font-size:0.9rem;margin-bottom:6px;">تصفية البنى التشريحية</label>
-                  <input id="struct-filter" class="search-input" type="search" value="${appState.structureFilter}" placeholder="ابحث بالعربية أو الإنجليزية أو اللاتينية..." />
-                </div>
-                <ul class="structure-list" role="listbox">
-                  ${filtered.map(s => `<li><button type="button" class="structure-item-btn" data-select-struct="${s.id}" role="option" aria-selected="${s.id === selected.id}"><strong>${s.ar}</strong><bdi dir="ltr" class="latin-term">${s.latin}</bdi></button></li>`).join("")}
-                </ul>
-                <div class="detail-card" aria-live="polite">
-                  <div style="display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap;">
-                    <h2 style="margin:0;font-size:1.18rem;">${selected.ar}</h2>
-                    <span class="status-badge badge-planned" style="font-size:0.74rem;">${selected.reviewStatus}</span>
-                  </div>
-                  <div class="term-row"><span style="color:var(--ink-muted);">اللاتينية</span><bdi dir="ltr" style="font-family:var(--font-mono);">${selected.latin}</bdi></div>
-                  <div class="term-row"><span style="color:var(--ink-muted);">الإنجليزية</span><bdi dir="ltr">${selected.en}</bdi></div>
-                  <div class="term-row"><span style="color:var(--ink-muted);">المنطقة</span><span>${selected.region}</span></div>
-                  <p style="margin:4px 0 0;font-size:0.92rem;color:var(--ink-secondary);">${selected.summary}</p>
-                  <div style="font-size:0.8rem;color:var(--ink-muted);border-top:1px solid var(--border-subtle);padding-top:8px;"><strong>المصدر:</strong> ${selected.source}</div>
-                </div>
-              </aside>
             </div>
           </div>
         </section>
@@ -1443,35 +1346,90 @@
     }
 
     function renderSearch() {
-      const q = normalizeArabicForSearch(appState.searchQuery);
-      const matches = q ? PREVIEW_SPECIMEN.structures.filter(s => normalizeArabicForSearch(s.ar).includes(q) || normalizeArabicForSearch(s.en).includes(q) || normalizeArabicForSearch(s.latin).includes(q)) : [];
+      const structures = appState.catCatalog?.structures || [];
+      const qRaw = appState.searchQuery;
+      const q = normalizeArabicForSearch(qRaw);
+      const matches = q
+        ? structures.filter(s =>
+            normalizeArabicForSearch(s.names.ar).includes(q) ||
+            normalizeArabicForSearch(s.names.en).includes(q) ||
+            normalizeArabicForSearch(s.names.la).includes(q) ||
+            normalizeArabicForSearch(s.regionAr).includes(q) ||
+            normalizeArabicForSearch(s.id).includes(q)
+          )
+        : structures;
+
       return `
         <section class="section">
-          <div class="container" style="max-width:860px;">
+          <div class="container" style="max-width:900px;">
             <nav class="breadcrumb"><a href="#/">الرئيسية</a><span>/</span><span aria-current="page">البحث</span></nav>
-            <h1 class="section-title" style="margin-bottom:10px;">البحث في المصطلحات التشريحية</h1>
-            <p class="section-lead" style="margin-bottom:22px;">ابحث بالعربية أو الإنجليزية أو اللاتينية مع تطبيع الحروف العربية أثناء المطابقة فقط دون تعديل المصطلح المعتمد.</p>
-            <input id="global-search-input" class="search-input" style="margin-bottom:20px;" type="search" value="${appState.searchQuery}" placeholder="جرّب: الجبهي، فك، Maxilla، Os frontale..." />
-            ${!q ? `<div class="empty-state-box"><p style="margin:0;color:var(--ink-secondary);">اكتب مصطلحًا للبحث الفوري في البنى التشريحية.</p></div>` : matches.length ? `
-              <div style="display:flex;flex-direction:column;gap:12px;">
-                ${matches.map(m => `<a class="system-card" href="#/specimens/${PREVIEW_SPECIMEN.id}?structure=${m.id}"><div style="display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;"><strong>${m.ar}</strong><bdi dir="ltr" class="latin-term">${m.latin} • ${m.en}</bdi></div><span style="color:var(--ink-secondary);font-size:0.9rem;">${m.summary}</span></a>`).join("")}
-              </div>
-            ` : `<div class="empty-state-box"><p style="margin:0;color:var(--ink-secondary);">لا توجد نتائج مطابقة لـ «${appState.searchQuery}».</p></div>`}
+            <h1 class="section-title" style="margin-bottom:8px;">البحث في كتالوج القطة المنزلية (<bdi dir="ltr" class="latin-term">Felis catus</bdi>)</h1>
+            <p class="section-lead" style="margin-bottom:18px;">
+              يبحث مباشرةً في الـ ${structures.length || 26} عقدة تشريحية الفعلية للقطة بالعربية والإنجليزية واللاتينية (NAV الطبعة السادسة)، ويفتح النتيجة مباشرة على البنية المحددة داخل <bdi dir="ltr">/cat/skeleton/</bdi>. جميع السجلات الحالية في حالة <strong>مسودة (draft)</strong>.
+            </p>
+            <input id="global-search-input" class="search-input" style="margin-bottom:18px;" type="search" value="${esc(qRaw)}" placeholder="ابحث مثلًا: الجمجمة، الفخذ، Humerus، Scapula، الذيل..." />
+            ${appState.catCatalogError
+              ? `<div class="empty-state-box"><p style="margin:0;">تعذّر تحميل كتالوج القطة حاليًا.</p></div>`
+              : matches.length
+                ? `<div style="display:flex;flex-direction:column;gap:10px;">
+                    ${matches.map(m => `
+                      <a class="system-card" href="/cat/skeleton/?structure=${encodeURIComponent(m.id)}" style="text-decoration:none;color:inherit;">
+                        <div style="display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;align-items:center;">
+                          <strong>${esc(m.names.ar)}</strong>
+                          <bdi dir="ltr" class="latin-term">${esc(m.names.la)} • ${esc(m.names.en)}</bdi>
+                        </div>
+                        <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:6px;font-size:0.84rem;color:var(--ink-muted);">
+                          <span class="meta-chip">${esc(m.nodeKindAr)}</span>
+                          <span class="meta-chip">${esc(m.regionAr)} · ${esc(m.lateralityAr)}</span>
+                          <span class="meta-chip">${esc(m.reviewStatusAr)}</span>
+                        </div>
+                        <span style="color:var(--ink-secondary);font-size:0.88rem;margin-top:6px;">${esc(m.coverageNoteAr)}</span>
+                      </a>
+                    `).join("")}
+                  </div>`
+                : `<div class="empty-state-box"><p style="margin:0;color:var(--ink-secondary);">لا توجد عقدة تشريحية مطابقة لـ «${esc(qRaw)}» في كتالوج القطة الحالي.</p></div>`
+            }
           </div>
         </section>
       `;
     }
 
-    function renderAbout() {
+    function renderSourcesAndMethodology(isAbout = false) {
       return `
         <section class="section">
-          <div class="container" style="max-width:900px;">
-            <nav class="breadcrumb"><a href="#/">الرئيسية</a><span>/</span><span aria-current="page">عن المشروع</span></nav>
-            <span class="section-kicker">المنهجية العلمية والتراخيص</span>
-            <h1 class="section-title" style="margin-bottom:18px;">عن الأطلس البيطري العربي</h1>
-            <div style="display:grid;gap:18px;">
-              <article class="pillar-card"><h2 class="pillar-title">المعيار العلمي والتوثيق</h2><p class="pillar-text">يعتمد الأطلس على المصطلحات التشريحية البيطرية القياسية (<bdi dir="ltr">Nomina Anatomica Veterinaria — NAV</bdi>) مع ربط كل ادعاء علمي وكل بنية بمصدرها وحالة مراجعتها الصريحة.</p></article>
-              <article class="pillar-card"><h2 class="pillar-title">فصل الهوية البصرية عن الأصول العلمية</h2><p class="pillar-text">تُستخدم القطة التفاعلية (240 فريم WebP) وصور الأنواع التحريرية للهوية البصرية فقط ومفصولة تمامًا عن مجسمات <bdi dir="ltr">public/models/</bdi> الخاضعة لفحص <bdi dir="ltr">Khronos glTF Validator</bdi>.</p></article>
+          <div class="container" style="max-width:920px;">
+            <nav class="breadcrumb"><a href="#/">الرئيسية</a><span>/</span><span aria-current="page">${isAbout ? "عن المشروع" : "المصادر والمنهجية"}</span></nav>
+            <span class="section-kicker">الحوكمة العلمية والتراخيص</span>
+            <h1 class="section-title" style="margin-bottom:16px;">${isAbout ? "عن الأطلس البيطري العربي ومنهجيته" : "المصادر ومنهجية المراجعة والحقوق"}</h1>
+            <p class="section-lead" style="margin-bottom:20px;">
+              تكمّل هذه الصفحة الإسناد الظاهر بجانب كل عينة ولا تحلّ محله؛ يظل إسناد المؤلف والترخيص والتعديلات معروضًا مباشرة داخل <a href="/cat/skeleton/#sources-and-acknowledgements">صفحة دراسة هيكل القطة</a> وفي أسفل <a href="#/animals/cat">صفحة القطة</a>.
+            </p>
+            <div style="display:grid;gap:16px;">
+              <article class="pillar-card">
+                <h2 class="pillar-title">1. معنى «مسودة (draft)» مقابل «مراجعة اختصاصي (expert-reviewed)»</h2>
+                <p class="pillar-text">
+                  <strong>مسودة (draft):</strong> أصل حقيقي فُحصت بصمته وترخيصه وهندسته آليًا، وفُصلت حدوده المميّزة دون اختلاق، لكنه لم يحصل بعد على توقيع بشري مؤهّل من اختصاصي تشريح بيطري أو مراجع حقوق. لا تُنقل المسودات إلى <bdi dir="ltr">public/models/</bdi> أو الإنتاج بوصفها «معتمدة علميًا».<br/>
+                  <strong>مراجعة اختصاصي (expert-reviewed):</strong> تتطلب اسم مراجع بشري مؤهّل، ونطاق مراجعة محددًا، وتاريخًا ورابط سجل أدلة، وفصلًا مستقلًا بين المراجعة العلمية ومراجعة الحقوق.
+                </p>
+              </article>
+              <article class="pillar-card">
+                <h2 class="pillar-title">2. فصل ترخيص الكود عن تراخيص الأصول التشريحية</h2>
+                <p class="pillar-text">
+                  يخضع كود الأطلس الأصلي لترخيص <bdi dir="ltr">MIT</bdi> فقط. أما الأصول التشريحية ثلاثية الأبعاد فتحتفظ بترخيصها الأصلي المستقل (مثل <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="noopener noreferrer">CC BY-NC-SA 4.0</a> لمسح <a href="https://sketchfab.com/3d-models/cat-skeleton-7106115b299649e992476f2d3b4fc602" target="_blank" rel="noopener noreferrer">cat skeleton — Tavernier Amaury</a>) الذي يفرض الإسناد وعدم الاستخدام التجاري والمشاركة بالمثل على النسخ المشتقة.
+                </p>
+              </article>
+              <article class="pillar-card">
+                <h2 class="pillar-title">3. مرجع المصطلحات وسياسة فصل العينات</h2>
+                <p class="pillar-text">
+                  تُضبط المصطلحات اللاتينية وفق <a href="https://www.wava-amav.org/wava-documents.html" target="_blank" rel="noopener noreferrer">Nomina Anatomica Veterinaria (NAV)، الطبعة السادسة (2017)</a> الصادرة عن WAVA. لا ندمج عينات أو سلالات مختلفة دون توثيق صريح، ولا نشتق شرايين القطة من الكلب أو نختلق هندسة غير موجودة في المسح.
+                </p>
+              </article>
+              <article class="pillar-card">
+                <h2 class="pillar-title">4. فصل الهوية البصرية عن المجسمات العلمية</h2>
+                <p class="pillar-text">
+                  القطة التفاعلية في الواجهة الرئيسية وصور الأنواع التحريرية عناصر ترحيبية فقط، ومفصولة تمامًا عن مجسمات GLB العلمية وبوابات فحص <bdi dir="ltr">Khronos glTF Validator</bdi> و<bdi dir="ltr">scripts/validate-catalog.mjs</bdi>.
+                </p>
+              </article>
             </div>
           </div>
         </section>
@@ -1480,45 +1438,30 @@
 
     function render() {
       if (activeCatCleanup) { activeCatCleanup(); activeCatCleanup = null; }
-      const { path, params } = parseHash();
+      const { path } = parseRoute();
       updateActiveNav(path);
       const main = document.getElementById("main-content");
-      if (path === "/" || path === "") main.innerHTML = renderHome();
+      if (path === "/") main.innerHTML = renderHome();
       else if (path === "/animals") main.innerHTML = renderAnimals();
-      else if (path === "/animals/dog") main.innerHTML = renderDogDetail();
       else if (path === "/animals/cat") main.innerHTML = renderCatDetail();
       else if (path === "/animals/cat/skeletal") { location.replace("/cat/skeleton/"); return; }
-      else if (path === "/animals/dog/skeletal") main.innerHTML = renderSkeletalSystem();
-      else if (path.startsWith("/specimens/")) main.innerHTML = renderSpecimenWorkspace(params);
+      else if (path === "/animals/dog" || path === "/animals/dog/skeletal" || path.startsWith("/specimens/")) main.innerHTML = renderDogLegacyNotice();
       else if (path === "/search") main.innerHTML = renderSearch();
-      else if (path === "/about") main.innerHTML = renderAbout();
+      else if (path === "/sources") main.innerHTML = renderSourcesAndMethodology(false);
+      else if (path === "/about") main.innerHTML = renderSourcesAndMethodology(true);
       else main.innerHTML = renderHome();
 
-      if (path === "/" || path === "") mountHeroCatEngine();
+      if (path === "/") mountHeroCatEngine();
 
-      document.querySelectorAll("[data-catalog-mode]").forEach(btn => {
-        btn.addEventListener("click", () => { appState.catalogMode = btn.getAttribute("data-catalog-mode"); render(); });
-      });
-
-      if (path.startsWith("/specimens/")) {
-        document.querySelectorAll("[data-select-struct]").forEach(el => {
-          const fn = () => { appState.selectedStructureId = el.getAttribute("data-select-struct"); history.replaceState(null, "", `#/specimens/${PREVIEW_SPECIMEN.id}?structure=${appState.selectedStructureId}`); render(); };
-          el.addEventListener("click", fn);
-          el.addEventListener("keydown", e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); fn(); } });
-        });
-        document.querySelectorAll("[data-view-angle]").forEach(b => b.addEventListener("click", () => { appState.viewAngle = b.getAttribute("data-view-angle"); render(); }));
-        const iso = document.getElementById("btn-isolate");
-        if (iso) iso.addEventListener("click", () => { appState.isolateMode = !appState.isolateMode; render(); });
-        const fb = document.getElementById("btn-webgl-fallback");
-        if (fb) fb.addEventListener("click", () => { appState.webglFallbackMode = !appState.webglFallbackMode; render(); });
-        const rst = document.getElementById("btn-reset-view");
-        if (rst) rst.addEventListener("click", () => { appState.viewAngle = "lateral"; appState.isolateMode = false; appState.webglFallbackMode = false; render(); });
-        const fi = document.getElementById("struct-filter");
-        if (fi) fi.addEventListener("input", e => { appState.structureFilter = e.target.value; const p = e.target.selectionStart; render(); const n = document.getElementById("struct-filter"); if (n) { n.focus(); n.setSelectionRange(p, p); } });
-      }
       if (path === "/search") {
         const si = document.getElementById("global-search-input");
-        if (si) si.addEventListener("input", e => { appState.searchQuery = e.target.value; const p = e.target.selectionStart; render(); const n = document.getElementById("global-search-input"); if (n) { n.focus(); n.setSelectionRange(p, p); } });
+        if (si) si.addEventListener("input", e => {
+          appState.searchQuery = e.target.value;
+          const pos = e.target.selectionStart;
+          render();
+          const next = document.getElementById("global-search-input");
+          if (next) { next.focus(); next.setSelectionRange(pos, pos); }
+        });
       }
     }
 
@@ -1528,10 +1471,14 @@
       const open = drawer.classList.toggle("open");
       menuBtn.setAttribute("aria-expanded", String(open));
     });
-    drawer.querySelectorAll("a").forEach(a => a.addEventListener("click", () => { drawer.classList.remove("open"); menuBtn.setAttribute("aria-expanded", "false"); }));
+    drawer.querySelectorAll("a").forEach(a => a.addEventListener("click", () => {
+      drawer.classList.remove("open");
+      menuBtn.setAttribute("aria-expanded", "false");
+    }));
 
     window.addEventListener("hashchange", () => { render(); window.scrollTo({ top: 0, behavior: "instant" }); });
     render();
+    loadCatCatalog();
   </script>
 </body>
 </html>

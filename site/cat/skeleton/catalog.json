@@ -48,7 +48,10 @@
       "الرضفتان (Patellae) والعظام السمسمانية (Ossa sesamoidea) والغضاريف الضلعية المنفصلة: غير قابلة للتمييز كعظام مستقلة في المسح السطحي.",
       "الفقرات الفردية داخل كل منطقة، والأضلاع الفردية عند المفاصل، والكعبرة مع الزند، والظنبوب مع الشظية، وعظام الكفوف والقدمين: مندمجة سطحيًا في المسح الفوتوغرامتري وفُصلت وفق الحدود القابلة للتمييز فقط دون اختلاق هندسة.",
       "آثار قواعد التثبيت السفلية: توجد رقع تثبيت رقيقة أسفل الكفوف الأربع في العينة المثبّتة."
-    ]
+    ],
+    "nodeBreakdownAr": "26 عقدة تشريحية قابلة للتحديد: 10 عظام منفردة و16 مجموعة عظام مندمجة سطحيًا في المسح الفوتوغرامتري.",
+    "licenseSeparationAr": "كود الأطلس مرخّص تحت MIT، بينما المجسم المشتق لـ Felis catus مرخّص بشكل مستقل تحت CC BY-NC-SA 4.0 (غير تجاري مع الإسناد والمشاركة بالمثل).",
+    "governanceNoteAr": "هذه العينة في حالة مسودة (draft) ومستضافة في معاينة الفرع فقط لأغراض الفحص والمراجعة البشرية؛ لم تُرقَّ إلى public/models/ أو الإنتاج بانتظار اعتماد اختصاصي تشريح بيطري ومراجع الحقوق."
   },
   "regions": [
     {
@@ -103,7 +106,9 @@
       "reviewStatus": "draft",
       "reviewStatusAr": "مسودة (بانتظار مراجعة اختصاصي)",
       "coverageNoteAr": "القحف والفك العلوي؛ الفك السفلي متمفصل معه بوضع إغلاق في المسح الفوتوغرامتري.",
-      "triangles": 6673
+      "triangles": 6673,
+      "nodeKind": "merged-group",
+      "nodeKindAr": "مجموعة عظام مندمجة سطحيًا"
     },
     {
       "node": "mandibula",
@@ -123,7 +128,9 @@
       "reviewStatus": "draft",
       "reviewStatusAr": "مسودة (بانتظار مراجعة اختصاصي)",
       "coverageNoteAr": "الفك السفلي مفصول عند الخط الإطباقي السفلي؛ متمفصل بوضع مغلق مع الجمجمة في العينة.",
-      "triangles": 3859
+      "triangles": 3859,
+      "nodeKind": "single-bone",
+      "nodeKindAr": "عظم منفرد"
     },
     {
       "node": "vertebrae_cervicales",
@@ -143,7 +150,9 @@
       "reviewStatus": "draft",
       "reviewStatusAr": "مسودة (بانتظار مراجعة اختصاصي)",
       "coverageNoteAr": "الفقرات العنقية (C1–C7) كوحدة إقليمية متصلة لاندماج الفواصل بين الفقرات في المسح السطحي.",
-      "triangles": 3499
+      "triangles": 3499,
+      "nodeKind": "merged-group",
+      "nodeKindAr": "مجموعة عظام مندمجة سطحيًا"
     },
     {
       "node": "vertebrae_thoracicae",
@@ -163,7 +172,9 @@
       "reviewStatus": "draft",
       "reviewStatusAr": "مسودة (بانتظار مراجعة اختصاصي)",
       "coverageNoteAr": "العمود الفقري الصدري (T1–T13)؛ الفواصل الفردية بين الفقرات مندمجة في السطح الأصلي.",
-      "triangles": 3921
+      "triangles": 3921,
+      "nodeKind": "merged-group",
+      "nodeKindAr": "مجموعة عظام مندمجة سطحيًا"
     },
     {
       "node": "vertebrae_lumbales",
@@ -183,7 +194,9 @@
       "reviewStatus": "draft",
       "reviewStatusAr": "مسودة (بانتظار مراجعة اختصاصي)",
       "coverageNoteAr": "الفقرات القطنية (L1–L7) بنواتئها الشوكية والمستعرضة؛ مندمجة كوحدة إقليمية دون اختلاق فواصل.",
-      "triangles": 5210
+      "triangles": 5210,
+      "nodeKind": "merged-group",
+      "nodeKindAr": "مجموعة عظام مندمجة سطحيًا"
     },
     {
       "node": "os_sacrum",
@@ -203,7 +216,9 @@
       "reviewStatus": "draft",
       "reviewStatusAr": "مسودة (بانتظار مراجعة اختصاصي)",
       "coverageNoteAr": "العظم العجزي بين جناحي الحرقفة في المنطقة الظهرية الوسطية للحوض.",
-      "triangles": 2116
+      "triangles": 2116,
+      "nodeKind": "single-bone",
+      "nodeKindAr": "عظم منفرد"
     },
     {
       "node": "vertebrae_caudales",
@@ -223,7 +238,9 @@
       "reviewStatus": "draft",
       "reviewStatusAr": "مسودة (بانتظار مراجعة اختصاصي)",
       "coverageNoteAr": "سلسلة الفقرات الذيلية المتدلية خلف الحوض؛ الفواصل الدقيقة بين الفقرات الذيلية مندمجة سطحيًا.",
-      "triangles": 3171
+      "triangles": 3171,
+      "nodeKind": "merged-group",
+      "nodeKindAr": "مجموعة عظام مندمجة سطحيًا"
     },
     {
       "node": "costae_sinistrae",
@@ -243,7 +260,9 @@
       "reviewStatus": "draft",
       "reviewStatusAr": "مسودة (بانتظار مراجعة اختصاصي)",
       "coverageNoteAr": "أقواس الأضلاع اليسرى؛ بعض الحواف الدقيقة للأضلاع تحوي شظايا فوتوغرامتريّة أُلحقت بها دون اختلاق هندسة.",
-      "triangles": 4775
+      "triangles": 4775,
+      "nodeKind": "merged-group",
+      "nodeKindAr": "مجموعة عظام مندمجة سطحيًا"
     },
     {
       "node": "costae_dextrae",
@@ -263,7 +282,9 @@
       "reviewStatus": "draft",
       "reviewStatusAr": "مسودة (بانتظار مراجعة اختصاصي)",
       "coverageNoteAr": "أقواس الأضلاع اليمنى؛ الغضاريف الضلعية غير مفصولة عن الأضلاع العظمية في هذا المسح.",
-      "triangles": 6329
+      "triangles": 6329,
+      "nodeKind": "merged-group",
+      "nodeKindAr": "مجموعة عظام مندمجة سطحيًا"
     },
     {
       "node": "sternum",
@@ -283,7 +304,9 @@
       "reviewStatus": "draft",
       "reviewStatusAr": "مسودة (بانتظار مراجعة اختصاصي)",
       "coverageNoteAr": "شريط القص البطني أسفل القفص الصدري؛ القطع القصية الفردية (Sternebrae) مندمجة في السطح.",
-      "triangles": 1205
+      "triangles": 1205,
+      "nodeKind": "merged-group",
+      "nodeKindAr": "مجموعة عظام مندمجة سطحيًا"
     },
     {
       "node": "os_coxae_sinistrum",
@@ -303,7 +326,9 @@
       "reviewStatus": "draft",
       "reviewStatusAr": "مسودة (بانتظار مراجعة اختصاصي)",
       "coverageNoteAr": "نصف الحوض الأيسر (الحرقفة والورك والعانة مندمجة تشريحيًا في القط البالغ).",
-      "triangles": 2823
+      "triangles": 2823,
+      "nodeKind": "single-bone",
+      "nodeKindAr": "عظم منفرد"
     },
     {
       "node": "os_coxae_dextrum",
@@ -323,7 +348,9 @@
       "reviewStatus": "draft",
       "reviewStatusAr": "مسودة (بانتظار مراجعة اختصاصي)",
       "coverageNoteAr": "نصف الحوض الأيمن (الحرقفة والورك والعانة مندمجة تشريحيًا في القط البالغ).",
-      "triangles": 1388
+      "triangles": 1388,
+      "nodeKind": "single-bone",
+      "nodeKindAr": "عظم منفرد"
     },
     {
       "node": "scapula_sinistra",
@@ -343,7 +370,9 @@
       "reviewStatus": "draft",
       "reviewStatusAr": "مسودة (بانتظار مراجعة اختصاصي)",
       "coverageNoteAr": "لوح الكتف الأيسر متموضع على الجانب الأمامي الوحشي للقفص الصدري.",
-      "triangles": 896
+      "triangles": 896,
+      "nodeKind": "single-bone",
+      "nodeKindAr": "عظم منفرد"
     },
     {
       "node": "scapula_dextra",
@@ -363,7 +392,9 @@
       "reviewStatus": "draft",
       "reviewStatusAr": "مسودة (بانتظار مراجعة اختصاصي)",
       "coverageNoteAr": "لوح الكتف الأيمن متموضع على الجانب الأمامي الوحشي للقفص الصدري.",
-      "triangles": 3860
+      "triangles": 3860,
+      "nodeKind": "single-bone",
+      "nodeKindAr": "عظم منفرد"
     },
     {
       "node": "humerus_sinister",
@@ -383,7 +414,9 @@
       "reviewStatus": "draft",
       "reviewStatusAr": "مسودة (بانتظار مراجعة اختصاصي)",
       "coverageNoteAr": "عظم العضد الأيسر الممتد من مفصل الكتف إلى مفصل المرفق.",
-      "triangles": 1116
+      "triangles": 1116,
+      "nodeKind": "single-bone",
+      "nodeKindAr": "عظم منفرد"
     },
     {
       "node": "humerus_dexter",
@@ -403,7 +436,9 @@
       "reviewStatus": "draft",
       "reviewStatusAr": "مسودة (بانتظار مراجعة اختصاصي)",
       "coverageNoteAr": "عظم العضد الأيمن الممتد من مفصل الكتف إلى مفصل المرفق (الطرف الأيمن متقدم في وقفة المشي).",
-      "triangles": 1090
+      "triangles": 1090,
+      "nodeKind": "single-bone",
+      "nodeKindAr": "عظم منفرد"
     },
     {
       "node": "antebrachium_sinistrum",
@@ -423,7 +458,9 @@
       "reviewStatus": "draft",
       "reviewStatusAr": "مسودة (بانتظار مراجعة اختصاصي)",
       "coverageNoteAr": "الكعبرة والزند اليسرى مجمّعتان كوحدة ساعد لاندماجهما السطحي في المسح الفوتوغرامتري.",
-      "triangles": 1997
+      "triangles": 1997,
+      "nodeKind": "merged-group",
+      "nodeKindAr": "مجموعة عظام مندمجة سطحيًا"
     },
     {
       "node": "antebrachium_dextrum",
@@ -443,7 +480,9 @@
       "reviewStatus": "draft",
       "reviewStatusAr": "مسودة (بانتظار مراجعة اختصاصي)",
       "coverageNoteAr": "الكعبرة والزند اليمنى مجمّعتان كوحدة ساعد لاندماجهما السطحي في المسح الفوتوغرامتري.",
-      "triangles": 2235
+      "triangles": 2235,
+      "nodeKind": "merged-group",
+      "nodeKindAr": "مجموعة عظام مندمجة سطحيًا"
     },
     {
       "node": "manus_sinistra",
@@ -463,7 +502,9 @@
       "reviewStatus": "draft",
       "reviewStatusAr": "مسودة (بانتظار مراجعة اختصاصي)",
       "coverageNoteAr": "عظام الرسغ والمشط والسلاميات اليسرى مجمّعة؛ توجد آثار رقيقة لقاعدة التثبيت أسفل الكف.",
-      "triangles": 1963
+      "triangles": 1963,
+      "nodeKind": "merged-group",
+      "nodeKindAr": "مجموعة عظام مندمجة سطحيًا"
     },
     {
       "node": "manus_dextra",
@@ -483,7 +524,9 @@
       "reviewStatus": "draft",
       "reviewStatusAr": "مسودة (بانتظار مراجعة اختصاصي)",
       "coverageNoteAr": "عظام الرسغ والمشط والسلاميات اليمنى مجمّعة؛ توجد آثار رقيقة لقاعدة التثبيت أسفل الكف.",
-      "triangles": 1785
+      "triangles": 1785,
+      "nodeKind": "merged-group",
+      "nodeKindAr": "مجموعة عظام مندمجة سطحيًا"
     },
     {
       "node": "femur_sinister",
@@ -503,7 +546,9 @@
       "reviewStatus": "draft",
       "reviewStatusAr": "مسودة (بانتظار مراجعة اختصاصي)",
       "coverageNoteAr": "عظم الفخذ الأيسر الممتد من مفصل الورك إلى الركبة؛ الرضفة غير مفصولة كعظم مستقل في المسح.",
-      "triangles": 2005
+      "triangles": 2005,
+      "nodeKind": "single-bone",
+      "nodeKindAr": "عظم منفرد"
     },
     {
       "node": "femur_dexter",
@@ -523,7 +568,9 @@
       "reviewStatus": "draft",
       "reviewStatusAr": "مسودة (بانتظار مراجعة اختصاصي)",
       "coverageNoteAr": "عظم الفخذ الأيمن الممتد من مفصل الورك إلى الركبة؛ الرضفة غير مفصولة كعظم مستقل في المسح.",
-      "triangles": 1643
+      "triangles": 1643,
+      "nodeKind": "single-bone",
+      "nodeKindAr": "عظم منفرد"
     },
     {
       "node": "crus_sinistrum",
@@ -543,7 +590,9 @@
       "reviewStatus": "draft",
       "reviewStatusAr": "مسودة (بانتظار مراجعة اختصاصي)",
       "coverageNoteAr": "الظنبوب والشظية اليسرى مجمّعتان لاندماج الشظية الدقيقة سطحيًا مع الظنبوب في المسح.",
-      "triangles": 1859
+      "triangles": 1859,
+      "nodeKind": "merged-group",
+      "nodeKindAr": "مجموعة عظام مندمجة سطحيًا"
     },
     {
       "node": "crus_dextrum",
@@ -563,7 +612,9 @@
       "reviewStatus": "draft",
       "reviewStatusAr": "مسودة (بانتظار مراجعة اختصاصي)",
       "coverageNoteAr": "الظنبوب والشظية اليمنى مجمّعتان لاندماج الشظية الدقيقة سطحيًا مع الظنبوب في المسح.",
-      "triangles": 2286
+      "triangles": 2286,
+      "nodeKind": "merged-group",
+      "nodeKindAr": "مجموعة عظام مندمجة سطحيًا"
     },
     {
       "node": "pes_sinister",
@@ -583,7 +634,9 @@
       "reviewStatus": "draft",
       "reviewStatusAr": "مسودة (بانتظار مراجعة اختصاصي)",
       "coverageNoteAr": "عظام الرصغ والمشط والسلاميات للقدم الخلفية اليسرى؛ توجد آثار رقيقة لقاعدة التثبيت أسفل القدم.",
-      "triangles": 3081
+      "triangles": 3081,
+      "nodeKind": "merged-group",
+      "nodeKindAr": "مجموعة عظام مندمجة سطحيًا"
     },
     {
       "node": "pes_dexter",
@@ -603,7 +656,9 @@
       "reviewStatus": "draft",
       "reviewStatusAr": "مسودة (بانتظار مراجعة اختصاصي)",
       "coverageNoteAr": "عظام الرصغ والمشط والسلاميات للقدم الخلفية اليمنى؛ توجد آثار رقيقة لقاعدة التثبيت أسفل القدم.",
-      "triangles": 3450
+      "triangles": 3450,
+      "nodeKind": "merged-group",
+      "nodeKindAr": "مجموعة عظام مندمجة سطحيًا"
     }
   ]
 }
