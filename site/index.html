@@ -733,13 +733,13 @@
       <nav class="nav-links" aria-label="التنقل الرئيسي">
         <a class="nav-link" href="#/" data-route="home">الرئيسية</a>
         <a class="nav-link" href="#/animals" data-route="animals">الكائنات</a>
-        <a class="nav-link" href="#/animals/dog/skeletal" data-route="skeletal">الجهاز الهيكلي</a>
+        <a class="nav-link" href="/cat/skeleton/">الجهاز الهيكلي</a>
         <a class="nav-link" href="#/search" data-route="search">البحث</a>
         <a class="nav-link" href="#/about" data-route="about">عن المشروع</a>
       </nav>
 
       <div class="nav-cta-wrap">
-        <a class="nav-cta" href="#/animals/dog">ابدأ بالمسار التجريبي</a>
+        <a class="nav-cta" href="/cat/skeleton/">ابدأ بدراسة هيكل القطة</a>
       </div>
 
       <button type="button" class="mobile-menu-btn" id="mobile-menu-btn" aria-expanded="false" aria-controls="mobile-drawer" aria-label="فتح قائمة التنقل">
@@ -754,8 +754,8 @@
     <div class="mobile-drawer" id="mobile-drawer" aria-label="قائمة الجوال">
       <a class="nav-link" href="#/" data-route="home">الرئيسية</a>
       <a class="nav-link" href="#/animals" data-route="animals">الكائنات</a>
-      <a class="nav-link" href="#/animals/dog" data-route="dog">الكلب — المسار التجريبي P1</a>
-      <a class="nav-link" href="#/animals/dog/skeletal" data-route="skeletal">الجهاز الهيكلي</a>
+      <a class="nav-link" href="#/animals/dog" data-route="dog">الكلب</a>
+      <a class="nav-link" href="/cat/skeleton/">الجهاز الهيكلي</a>
       <a class="nav-link" href="#/search" data-route="search">البحث في المصطلحات</a>
       <a class="nav-link" href="#/about" data-route="about">عن المشروع والمنهجية</a>
     </div>
@@ -1099,7 +1099,7 @@
               <div class="hero-honesty-note" role="note">
                 <span aria-hidden="true">ⓘ</span>
                 <span>
-                  القطة هي الشخصية الترحيبية للهوية البصرية (توضيحية وليست دليلاً تشريحيًا)، بينما يبدأ المسار العلمي الأول بتشريح <strong>الكلب (P1)</strong>.
+                  مسار العمل الحالي مخصص لتشريح <strong>القطة المنزلية</strong>، ويبدأ بالجهاز الهيكلي.
                 </span>
               </div>
             </div>
@@ -1165,7 +1165,7 @@
                     <bdi dir="ltr" class="latin-term">Felis catus</bdi>
                   </div>
                   <p class="species-desc">
-                    تتصدر القطة الهوية الترحيبية للمنصة، وسيُفتح مسارها التشريحي ثلاثي الأبعاد فور اكتمال اعتماد أولى عينات المسار التجريبي للكلب.
+                    ابدأ بمساحة دراسة الجهاز الهيكلي للقطة.
                   </p>
                   <div class="species-meta-list">
                     <span class="meta-chip">الحالة: قيد التخطيط</span>
@@ -1311,48 +1311,12 @@
               <span class="status-badge badge-planned" style="margin-bottom:14px;">مسار الدراسة الأول • القطة</span>
               <h1 class="section-title" style="margin-bottom:12px;">تشريح القطة <bdi dir="ltr" class="latin-term">(Felis catus)</bdi></h1>
               <p style="max-width:65ch;color:var(--ink-secondary);margin-bottom:22px;">
-                نبدأ بالجهاز الهيكلي للقطة باستخدام مسح فوتوغرامتري لهيكل كامل.
+                افتح مساحة الدراسة لاستعراض ملفات التشريح ثلاثية الأبعاد وتدوين ملاحظاتك.
               </p>
               <div style="display:flex;gap:12px;flex-wrap:wrap;">
-                <a class="btn btn-primary" href="#/animals/cat/skeletal">فتح الجهاز الهيكلي للقطة</a>
+                <a class="btn btn-primary" href="/cat/skeleton/">فتح الجهاز الهيكلي للقطة</a>
                 <a class="btn btn-secondary" href="#/about">قراءة معايير قبول العينات</a>
               </div>
-            </div>
-          </div>
-        </section>
-      `;
-    }
-
-    function renderCatSkeletalSystem() {
-      return `
-        <section class="section">
-          <div class="container">
-            <nav class="breadcrumb"><a href="#/">الرئيسية</a><span>/</span><a href="#/animals/cat">القطة</a><span>/</span><span aria-current="page">الجهاز الهيكلي</span></nav>
-            <div class="section-header">
-              <div>
-                <span class="section-kicker">القطة • الجهاز الهيكلي</span>
-                <h1 class="section-title">الجهاز الهيكلي للقطة <bdi dir="ltr" class="latin-term">(Systema skeletale)</bdi></h1>
-                <p class="section-lead">مساحة دراسة مستقلة للجهاز الهيكلي للقطة المنزلية.</p>
-              </div>
-            </div>
-            <div style="position:relative;width:100%;height:clamp(360px,65vh,680px);background:#172334;border-radius:var(--radius-lg);overflow:hidden;">
-              <iframe
-                title="مسح ثلاثي الأبعاد لهيكل قطة كامل"
-                src="https://sketchfab.com/models/7106115b299649e992476f2d3b4fc602/embed"
-                loading="lazy"
-                allow="fullscreen"
-                allowfullscreen
-                style="position:absolute;inset:0;width:100%;height:100%;border:0;">
-              </iframe>
-            </div>
-            <p style="margin:14px 0 0;color:var(--ink-secondary);">
-              مسح فوتوغرامتري لهيكل قطة كامل، بحسب توثيق الناشر Tavernier Amaury.
-              <a href="https://sketchfab.com/3d-models/cat-skeleton-7106115b299649e992476f2d3b4fc602">فتح المجسم عند المصدر</a> ·
-              <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a>
-            </p>
-            <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:22px;">
-              <a class="btn btn-secondary" href="#/animals/cat">العودة إلى صفحة القطة</a>
-              <a class="btn btn-secondary" href="#/about">منهجية التوثيق العلمي</a>
             </div>
           </div>
         </section>
@@ -1523,7 +1487,7 @@
       else if (path === "/animals") main.innerHTML = renderAnimals();
       else if (path === "/animals/dog") main.innerHTML = renderDogDetail();
       else if (path === "/animals/cat") main.innerHTML = renderCatDetail();
-      else if (path === "/animals/cat/skeletal") main.innerHTML = renderCatSkeletalSystem();
+      else if (path === "/animals/cat/skeletal") { location.replace("/cat/skeleton/"); return; }
       else if (path === "/animals/dog/skeletal") main.innerHTML = renderSkeletalSystem();
       else if (path.startsWith("/specimens/")) main.innerHTML = renderSpecimenWorkspace(params);
       else if (path === "/search") main.innerHTML = renderSearch();
