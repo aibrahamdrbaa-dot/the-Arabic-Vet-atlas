@@ -1308,15 +1308,58 @@
           <div class="container">
             <nav class="breadcrumb"><a href="#/">الرئيسية</a><span>/</span><a href="#/animals">الكائنات</a><span>/</span><span aria-current="page">القطة</span></nav>
             <div class="empty-state-box">
-              <span class="status-badge badge-planned" style="margin-bottom:14px;">مخطط له • المرحلة اللاحقة</span>
+              <span class="status-badge badge-planned" style="margin-bottom:14px;">مسار الدراسة الأول • القطة</span>
               <h1 class="section-title" style="margin-bottom:12px;">تشريح القطة <bdi dir="ltr" class="latin-term">(Felis catus)</bdi></h1>
               <p style="max-width:65ch;color:var(--ink-secondary);margin-bottom:22px;">
-                تظهر القطة كشخصية بصرية ترحيبية في الواجهة الرئيسية للأطلس، ولن نعرض أي مجسمات أو بيانات تشريحية لها قبل اجتياز بوابات التحقق الهندسي والعلمي نفسها التي نخضع لها مسار الكلب (P1).
+                نبدأ بالجهاز الهيكلي كاملًا. صفحة المجسم مستقلة عن الصفحة الرئيسية؛ والمعاينة الحالية تستخدم نموذجًا فنيًا خارجيًا مع توضيح مصدره وحدود دقته، إلى أن ننجز استيراد أصل محلي ومراجعته.
               </p>
               <div style="display:flex;gap:12px;flex-wrap:wrap;">
-                <a class="btn btn-primary" href="#/animals/dog/skeletal">الانتقال إلى المسار التجريبي (الكلب)</a>
+                <a class="btn btn-primary" href="#/animals/cat/skeletal">فتح الجهاز الهيكلي للقطة</a>
                 <a class="btn btn-secondary" href="#/about">قراءة معايير قبول العينات</a>
               </div>
+            </div>
+          </div>
+        </section>
+      `;
+    }
+
+    function renderCatSkeletalSystem() {
+      return `
+        <section class="section">
+          <div class="container">
+            <nav class="breadcrumb"><a href="#/">الرئيسية</a><span>/</span><a href="#/animals/cat">القطة</a><span>/</span><span aria-current="page">الجهاز الهيكلي</span></nav>
+            <div class="section-header">
+              <div>
+                <span class="section-kicker">القطة • الجهاز الهيكلي</span>
+                <h1 class="section-title">الجهاز الهيكلي للقطة <bdi dir="ltr" class="latin-term">(Systema skeletale)</bdi></h1>
+                <p class="section-lead">عارض مستقل لاستكشاف الهيكل كاملًا. يمكن تدوير النموذج وتكبيره داخل مساحة العرض.</p>
+              </div>
+            </div>
+            <div class="empty-state-box" style="margin-bottom:20px;">
+              <strong>حالة النموذج: معاينة مصدر خارجي</strong>
+              <p style="margin:8px 0 0;color:var(--ink-secondary);">
+                هذا نموذج فني مبسط مستند إلى مراجع، وليس مسحًا لعينة حقيقية ولا نموذجًا راجعه اختصاصي للمشروع. نستخدمه للاستكشاف البصري الأولي فقط؛ ولا نعتمد تفاصيله أو نسميه أصلًا تشريحيًا موثقًا.
+              </p>
+            </div>
+            <div style="position:relative;width:100%;aspect-ratio:16/10;min-height:360px;background:#172334;border-radius:var(--radius-lg);overflow:hidden;box-shadow:var(--shadow-card);">
+              <iframe
+                title="معاينة نموذج هيكل القطة من Sketchfab"
+                src="https://sketchfab.com/models/a5d0bb8f55dc4f49b103cd20d65e0b17/embed?ui_theme=light"
+                loading="lazy"
+                allow="autoplay; fullscreen; xr-spatial-tracking"
+                allowfullscreen
+                referrerpolicy="strict-origin-when-cross-origin"
+                style="position:absolute;inset:0;width:100%;height:100%;border:0;">
+              </iframe>
+            </div>
+            <p style="margin:12px 0 0;color:var(--ink-secondary);font-size:.9rem;">
+              المصدر: <a href="https://sketchfab.com/3d-models/feline-skeleton-dec-a5d0bb8f55dc4f49b103cd20d65e0b17" target="_blank" rel="noopener noreferrer" style="text-decoration:underline;">Feline Skeleton Dec — westerly</a>،
+              مرخّص <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener noreferrer" style="text-decoration:underline;">CC BY 4.0</a>.
+              تحقق الترخيص ووصف النموذج: <a href="https://cats.com/cat-anatomy-guide" target="_blank" rel="noopener noreferrer" style="text-decoration:underline;">Cats.com</a>.
+            </p>
+            <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:22px;">
+              <a class="btn btn-secondary" href="#/animals/cat">العودة إلى صفحة القطة</a>
+              <a class="btn btn-secondary" href="#/about">منهجية التوثيق العلمي</a>
             </div>
           </div>
         </section>
@@ -1487,6 +1530,7 @@
       else if (path === "/animals") main.innerHTML = renderAnimals();
       else if (path === "/animals/dog") main.innerHTML = renderDogDetail();
       else if (path === "/animals/cat") main.innerHTML = renderCatDetail();
+      else if (path === "/animals/cat/skeletal") main.innerHTML = renderCatSkeletalSystem();
       else if (path === "/animals/dog/skeletal") main.innerHTML = renderSkeletalSystem();
       else if (path.startsWith("/specimens/")) main.innerHTML = renderSpecimenWorkspace(params);
       else if (path === "/search") main.innerHTML = renderSearch();
