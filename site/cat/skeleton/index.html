@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>استوديو الجهاز الهيكلي للقطة (Felis catus) | الأطلس البيطري العربي</title>
+  <style>
+    :root { --bg:#f6f3eb; --surface:#fff; --surface-soft:#f9f7f2; --ink:#172334; --muted:#4b5a70; --border:#dadce2; --accent:#1d4ed8; --accent-soft:#e8f0fe; --warn-bg:#fff8e6; --warn-border:#e6c670; --warn-ink:#6a4d08; }
+    * { box-sizing:border-box; }
+    body { margin:0; background:var(--bg); color:var(--ink); font:1rem/1.6 system-ui,-apple-system,"Segoe UI",Tahoma,sans-serif; }
+    main { max-width:1280px; margin:auto; padding:clamp(14px,3vw,36px); }
+    a { color:var(--accent); text-underline-offset:3px; }
+    .topbar { display:flex; flex-wrap:wrap; gap:8px; align-items:center; justify-content:space-between; margin-bottom:12px; }
+    .back-link { display:inline-flex; align-items:center; min-height:44px; padding:6px 12px; border-radius:10px; background:var(--surface); border:1px solid var(--border); text-decoration:none; font-weight:600; }
+    .badge { display:inline-flex; align-items:center; padding:6px 12px; border-radius:999px; font-size:0.875rem; background:var(--warn-bg); border:1px solid var(--warn-border); color:var(--warn-ink); }
+    h1 { margin:4px 0 8px; line-height:1.25; font-size:clamp(1.45rem,3vw,2.05rem); }
+    .workspace { display:grid; grid-template-columns:minmax(0,2fr) minmax(280px,1fr); gap:16px; align-items:start; }
+    #stage, aside, .info-box { background:var(--surface); border:1px solid var(--border); border-radius:16px; padding:16px; }
+    #stage { position:relative; display:grid; place-items:center; min-height:clamp(320px,60vh,640px); overflow:hidden; background:radial-gradient(circle at 50% 35%,#f4f7fb 0%,#e4eaf3 100%); }
+    #stage canvas { position:absolute; inset:0; width:100%; height:100%; touch-action:none; }
+    label { display:block; margin-top:12px; font-weight:600; font-size:0.92rem; }
+    textarea, select, input:not([type=checkbox]), button { max-width:100%; font:inherit; }
+    textarea, select { width:100%; min-height:44px; padding:8px 10px; border:1px solid var(--border); border-radius:10px; }
+    textarea { min-height:92px; }
+    button { min-height:44px; padding:8px 14px; border-radius:10px; border:1px solid var(--border); background:#fff; cursor:pointer; margin-block:6px; }
+    button:disabled { opacity:0.5; cursor:not-allowed; }
+    button[aria-pressed="true"] { background:var(--accent-soft); border-color:var(--accent); color:var(--accent); font-weight:600; }
+    #layer-list div { display:flex; gap:8px; align-items:center; min-height:36px; }
+    #layer-list label { flex:1; margin:0; font-weight:400; overflow-wrap:anywhere; }
+    .artery-note { margin:10px 0 0; padding:8px 10px; border-radius:8px; background:var(--warn-bg); border:1px solid var(--warn-border); color:var(--warn-ink); font-size:0.86rem; }
+    .info-box { margin-top:20px; }
+    @media (max-width:780px) { .workspace { grid-template-columns:1fr; } #stage { min-height:340px; } }
+  </style>
+  <script type="importmap">
+  {"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.179.1/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.179.1/examples/jsm/"}}
+  </script>
+</head>
+<body>
+<main>
+  <div class="topbar">
+    <nav aria-label="التنقل" style="display:flex;flex-wrap:wrap;gap:8px">
+      <a class="back-link" href="/#/">الرئيسية</a>
+      <a class="back-link" href="/#/animals/cat">← صفحة القطة</a>
+      <a class="back-link" href="/#/search">البحث</a>
+      <a class="back-link" href="/#/sources">المصادر والمنهجية</a>
+    </nav>
+    <span class="badge">لا توجد عينة معتمدة في الإنتاج بعد (عينة القطة قيد المراجعة في PR #6)</span>
+  </div>
+
+  <h1>استوديو الجهاز الهيكلي للقطة (<span dir="ltr">Felis catus</span>)</h1>
+  <p style="color:var(--muted);max-width:76ch;margin-top:0">
+    لم تُنقل عينة هيكل القطة إلى الإنتاج بعد التزامًا بسياسة عدم نشر المسودات قبل اكتمال مراجعة اختصاصي التشريح البيطري وحسم الحقوق.
+    يمكنك الآن تجربة عارض الأطلس الكامل بفتح أي ملف GLB محلي من جهازك (يبقى الملف داخل متصفحك فقط).
+  </p>
+
+  <div class="workspace">
+    <section id="stage" aria-label="عارض ثلاثي الأبعاد"><p id="empty" style="text-align:center;max-width:36ch;background:rgba(255,255,255,0.92);padding:14px 18px;border-radius:12px;border:1px solid var(--border)">اختر ملف GLB من جهازك لعرضه وفحص أجزائه هنا داخل المتصفح.</p></section>
+    <aside aria-label="أدوات الدراسة">
+      <label for="file">إضافة ملف GLB محلي كطبقة</label>
+      <input id="file" type="file" accept=".glb">
+      <p id="status" role="status" style="color:var(--muted);font-size:0.9rem"></p>
+      <button id="reset" type="button" disabled>إعادة ضبط العرض</button>
+      <button id="isolate" type="button" aria-pressed="false" disabled>عزل الجزء المحدد</button>
+      <fieldset style="border:1px solid var(--border);border-radius:12px;padding:10px 12px;margin-top:10px">
+        <legend>الطبقات</legend>
+        <div id="layer-list">لا توجد طبقات محمّلة.</div>
+        <p class="artery-note">طبقة الشرايين: غير متاحة حاليًا بانتظار مصدر قططي موثّق وبيانات مطابقة مكانية.</p>
+      </fieldset>
+      <label for="part">اختيار جزء من الملف</label>
+      <select id="part"><option value="">ملاحظات الجهاز الهيكلي</option></select>
+      <label for="color">لون الجزء المحدد</label>
+      <input id="color" type="color" value="#4176d6" disabled>
+      <button id="clear-color" type="button" disabled>استعادة لون الجزء</button>
+      <label for="note">ملاحظاتي</label>
+      <textarea id="note" maxlength="4000" placeholder="اكتب ملاحظاتك هنا"></textarea>
+      <button id="save" type="button">حفظ على هذا المتصفح</button>
+      <button id="export" type="button">تصدير الملاحظات والألوان (JSON)</button>
+    </aside>
+  </div>
+
+  <section class="info-box" aria-labelledby="prod-sources-heading">
+    <h2 id="prod-sources-heading" style="margin:0 0 8px;font-size:1.2rem">الحوكمة والمصادر</h2>
+    <p style="margin:0;color:var(--muted);font-size:0.93rem">
+      تُضبط المصطلحات اللاتينية للأطلس وفق <a href="https://www.wava-amav.org/wava-documents.html" target="_blank" rel="noopener noreferrer">Nomina Anatomica Veterinaria (NAV)، الطبعة السادسة (2017)</a>.
+      يخضع كود الأطلس لترخيص MIT، بينما تُفصل تراخيص الأصول التشريحية المستوردة لكل عينة على حدة (انظر <a href="/#/sources">المصادر والمنهجية</a>).
+    </p>
+  </section>
+</main>
+<script type="module" src="./study.js"></script>
+</body>
+</html>
