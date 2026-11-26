@@ -112,7 +112,7 @@ async function runBrowserSmoke(fixtureBytes) {
   mkdirSync(outDir, { recursive: true });
   writeFileSync(join(outDir, 'synthetic-non-anatomical.glb'), fixtureBytes);
 
-  const server = spawn('npx', ['vite', 'preview', '--port', '4173', '--strictPort'], { stdio: 'pipe' });
+  const server = spawn('npx', ['vite', 'preview', '--host', '127.0.0.1', '--port', '4173', '--strictPort'], { stdio: 'pipe' });
   const errors = [];
   let browser;
   try {
