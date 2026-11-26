@@ -1,9 +1,8 @@
-# Gemini Neon handoff — 2026-11-26
-Roy founded an independent codebase, not a fork. Owner explicitly wants modern architecture and freedom to replace external approaches. GitHub and Notion are shared; user operates from phone.
-First tasks:
-1. Inspect repo and actual commit, run npm install (generate and commit lockfile on feature branch), npm test/check/build, repair failures; pin compatible dependencies and set npm ci in CI after lockfile exists.
-2. Review viewer lifecycle, accessibility, responsive behavior, WebGL and error fallback. Use browser smoke tests and attach evidence. No mock anatomy disguised as real.
-3. Audit one downloadable coherent bone/specimen from docs/SOURCES.md with per-asset rights, actual binary inspection and checksums. Prepare reproducible headless conversion plan; don't import uncertain assets or large files into Git.
-4. Open PR with test outputs and risks; update Notion with concise status, open questions and links. Do not overwrite main, change architecture wholesale, or deploy publicly without review of asset licenses.
-5. Recommend hosting after real asset size/bandwidth test. No paid usage without owner approval.
-Roy will lead architecture, planning, scientific schema and review; Gemini repairs, strengthens and verifies implementation. Report blockers honestly.
+# Gemini Neon handoff — foundation audit v2, 2026-11-26
+Independent project. Read AGENTS.md, docs/FOUNDATION_AUDIT.md, DATA_CONTRACT.md, SKILLS_RESEARCH.md, SCIENCE.md, SOURCES.md and ROADMAP.md. Roy added foundation hardening in feature branch; inspect actual PR/CI and review before merging. Do not branch from old main until reviewed or branch from hardening PR with explicit dependency.
+1. Check CI and actual code; retrieve lockfile artifact or generate in Node 22 cloud, commit it, enforce npm ci, pin action full SHAs verified from upstream; protect main with PR and required CI when authorized.
+2. Add browser smoke fixture (non-anatomical and excluded from public release), test GLB lifecycle, context loss, abort, portrait, keyboard, resource loading, mobile and accessibility. Verify current partial GLB checks against Khronos validator and bound limits. Repair any failure.
+3. Improve schema with claim-level evidence and reviewer audit trail. Ensure scientific/rights review statuses are backed by real human records, not AI; no assets yet.
+4. Review candidate skills in SKILLS_RESEARCH.md, read actual SKILL.md and resources, verify license/revision before selective adoption. Project-specific skills already drafted. No blanket installation.
+5. Audit one coherent original canine bone or region using sources; verify actual archive, terms, SHA, sample/units/orientation, transforms, named meshes and before/after renders. No public import until independent approvals. No paid tools without owner approval.
+6. Use separate PR per task, evidence, tests, and update Notion. Do not claim a public deployment or anatomy approval prematurely. Roy owns architecture, initial build and review; Gemini repairs, tests, strengthens and reports. 
