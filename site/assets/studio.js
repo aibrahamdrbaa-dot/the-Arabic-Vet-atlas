@@ -1024,3 +1024,193 @@ initAtlasSpecimen();
     }
   };
 })();
+
+
+// === Pixel-Art Animal Icons, Lively Motion, Interactive Progress & Celebration Feedback ===
+(function initPixelArtAndMotion() {
+  const byId = id => document.getElementById(id);
+
+  // Hand-crafted crisp 16x16 pixel-art SVG icons (cat, dog, bone, notebook, paw, sparkle)
+  const PIXEL_SVGS = {
+    cat: `<svg class="pixel-icon" width="24" height="24" viewBox="0 0 16 16" aria-hidden="true">
+      <rect x="2" y="2" width="2" height="3" fill="#f59e0b"/><rect x="12" y="2" width="2" height="3" fill="#f59e0b"/>
+      <rect x="3" y="3" width="1" height="2" fill="#fda4af"/><rect x="12" y="3" width="1" height="2" fill="#fda4af"/>
+      <rect x="2" y="5" width="12" height="7" fill="#f59e0b"/><rect x="3" y="12" width="10" height="2" fill="#f59e0b"/>
+      <rect x="4" y="4" width="8" height="1" fill="#f59e0b"/>
+      <rect x="4" y="7" width="2" height="2" fill="#134e4a"/><rect x="10" y="7" width="2" height="2" fill="#134e4a"/>
+      <rect x="4" y="7" width="1" height="1" fill="#ffffff"/><rect x="10" y="7" width="1" height="1" fill="#ffffff"/>
+      <rect x="7" y="9" width="2" height="1" fill="#fb7185"/><rect x="6" y="10" width="4" height="2" fill="#fef3c7"/>
+      <rect x="1" y="9" width="2" height="1" fill="#92400e"/><rect x="13" y="9" width="2" height="1" fill="#92400e"/>
+      <rect x="6" y="4" width="1" height="2" fill="#b45309"/><rect x="9" y="4" width="1" height="2" fill="#b45309"/>
+    </svg>`,
+    dog: `<svg class="pixel-icon" width="24" height="24" viewBox="0 0 16 16" aria-hidden="true">
+      <rect x="1" y="4" width="3" height="6" fill="#92400e"/><rect x="12" y="4" width="3" height="6" fill="#92400e"/>
+      <rect x="3" y="3" width="10" height="9" fill="#d97706"/><rect x="4" y="12" width="8" height="2" fill="#d97706"/>
+      <rect x="5" y="9" width="6" height="4" fill="#fef3c7"/>
+      <rect x="5" y="6" width="2" height="2" fill="#1e293b"/><rect x="9" y="6" width="2" height="2" fill="#1e293b"/>
+      <rect x="5" y="6" width="1" height="1" fill="#ffffff"/><rect x="9" y="6" width="1" height="1" fill="#ffffff"/>
+      <rect x="7" y="9" width="2" height="2" fill="#1e293b"/><rect x="7" y="12" width="2" height="2" fill="#f43f5e"/>
+    </svg>`,
+    bone: `<svg class="pixel-icon" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true">
+      <rect x="2" y="4" width="3" height="3" fill="#fffbeb"/><rect x="2" y="9" width="3" height="3" fill="#fffbeb"/>
+      <rect x="11" y="4" width="3" height="3" fill="#fffbeb"/><rect x="11" y="9" width="3" height="3" fill="#fffbeb"/>
+      <rect x="4" y="6" width="8" height="4" fill="#fef3c7"/>
+      <rect x="5" y="7" width="6" height="2" fill="#ffffff"/>
+    </svg>`,
+    note: `<svg class="pixel-icon" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true">
+      <rect x="3" y="2" width="10" height="12" fill="#fef08a"/><rect x="4" y="5" width="8" height="1" fill="#ca8a04"/>
+      <rect x="4" y="8" width="6" height="1" fill="#ca8a04"/><rect x="4" y="11" width="7" height="1" fill="#ca8a04"/>
+      <rect x="10" y="9" width="3" height="3" fill="#0d9488"/>
+    </svg>`,
+    paw: `<svg class="pixel-icon" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true">
+      <rect x="3" y="4" width="2" height="3" fill="#0d9488"/><rect x="6" y="2" width="2" height="3" fill="#0d9488"/>
+      <rect x="9" y="2" width="2" height="3" fill="#0d9488"/><rect x="11" y="4" width="2" height="3" fill="#0d9488"/>
+      <rect x="4" y="7" width="8" height="5" fill="#14b8a6"/><rect x="5" y="12" width="6" height="2" fill="#14b8a6"/>
+    </svg>`,
+    info: `<svg class="pixel-icon" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true">
+      <rect x="3" y="2" width="10" height="12" fill="#6366f1"/><rect x="7" y="4" width="2" height="2" fill="#ffffff"/>
+      <rect x="7" y="7" width="2" height="5" fill="#ffffff"/>
+    </svg>`
+  };
+
+  const isDog = window.location.pathname.includes('/dog/');
+  const speciesKey = isDog ? 'dog' : 'cat';
+
+  // 1. Add Pixel-Art Species Switcher in top nav bar
+  const topNav = document.querySelector('.atlas-studio-nav');
+  if (topNav && !topNav.querySelector('.species-pixel-switcher')) {
+    const sw = document.createElement('div');
+    sw.className = 'species-pixel-switcher';
+    sw.innerHTML = `
+      <a class="species-pixel-pill ${!isDog ? 'is-active' : ''}" href="/cat/skeleton/">${PIXEL_SVGS.cat}<span>القطة</span></a>
+      <a class="species-pixel-pill ${isDog ? 'is-active' : ''}" href="/dog/skeleton/">${PIXEL_SVGS.dog}<span>الكلب</span></a>`;
+    topNav.append(sw);
+  }
+
+  // 2. Add Interactive Pixel-Art Mascot Companion next to page title
+  const titleRow = document.querySelector('.study-title-row');
+  let mascotEl = null;
+  if (titleRow && !titleRow.querySelector('.pixel-mascot-wrap')) {
+    mascotEl = document.createElement('button');
+    mascotEl.type = 'button';
+    mascotEl.className = 'pixel-mascot-wrap';
+    mascotEl.title = isDog ? 'مرحباً! انقر على أي عظم للكلب لاستكشافه' : 'مرحباً! انقر على أي عظم للقطة لاستكشافه';
+    mascotEl.innerHTML = PIXEL_SVGS[speciesKey];
+    mascotEl.addEventListener('click', () => {
+      hopMascot();
+      burstSparkles(mascotEl);
+      showToast(isDog ? '🐶 اختر أي عظم في هيكل الكلب لاستكشافه!' : '🐱 اختر أي عظم في هيكل القطة لاستكشافه!');
+    });
+    titleRow.prepend(mascotEl);
+  }
+
+  function hopMascot() {
+    if (!mascotEl) return;
+    mascotEl.classList.remove('hop');
+    void mascotEl.offsetWidth;
+    mascotEl.classList.add('hop');
+  }
+
+  // 3. Add Pixel-Art icons to study switcher tabs
+  const tabIcons = { browse: PIXEL_SVGS.bone, info: PIXEL_SVGS.info, notes: PIXEL_SVGS.note, layers: PIXEL_SVGS.paw };
+  document.querySelectorAll('.study-switcher button[data-pane]').forEach(btn => {
+    const k = btn.dataset.pane;
+    if (tabIcons[k] && !btn.querySelector('.pixel-icon')) {
+      btn.insertAdjacentHTML('afterbegin', tabIcons[k]);
+    }
+  });
+
+  // 4. Interactive Exploration Progress Bar inside sidebar
+  const sidebarHead = document.querySelector('.study-sidebar-heading');
+  const visitedBones = new Set();
+  if (sidebarHead && !byId('explore-bar-wrap')) {
+    const wrap = document.createElement('div');
+    wrap.id = 'explore-bar-wrap';
+    wrap.className = 'explore-bar-wrap';
+    wrap.innerHTML = `
+      <div class="explore-bar-top">
+        <span>${PIXEL_SVGS.paw} تقدم الاستكشاف</span>
+        <span id="explore-bar-label">0 / 26</span>
+      </div>
+      <div class="explore-bar-track"><div id="explore-bar-fill" class="explore-bar-fill"></div></div>`;
+    sidebarHead.insertAdjacentElement('afterend', wrap);
+  }
+
+  // 5. Floating Celebration Toast + Pixel Sparkle Burst
+  let toastEl = byId('atlas-toast');
+  if (!toastEl) {
+    toastEl = document.createElement('div');
+    toastEl.id = 'atlas-toast';
+    toastEl.className = 'atlas-toast';
+    toastEl.setAttribute('aria-live', 'polite');
+    document.body.append(toastEl);
+  }
+  let toastTimer = null;
+  function showToast(msg) {
+    toastEl.textContent = msg;
+    toastEl.classList.add('show');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => toastEl.classList.remove('show'), 2100);
+  }
+
+  function burstSparkles(anchorEl) {
+    if (!anchorEl || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    const rect = anchorEl.getBoundingClientRect();
+    const cx = rect.left + rect.width / 2;
+    const cy = rect.top + rect.height / 2;
+    const colors = ['#0d9488', '#f59e0b', '#f97316', '#4f46e5', '#e11d48'];
+    for (let i = 0; i < 8; i++) {
+      const sp = document.createElement('span');
+      sp.className = 'pixel-sparkle';
+      const ang = (Math.PI * 2 * i) / 8;
+      const dist = 22 + Math.random() * 24;
+      sp.style.left = `${cx}px`;
+      sp.style.top = `${cy}px`;
+      sp.style.background = colors[i % colors.length];
+      sp.style.setProperty('--tx', `${Math.round(Math.cos(ang) * dist)}px`);
+      sp.style.setProperty('--ty', `${Math.round(Math.sin(ang) * dist - 10)}px`);
+      document.body.append(sp);
+      setTimeout(() => sp.remove(), 680);
+    }
+  }
+
+  // Hook into save button for celebratory sparkle + toast
+  get('save')?.addEventListener('click', () => {
+    hopMascot();
+    burstSparkles(get('save'));
+    showToast('✨ تم حفظ ملاحظتك بنجاح!');
+  });
+
+  // Wrap window.__syncStudyUx so region dots, mascot hop, and exploration progress bar stay synced
+  const prevSync = window.__syncStudyUx;
+  window.__syncStudyUx = function syncAllUx() {
+    if (typeof prevSync === 'function') prevSync();
+    const id = selectedId();
+    if (parts.has(id)) {
+      if (!visitedBones.has(id)) {
+        visitedBones.add(id);
+        hopMascot();
+      }
+    }
+    const total = parts.size || 26;
+    const fill = byId('explore-bar-fill');
+    const lbl = byId('explore-bar-label');
+    if (fill && lbl) {
+      const pct = Math.min(100, Math.round((visitedBones.size / total) * 100));
+      fill.style.width = `${pct}%`;
+      lbl.textContent = `${visitedBones.size} / ${total} (${pct}%)`;
+    }
+    // Add color-coded region dots to bone list items
+    document.querySelectorAll('#bone-list .bone-item').forEach(btn => {
+      const pid = btn.dataset.id;
+      const st = parts.get(pid)?.structure;
+      const strong = btn.querySelector('strong');
+      if (st && strong && !strong.querySelector('.region-dot')) {
+        const dot = document.createElement('span');
+        dot.className = 'region-dot';
+        dot.dataset.reg = st.region || 'head';
+        strong.prepend(dot);
+      }
+    });
+  };
+})();
