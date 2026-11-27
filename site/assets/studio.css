@@ -233,3 +233,134 @@ body.study-focus #stage{min-height:clamp(360px,calc(100dvh - 260px),900px)}
   .stage-hud{bottom:8px;right:8px;left:8px;max-width:none;padding:10px 12px}
   .note-export-row{grid-template-columns:1fr}
 }
+
+
+/* === Vibrant Pixel-Art & Interactive Motion Upgrade === */
+body{
+  background:radial-gradient(circle at 12% 8%,rgba(13,148,136,.08),transparent 36%),
+             radial-gradient(circle at 88% 12%,rgba(245,158,11,.09),transparent 38%),
+             radial-gradient(circle at 50% 95%,rgba(249,115,22,.06),transparent 40%),
+             var(--bg,#f6f4ee);
+}
+.atlas-studio-nav{
+  background:rgba(255,255,255,.88);backdrop-filter:blur(8px);
+  border:1px solid rgba(13,148,136,.18);border-radius:14px;padding:8px 14px;
+  box-shadow:0 4px 16px rgba(13,59,54,.06);
+  display:flex;align-items:center;gap:10px;flex-wrap:wrap;
+}
+.species-pixel-switcher{
+  display:inline-flex;align-items:center;gap:6px;margin-inline-start:auto;
+  background:#f1f8f6;padding:4px;border-radius:12px;border:1px solid rgba(13,148,136,.2);
+}
+.species-pixel-pill{
+  display:inline-flex;align-items:center;gap:6px;padding:5px 11px;border-radius:9px;
+  font-size:.82rem;font-weight:700;text-decoration:none;color:#274642;
+  transition:transform .18s cubic-bezier(.34,1.56,.64,1),background .18s ease,box-shadow .18s ease;
+}
+.species-pixel-pill:hover{background:#fff;transform:translateY(-1px);box-shadow:0 3px 10px rgba(13,148,136,.12)}
+.species-pixel-pill:hover .pixel-icon{transform:scale(1.18) rotate(-4deg)}
+.species-pixel-pill.is-active{
+  background:linear-gradient(135deg,#0d9488,#0f766e);color:#fff;
+  box-shadow:0 4px 12px rgba(13,148,136,.28);
+}
+.study-title-row{position:relative}
+.pixel-mascot-wrap{
+  display:inline-flex;align-items:center;justify-content:center;
+  width:46px;height:46px;border-radius:14px;flex-shrink:0;
+  background:linear-gradient(135deg,#fef3c7,#ccfbf1);
+  border:2px solid rgba(13,148,136,.28);box-shadow:0 6px 16px rgba(13,148,136,.14);
+  cursor:pointer;
+}
+.pixel-mascot-wrap .pixel-icon{animation:pixelBob 2.8s ease-in-out infinite}
+.pixel-mascot-wrap.hop .pixel-icon{animation:pixelHop .48s cubic-bezier(.34,1.56,.64,1)}
+
+.stage-wrap{
+  box-shadow:0 12px 32px rgba(15,45,40,.08);
+  border:1.5px solid rgba(13,148,136,.22);
+}
+.stage-wrap::before{
+  content:"";display:block;height:4px;
+  background:linear-gradient(90deg,#0d9488,#f59e0b,#f97316,#4f46e5,#0d9488);
+  background-size:220% 100%;animation:gradientSlide 9s linear infinite;
+}
+#stage{
+  background:radial-gradient(circle at 50% 42%,#f7fbfa 0%,#e5efec 62%,#d7e5e1 100%);
+}
+.stage-hud{animation:hudSlide .24s cubic-bezier(.34,1.56,.64,1)}
+.stage-hud-pill:first-child{background:rgba(13,148,136,.14);color:#0f524a}
+.stage-hud-pill:last-child{background:rgba(245,158,11,.18);color:#92400e}
+
+aside.panel{
+  background:#fff;border:1.5px solid rgba(13,148,136,.2);border-radius:16px;
+  box-shadow:0 12px 30px rgba(15,45,40,.08);
+}
+.study-switcher{gap:6px;padding:8px;background:linear-gradient(180deg,#f2faf8,#eef5f3)}
+.study-switcher button{
+  display:inline-flex;align-items:center;justify-content:center;gap:4px;
+  border-radius:10px;font-weight:700;padding:7px 4px;color:#2c4a46;
+}
+.study-switcher button:hover:not([aria-pressed=true]){background:rgba(13,148,136,.1);color:#0d5b53}
+.study-switcher button[aria-pressed=true]{
+  background:linear-gradient(135deg,#0d9488,#0f766e);color:#fff;
+  box-shadow:0 4px 12px rgba(13,148,136,.28);
+}
+.study-pane:not([hidden]){animation:panePop .22s ease}
+
+/* Interactive Exploration Progress Bar */
+.explore-bar-wrap{
+  padding:8px 16px 10px;background:#fafdfb;border-bottom:1px solid var(--border);
+  display:flex;flex-direction:column;gap:5px;
+}
+.explore-bar-top{display:flex;justify-content:space-between;align-items:center;font-size:.76rem;font-weight:700;color:#1b4d46}
+.explore-bar-track{height:8px;border-radius:999px;background:#e4efec;overflow:hidden}
+.explore-bar-fill{
+  height:100%;width:0%;border-radius:999px;
+  background:linear-gradient(90deg,#0d9488,#f59e0b,#f97316);
+  transition:width .42s cubic-bezier(.34,1.56,.64,1);
+}
+
+/* Color-coded Region Dots on Bone List */
+.bone-item{
+  position:relative;border:1.5px solid #e4ece9;background:#fff;padding:10px 12px;
+}
+.bone-item:hover{
+  border-color:#0d9488;background:#f4fbf9;transform:translateX(-2px);
+  box-shadow:0 4px 12px rgba(13,148,136,.1);
+}
+.bone-item[aria-pressed=true]{
+  background:linear-gradient(135deg,#e6f7f4,#fffbeb);
+  border-color:#0d9488;box-shadow:inset 4px 0 0 #0d9488,0 4px 14px rgba(13,148,136,.14);
+}
+.region-dot{
+  display:inline-block;width:9px;height:9px;border-radius:3px;margin-inline-end:6px;vertical-align:middle;
+  box-shadow:0 0 0 2px rgba(0,0,0,.06);
+}
+.region-dot[data-reg="head"]{background:#4f46e5}
+.region-dot[data-reg="neck"]{background:#0d9488}
+.region-dot[data-reg="thorax"]{background:#f97316}
+.region-dot[data-reg="abdomen"]{background:#eab308}
+.region-dot[data-reg="pelvis"]{background:#9333ea}
+.region-dot[data-reg="tail"]{background:#0284c7}
+.region-dot[data-reg="thoracic-limb"]{background:#10b981}
+.region-dot[data-reg="pelvic-limb"]{background:#e11d48}
+
+/* Colorful Semantic Info Cards */
+#pane-info #card-meta dt:nth-of-type(4n+1),#pane-info #card-meta dd:nth-of-type(4n+1){border-right-color:#0d9488;background:#f3fbf9}
+#pane-info #card-meta dt:nth-of-type(4n+2),#pane-info #card-meta dd:nth-of-type(4n+2){border-right-color:#f59e0b;background:#fffdf4}
+#pane-info #card-meta dt:nth-of-type(4n+3),#pane-info #card-meta dd:nth-of-type(4n+3){border-right-color:#e11d48;background:#fff6f7}
+#pane-info #card-meta dt:nth-of-type(4n+4),#pane-info #card-meta dd:nth-of-type(4n+4){border-right-color:#4f46e5;background:#f6f7ff}
+
+/* Floating Toast + Sparkle Particle */
+.atlas-toast{
+  position:fixed;bottom:20px;left:20px;z-index:999;
+  display:inline-flex;align-items:center;gap:8px;padding:10px 16px;border-radius:12px;
+  background:#0f3d37;color:#fff;font-size:.86rem;font-weight:700;
+  box-shadow:0 12px 28px rgba(15,61,55,.28);
+  opacity:0;transform:translateY(12px);pointer-events:none;
+  transition:opacity .22s ease,transform .22s cubic-bezier(.34,1.56,.64,1);
+}
+.atlas-toast.show{opacity:1;transform:translateY(0)}
+.pixel-sparkle{
+  position:fixed;width:8px;height:8px;pointer-events:none;z-index:1000;
+  animation:sparkleFly .65s cubic-bezier(.2,.8,.2,1) forwards;
+}

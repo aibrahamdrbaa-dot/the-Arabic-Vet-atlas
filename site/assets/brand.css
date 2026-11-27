@@ -37,3 +37,32 @@
 .species-system-card.system-planned{background:#f6f7f3}
 .species-region-grid .system-card{padding:14px 16px;background:#fff}
 @media(max-width:680px){.species-profile{grid-template-columns:1fr;gap:12px;padding:16px}.species-profile-media{max-height:220px;aspect-ratio:16/9;grid-row:1}.species-profile-actions .btn{flex:1;min-width:0}.species-region-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+
+
+/* === Lively Colors, Tactile Motion & Pixel-Art Styling (Global) === */
+:root{
+  --pop-teal:#0d9488;
+  --pop-amber:#f59e0b;
+  --pop-coral:#f97316;
+  --pop-indigo:#4f46e5;
+  --pop-plum:#9333ea;
+  --pop-rose:#e11d48;
+  --pop-sky:#0284c7;
+}
+.pixel-icon{
+  display:inline-block;vertical-align:middle;flex-shrink:0;
+  image-rendering:pixelated;shape-rendering:crispEdges;
+  transition:transform .22s cubic-bezier(.34,1.56,.64,1);
+}
+a,button{transition:transform .16s cubic-bezier(.34,1.56,.64,1),box-shadow .18s ease,background-color .18s ease,border-color .18s ease}
+button:not(:disabled):hover,.btn:hover{transform:translateY(-1.5px)}
+button:not(:disabled):active,.btn:active{transform:translateY(0) scale(.97)}
+@keyframes pixelBob{0%,100%{transform:translateY(0)}50%{transform:translateY(-4px)}}
+@keyframes pixelHop{0%{transform:translateY(0) scale(1)}35%{transform:translateY(-8px) scale(1.12)}70%{transform:translateY(1px) scale(.96)}100%{transform:translateY(0) scale(1)}}
+@keyframes panePop{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
+@keyframes hudSlide{from{opacity:0;transform:translateY(10px) scale(.96)}to{opacity:1;transform:translateY(0) scale(1)}}
+@keyframes sparkleFly{0%{opacity:1;transform:translate(0,0) scale(1)}100%{opacity:0;transform:translate(var(--tx,0px),var(--ty,-28px)) scale(.2)}}
+@keyframes gradientSlide{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
+@media (prefers-reduced-motion:reduce){
+  .pixel-icon,.pixel-mascot,.study-pane,.stage-hud,.atlas-toast{animation:none!important;transition:none!important}
+}
