@@ -282,19 +282,7 @@
       color: var(--warn-ink);
       font-size: 0.86rem;
     }
-    details.upload-box {
-      border: 1px dashed var(--border);
-      border-radius: 12px;
-      padding: 10px 12px;
-      background: var(--surface-soft);
-    }
-    details.upload-box summary {
-      cursor: pointer;
-      font-weight: 600;
-      min-height: 32px;
-      display: flex;
-      align-items: center;
-    }
+
     .sources-section {
       margin-top: 28px;
       padding: clamp(16px, 3vw, 28px);
@@ -333,7 +321,7 @@
       #stage { min-height: 360px; }
     }
   </style>
-<link rel="icon" href="/assets/atlas-icon.svg" type="image/svg+xml"><meta name="theme-color" content="#044442"><link rel="stylesheet" href="/assets/brand.css">
+<link rel="icon" href="/assets/atlas-icon.svg" type="image/svg+xml"><meta name="theme-color" content="#044442"><link rel="stylesheet" href="/assets/brand.css"><link rel="stylesheet" href="/assets/studio.css">
   <script type="importmap">
   {
     "imports": {
@@ -343,7 +331,7 @@
   }
   </script>
 </head>
-<body>
+<body data-specimen="felis-catus-tavernier-2022">
 <main>
   <div class="atlas-studio-nav"><a class="atlas-studio-brand" href="/#/"><img src="/assets/atlas-mark.svg" alt="" width="360" height="243"><span>الأطلس البيطري العربي<small>The Arabic Vet Atlas</small></span></a><a href="/#/animals">الكائنات</a><a href="/#/articles">المقالات</a></div>
   <div class="topbar">
@@ -352,106 +340,99 @@
   </div>
 
   <h1>الجهاز الهيكلي للقطة المنزلية (<span class="latin">Felis catus</span>)</h1>
-  <p class="subtitle">
+  <div class="studio-intro"><details><summary>عن العينة وحدودها</summary><p class="subtitle">
     استوديو دراسة ثلاثي الأبعاد يستضيف نسخة مشتقة من مسح فوتوغرامتري حقيقي لهيكل قطة كاملة،
     مفصولة إلى 26 عقدة تشريحية قابلة للتحديد (10 عظام منفردة + 16 مجموعة عظام مندمجة سطحيًا) ومربوطة بتسميات NAV (الطبعة السادسة، 2017) دون اختلاق هندسة. العينة متاحة للدراسة، لكن مراجعتها التشريحية التخصصية لم تكتمل بعد.
-  </p>
+  </p></details></div>
 
   <div class="workspace">
     <div class="stage-wrap">
+      <div class="stage-heading"><div><h2 id="stage-selection">العينة كاملة</h2><small id="stage-selection-latin">اختر بنية من المجسم أو القائمة</small></div><button id="open-notes" type="button">ملاحظاتي</button></div>
       <section id="stage" tabindex="0" aria-label="عارض الجهاز الهيكلي للقطة ثلاثي الأبعاد">
         <div id="stage-overlay">
           <p id="empty" style="margin:0">جارٍ تحميل عينة هيكل القطة من استضافة الأطلس…</p>
         </div>
       </section>
-
       <div class="stage-bar">
         <div class="btn-row">
-          <button id="reset" type="button" disabled>إعادة ضبط العرض (R)</button>
-          <button id="isolate" type="button" aria-pressed="false" disabled>عزل العظم المحدد</button>
+          <button id="zoom-in" class="zoom-button" type="button" aria-label="تقريب" disabled>+</button>
+          <button id="zoom-out" class="zoom-button" type="button" aria-label="إبعاد" disabled>−</button>
+          <button id="reset" type="button" disabled>إعادة العرض</button>
+          <button id="isolate" type="button" aria-pressed="false" disabled>عزل المحدد</button>
           <button id="show-all" type="button" disabled>إظهار الكل</button>
         </div>
-        <span class="kbd-hint">لوحة المفاتيح: الأسهم للتدوير، +/− للتقريب، R لإعادة الضبط</span>
+        <span class="kbd-hint">اسحب للتدوير، قرّب بعجلة الفأرة أو بإصبعين. الأسهم و +/− و R تعمل عند تركيز العارض.</span>
       </div>
-
-      <section class="panel" style="padding:14px 16px" aria-label="تغطية العينة وحدود المسح">
-        <h2 style="margin:0 0 6px;font-size:1.05rem">تغطية العينة الفعلية والأجزاء الناقصة أو المندمجة</h2>
-        <p style="margin:0;font-size:0.9rem;color:var(--muted)">
-          المسح الأصلي سطح فوتوغرامتري واحد متصل (74,235 وجهًا). فُصلت فقط العظام والمناطق التي يمكن تمييز حدودها من البيانات،
-          وسُجّلت الأجزاء الناقصة أو المندمجة بوضوح دون اختلاق هندستها:
-        </p>
-        <ul class="coverage-list" id="coverage-list"></ul>
-      </section>
     </div>
-
-    <aside class="panel" aria-label="أدوات الدراسة وكتالوج العظام">
+    <aside class="panel" aria-label="مساحة الدراسة">
+      <div class="study-sidebar-heading"><h2>مساحة الدراسة</h2><p>استكشف البنى، واقرأ التفاصيل، وسجّل ملاحظاتك.</p></div>
       <p id="status" class="status-msg" role="status" aria-live="polite"></p>
-
-      <section class="card" aria-label="بطاقة العظم المحدد">
-        <h2 id="card-title">بطاقة العظم</h2>
+      <nav class="study-switcher" aria-label="أقسام مساحة الدراسة">
+        <button type="button" data-pane="browse" aria-controls="pane-browse" aria-pressed="true">العظام</button>
+        <button type="button" data-pane="info" aria-controls="pane-info" aria-pressed="false">المعلومات</button>
+        <button type="button" data-pane="notes" aria-controls="pane-notes" aria-pressed="false">الملاحظات</button>
+        <button type="button" data-pane="layers" aria-controls="pane-layers" aria-pressed="false">المناطق</button>
+      </nav>
+      <section id="pane-browse" class="study-pane" aria-label="دليل العظام">
+        <h3>دليل البنى التشريحية</h3>
+        <label for="bone-search">البحث بالعربية / الإنجليزية / اللاتينية</label>
+        <input id="bone-search" type="search" placeholder="الجمجمة، Humerus، الفخذ…">
+        <label for="region-filter" style="margin-top:12px">المنطقة</label>
+        <select id="region-filter"><option value="all">جميع المناطق</option></select>
+        <label for="part" hidden>البنية المحددة</label><select id="part" hidden><option value="">ملاحظات عامة على العينة</option></select>
+        <div class="list-meta"><span id="bone-count" role="status"></span><button id="select-overview" type="button">العينة كاملة</button></div>
+        <div id="bone-list" class="bone-list" aria-label="البنى القابلة للتحديد"></div>
+      </section>
+      <section id="pane-info" class="study-pane" aria-label="معلومات البنية" hidden>
+        <div class="selected-summary"><h3 id="card-title">العينة كاملة</h3><p id="card-ar" hidden></p><p id="card-en" dir="ltr"></p><p id="card-la" class="latin"></p></div>
+        <p id="no-selection" class="notes-help">اختر بنية من القائمة أو بالنقر على المجسم لعرض تسمياتها ومعلوماتها.</p>
         <dl class="meta-grid" id="card-meta">
-          <dt>العربي</dt><dd id="card-ar">اختر عظمًا بالنقر على المجسم أو من القائمة</dd>
-          <dt>الإنجليزي</dt><dd id="card-en">—</dd>
-          <dt>اللاتيني (NAV)</dt><dd id="card-la" class="latin">—</dd>
-          <dt>نوع العقدة</dt><dd id="card-kind">—</dd>
-          <dt>المعرّف الثابت</dt><dd id="card-id" class="mono">—</dd>
+          <dt>نوع البنية</dt><dd id="card-kind">—</dd>
           <dt>المنطقة / الجهة</dt><dd id="card-region">—</dd>
-          <dt>المصدر</dt><dd id="card-source">—</dd>
-          <dt>حالة المراجعة</dt><dd id="card-review">—</dd>
-          <dt>ملاحظة التغطية</dt><dd id="card-coverage">—</dd>
-          <dt>المرجع في الأطلس المطبوع</dt><dd id="card-book-ref" class="latin">—</dd>
-          <dt>معالم القطة التشريحية</dt><dd id="card-landmarks">—</dd>
+          <dt>التغطية التشريحية</dt><dd id="card-coverage">—</dd>
+          <dt>المعالم التشريحية</dt><dd id="card-landmarks">—</dd>
           <dt>العضلات المرتبطة</dt><dd id="card-muscles">—</dd>
           <dt>الأوعية والأعصاب المجاورة</dt><dd id="card-vessels-nerves">—</dd>
         </dl>
+        <details class="study-details"><summary>المصدر وحالة المراجعة</summary><dl class="meta-grid">
+          <dt>المصدر</dt><dd id="card-source">—</dd>
+          <dt>حالة المراجعة</dt><dd id="card-review">—</dd>
+          <dt>مرجع الأطلس المطبوع</dt><dd id="card-book-ref" class="latin">—</dd>
+          <dt>المعرّف الثابت</dt><dd id="card-id" class="mono">—</dd>
+        </dl></details>
+        <div class="note-actions" style="margin-top:12px"><button type="button" data-open-pane="notes" class="primary">دوّن ملاحظة</button><button type="button" data-open-pane="browse">كل العظام</button></div>
       </section>
-
-      <section aria-label="قائمة العظام والبحث">
-        <label for="bone-search">البحث في العظام (عربي / إنجليزي / لاتيني)</label>
-        <input id="bone-search" type="search" placeholder="مثال: الجمجمة، Humerus، الفخذ…">
-        <label for="region-filter" style="margin-top:8px">تصفية حسب المنطقة</label>
-        <select id="region-filter"><option value="all">جميع المناطق (26 عقدة)</option></select>
-        <label for="part" style="margin-top:8px">العظم المحدد</label>
-        <select id="part"><option value="">ملاحظات عامة على العينة</option></select>
-        <div id="bone-list" class="bone-list" role="listbox" aria-label="قائمة العظام القابلة للتحديد" style="margin-top:8px"></div>
+      <section id="pane-notes" class="study-pane" aria-label="ملاحظاتي الشخصية" hidden>
+        <h3>ملاحظاتي الشخصية</h3><span id="note-scope" class="notes-scope">العينة كاملة</span>
+        <p class="notes-help">تُحفظ الملاحظات على هذا المتصفح فقط، وترتبط بالعينة والبنية المحددة. لا تعدّل البيانات العلمية ولا تُرسل إلى الخادم.</p>
+        <label for="note">ملاحظتك</label><textarea id="note" maxlength="4000" placeholder="اكتب ملاحظاتك أو أسئلة المراجعة هنا…"></textarea>
+        <div class="note-feedback"><span id="note-status" role="status">لا توجد تغييرات</span><span id="note-length">0 / 4000</span></div>
+        <div class="note-actions"><button id="save" type="button" class="primary">حفظ الآن</button><button id="delete-note" type="button">حذف الملاحظة</button></div>
+        <details class="study-details" open><summary>الملاحظات المحفوظة <span id="notes-count"></span></summary><div id="saved-notes" class="note-list"></div></details>
+        <button id="export" type="button" style="width:100%;margin-top:12px">تنزيل نسخة من ملاحظاتي (JSON)</button>
       </section>
-
-      <section class="card" aria-label="تلوين العظم والملاحظات">
-        <div class="btn-row" style="margin-bottom:10px">
-          <div>
-            <label for="color">لون العظم المحدد</label>
-            <input id="color" type="color" value="#3b74d9" disabled>
-          </div>
-          <button id="clear-color" type="button" disabled style="margin-top:22px">استعادة اللون الأصلي</button>
-        </div>
-
-        <label for="note">ملاحظاتي (مرتبطة بالعينة ومعرّف العظم)</label>
-        <textarea id="note" maxlength="4000" placeholder="اكتب ملاحظاتك التشريحية هنا…"></textarea>
-        <div class="btn-row" style="margin-top:8px">
-          <button id="save" type="button" class="primary">حفظ الملاحظة</button>
-          <button id="export" type="button">تصدير الملاحظات والألوان (JSON)</button>
-        </div>
-      </section>
-
-      <fieldset>
-        <legend>إدارة الطبقات</legend>
+      <section id="pane-layers" class="study-pane" aria-label="الطبقات والألوان" hidden>
+        <h3>العرض والألوان</h3><div class="color-tools"><div><label for="color">لون البنية المحددة</label><input id="color" type="color" value="#19766b" disabled></div><button id="clear-color" type="button" disabled>استعادة اللون</button></div>
+        <fieldset>
+        <legend>المناطق المرئية</legend>
         <div id="layer-list">جارٍ تهيئة الطبقات…</div>
         <div id="region-layers" style="margin-top:6px;padding-top:6px;border-top:1px solid var(--border)"></div>
         <p class="artery-note" id="arteries-status">
           طبقة الشرايين: غير مضافة حاليًا لعدم توفر هندسة شرايين موثّقة لقطة وبيانات مطابقة مكانية متسقة.
         </p>
       </fieldset>
-
-      <details class="upload-box">
-        <summary>رفع ملف GLB محلي (خيار إضافي للتجربة)</summary>
-        <p style="margin:6px 0 8px;font-size:0.86rem;color:var(--muted)">
-          يمكنك إضافة ملف GLB من جهازك كطبقة تجريبية داخل المتصفح فقط دون رفعه إلى الخادم (حد أقصى 25 ميغابايت).
-        </p>
-        <label for="file">اختيار ملف GLB</label>
-        <input id="file" type="file" accept=".glb">
-      </details>
+        <p class="notes-help" style="margin-top:12px">تتوفر فقط العينات التي ينشرها الأطلس. لا يمكن استيراد ملفات أو مجسمات شخصية.</p>
+      </section>
     </aside>
   </div>
+  <details class="panel coverage-panel"><summary>تغطية العينة والأجزاء الناقصة أو المندمجة</summary>
+        
+        <p style="margin:0;font-size:0.9rem;color:var(--muted)">
+          المسح الأصلي سطح فوتوغرامتري واحد متصل (74,235 وجهًا). فُصلت فقط العظام والمناطق التي يمكن تمييز حدودها من البيانات،
+          وسُجّلت الأجزاء الناقصة أو المندمجة بوضوح دون اختلاق هندستها:
+        </p>
+        <ul class="coverage-list" id="coverage-list"></ul>
+      </details>
 
   <section id="sources-and-acknowledgements" class="panel sources-section" aria-labelledby="sources-heading">
     <h2 id="sources-heading">المصادر والشكر</h2>
