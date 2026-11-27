@@ -11,3 +11,15 @@
 .atlas-search-controls input{flex:1;min-width:0}.atlas-search-controls select{font:inherit;color:var(--atlas-ink);background:white;border:1px solid var(--atlas-border);border-radius:10px;min-height:44px;padding:8px 12px}
 :focus-visible{outline:3px solid #19766B;outline-offset:3px}
 @media(max-width:480px){.atlas-search-controls{align-items:stretch;flex-direction:column}.atlas-search-controls input{width:100%}.atlas-studio-nav{gap:10px}.brand-mark{width:38px}}
+
+/* Species detail: clear hierarchy and compact entry points. */
+.species-detail .section-header{margin-bottom:20px}
+.species-section-title{font-size:clamp(1.15rem,2vw,1.5rem);margin:24px 0 12px}
+.species-system-card{display:flex;flex-direction:column;align-items:flex-start;gap:8px}
+.species-system-card h3,.species-system-card p{margin:0}
+.species-system-card .btn{margin-top:auto;width:100%;justify-content:center}
+.species-regions{padding-top:12px}
+.species-region-grid{grid-template-columns:repeat(auto-fit,minmax(min(100%,180px),1fr))}
+.species-region-grid .system-card{min-height:84px;gap:6px;justify-content:center}
+.species-coverage summary{cursor:pointer;font-weight:700;min-height:44px;display:flex;align-items:center;color:var(--atlas-teal)}
+.species-coverage p,.species-coverage li{font-size:.92rem;line-height:1.75;color:var(--atlas-muted)}
