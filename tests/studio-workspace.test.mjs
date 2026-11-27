@@ -26,11 +26,11 @@ test('list rows cannot shrink and notes are separated from science',()=>{
 });
 function mock(){
  const els=new Map();let value=null;let failure=false;
- const el=id=>{if(!els.has(id))els.set(id,{value:'',textContent:'',dataset:{},children:[],disabled:false,hidden:false,addEventListener(){},setAttribute(){},append(...x){this.children.push(...x)},replaceChildren(){this.children=[]},querySelectorAll(){return[]},focus(){}});return els.get(id)};
+ const el=id=>{if(!els.has(id))els.set(id,{value:'',textContent:'',dataset:{},children:[],style:{},checked:false,scrollTop:0,disabled:false,hidden:false,addEventListener(){},setAttribute(){},append(...x){this.children.push(...x)},replaceChildren(){this.children=[]},querySelectorAll(){return[]},focus(){}});return els.get(id)};
  const ctx=vm.createContext({document:{body:{dataset:{specimen:'cat-test'}},getElementById:el,querySelectorAll:()=>[],createElement:()=>el(Symbol()),addEventListener(){}},window:{addEventListener(){}},localStorage:{getItem:()=>value,setItem:(k,v)=>{if(failure)throw Error('denied');value=v}},clearTimeout(){},setTimeout(){},confirm:()=>false});
  vm.runInContext(code.split('async function createViewer()')[0],ctx);
  const run=s=>vm.runInContext(s,ctx);
- run('noteReady=true');
+ run('noteReady=true');el('region-filter').value='all';
  return {el,run,read:()=>JSON.parse(value),fail:()=>failure=true};
 }
 test('notes saved by specimen and structure and erased by empty value',()=>{
@@ -46,4 +46,18 @@ test('failed save does not report success or mutate saved data',()=>{
  m.fail();m.el('note').value='unsaved';assert.equal(m.run('saveNote()'),false);
  assert.equal(m.read().specimens['cat-test'].notes['specimen:overview'],'first');
  assert.match(m.el('note-status').textContent,/تعذّر/);
+});
+
+test('filtered results use selected region, normalized names and existing note data',()=>{
+ const m=mock();
+ m.run("parts.set('a',{region:'head',structure:{names:{ar:'الجمجمة',en:'Cranium',la:'Cranium'}}});parts.set('b',{region:'limb',structure:{names:{ar:'الفخذ',en:'Femur',la:'Femur'}}});");
+ assert.deepEqual(Array.from(m.run('filteredIds()')),['a','b']);
+ m.el('bone-search').value='femur';assert.deepEqual(Array.from(m.run('filteredIds()')),['b']);
+ m.el('bone-search').value='';m.el('region-filter').value='head';assert.deepEqual(Array.from(m.run('filteredIds()')),['a']);
+ m.el('region-filter').value='all';m.el('notes-only').checked=true;m.run("specimenBucket().notes.b='review'");
+ assert.deepEqual(Array.from(m.run('filteredIds()')),['b']);
+});
+test('all seven camera directions and focus controls are available on both studios',()=>{
+ for(const a of all){const html=read('site/'+a+'/skeleton/index.html');for(const v of ['perspective','left','right','cranial','caudal','dorsal','ventral'])assert.ok(html.includes('value="'+v+'"'));assert.match(html,/id="focus-mode"/);assert.match(html,/id="fit-selection"/);}
+ assert.match(code,/const VIEW_DIRECTIONS/);
 });

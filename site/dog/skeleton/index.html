@@ -334,38 +334,42 @@
 <body data-specimen="canis-familiaris-tavernier-2024">
 <main>
   <div class="atlas-studio-nav"><a class="atlas-studio-brand" href="/#/"><img src="/assets/atlas-mark.svg" alt="" width="360" height="243"><span>الأطلس البيطري العربي<small>The Arabic Vet Atlas</small></span></a><a href="/#/animals">الكائنات</a><a href="/#/articles">المقالات</a></div>
-  <div class="topbar">
-    <nav aria-label="التنقل" style="display:flex;flex-wrap:wrap;gap:8px;align-items:center"><a class="back-link" href="/#/">الرئيسية</a><a class="back-link" href="/#/animals/dog">← صفحة الكلب</a><a class="back-link" href="/#/search">البحث</a><a class="back-link" href="/#/sources">المصادر والمنهجية</a></nav>
-    <span class="badge" id="review-badge">متاح للجميع (مسودة علمية • بانتظار المراجعة التشريحية التخصصية)</span>
-  </div>
-
-  <h1>الجهاز الهيكلي للكلب المنزلي (<span class="latin">Canis lupus familiaris</span>)</h1>
-  <div class="studio-intro"><details><summary>عن العينة وحدودها</summary><p class="subtitle">
+  <header class="study-heading">
+    <nav class="study-crumb" aria-label="مسار الدراسة"><a href="/#/animals">الكائنات</a><span aria-hidden="true">/</span><a href="/#/animals/dog">الكلب</a><span aria-hidden="true">/</span><span aria-current="page">الهيكل العظمي</span></nav>
+    <div class="study-title-row"><h1>الجهاز الهيكلي للكلب المنزلي (<span class="latin">Canis lupus familiaris</span>)</h1><span class="badge" id="review-badge">متاح للجميع (مسودة علمية • بانتظار المراجعة التشريحية التخصصية)</span></div>
+    <div class="study-intro-row"><details><summary>عن العينة وحدودها</summary><p class="subtitle">
     استوديو دراسة ثلاثي الأبعاد يستضيف نسخة مشتقة من مسح فوتوغرامتري حقيقي لهيكل كلب كامل،
     مفصولة إلى 26 عقدة تشريحية قابلة للتحديد (10 عظام منفردة + 16 مجموعة عظام مندمجة سطحيًا) ومربوطة بتسميات NAV (الطبعة السادسة، 2017) دون اختلاق هندسة. العينة متاحة للدراسة، لكن مراجعتها التشريحية التخصصية لم تكتمل بعد.
-  </p></details></div>
+  </p></details><a href="#sources-and-acknowledgements">المصادر والترخيص</a></div>
+  </header>
 
   <div class="workspace">
     <div class="stage-wrap">
-      <div class="stage-heading"><div><h2 id="stage-selection">العينة كاملة</h2><small id="stage-selection-latin">اختر بنية من المجسم أو القائمة</small></div><button id="open-notes" type="button">ملاحظاتي</button></div>
+      <div class="stage-heading"><div><h2 id="stage-selection">العينة كاملة</h2><small id="stage-selection-latin">اختر بنية من المجسم أو القائمة</small></div><div class="stage-actions"><button id="open-notes" type="button">ملاحظاتي</button><button id="focus-mode" type="button" aria-pressed="false" aria-label="وضع التركيز">⛶ <span>تركيز</span></button></div></div>
       <section id="stage" tabindex="0" aria-label="عارض الجهاز الهيكلي للكلب ثلاثي الأبعاد">
+        <div class="viewport-tag" aria-hidden="true"><span></span> نموذج الأطلس</div>
         <div id="stage-overlay">
           <p id="empty" style="margin:0">جارٍ تحميل عينة هيكل الكلب من استضافة الأطلس…</p>
         </div>
       </section>
+      <div class="view-strip" aria-label="زوايا العرض">
+        <label for="view-angle">زاوية العرض</label>
+        <select id="view-angle" disabled><option value="perspective">منظور مائل</option><option value="left">الجانب الأيسر</option><option value="right">الجانب الأيمن</option><option value="cranial">من الأمام (قحفي)</option><option value="caudal">من الخلف (ذيلي)</option><option value="dorsal">من الأعلى (ظهري)</option><option value="ventral">من الأسفل (بطني)</option><option value="custom" disabled>منظور حر</option></select>
+        <span id="view-caption">عرض كامل للعينة</span>
+      </div>
       <div class="stage-bar">
         <div class="btn-row">
           <button id="zoom-in" class="zoom-button" type="button" aria-label="تقريب" disabled>+</button>
           <button id="zoom-out" class="zoom-button" type="button" aria-label="إبعاد" disabled>−</button>
           <button id="reset" type="button" disabled>إعادة العرض</button>
           <button id="isolate" type="button" aria-pressed="false" disabled>عزل المحدد</button>
-          <button id="show-all" type="button" disabled>إظهار الكل</button>
+          <button id="show-all" type="button" disabled>إظهار الكل</button><button id="fit-selection" type="button" disabled>تكبير المحدد</button>
         </div>
         <span class="kbd-hint">اسحب للتدوير، قرّب بعجلة الفأرة أو بإصبعين. الأسهم و +/− و R تعمل عند تركيز العارض.</span>
       </div>
     </div>
     <aside class="panel" aria-label="مساحة الدراسة">
-      <div class="study-sidebar-heading"><h2>مساحة الدراسة</h2><p>استكشف البنى، واقرأ التفاصيل، وسجّل ملاحظاتك.</p></div>
+      <div class="study-sidebar-heading"><h2>مساحة الدراسة</h2><span id="study-progress" class="study-progress">جارٍ التحميل…</span></div>
       <p id="status" class="status-msg" role="status" aria-live="polite"></p>
       <nav class="study-switcher" aria-label="أقسام مساحة الدراسة">
         <button type="button" data-pane="browse" aria-controls="pane-browse" aria-pressed="true">العظام</button>
@@ -376,15 +380,15 @@
       <section id="pane-browse" class="study-pane" aria-label="دليل العظام">
         <h3>دليل البنى التشريحية</h3>
         <label for="bone-search">البحث بالعربية / الإنجليزية / اللاتينية</label>
-        <input id="bone-search" type="search" placeholder="الجمجمة، Humerus، الفخذ…">
+        <div class="study-search"><input id="bone-search" type="search" placeholder="الجمجمة، Humerus، الفخذ…"><button id="clear-search" type="button" aria-label="مسح البحث" disabled>×</button></div>
         <label for="region-filter" style="margin-top:12px">المنطقة</label>
         <select id="region-filter"><option value="all">جميع المناطق</option></select>
         <label for="part" hidden>البنية المحددة</label><select id="part" hidden><option value="">ملاحظات عامة على العينة</option></select>
-        <div class="list-meta"><span id="bone-count" role="status"></span><button id="select-overview" type="button">العينة كاملة</button></div>
+        <label class="note-filter"><input id="notes-only" type="checkbox"> البنى التي دوّنت عليها ملاحظات فقط</label><div class="list-meta"><span id="bone-count" role="status"></span><button id="select-overview" type="button">العينة كاملة</button></div>
         <div id="bone-list" class="bone-list" aria-label="البنى القابلة للتحديد"></div>
       </section>
       <section id="pane-info" class="study-pane" aria-label="معلومات البنية" hidden>
-        <div class="selected-summary"><h3 id="card-title">العينة كاملة</h3><p id="card-ar" hidden></p><p id="card-en" dir="ltr"></p><p id="card-la" class="latin"></p></div>
+        <div class="selection-navigation"><button id="prev-bone" type="button" disabled aria-label="البنية السابقة">السابق</button><span id="selection-index">العينة كاملة</span><button id="next-bone" type="button" disabled aria-label="البنية التالية">التالي</button></div><div class="selected-summary"><h3 id="card-title">العينة كاملة</h3><p id="card-ar" hidden></p><p id="card-en" dir="ltr"></p><p id="card-la" class="latin"></p><button id="copy-names" type="button" disabled>نسخ المسميات</button></div>
         <p id="no-selection" class="notes-help">اختر بنية من القائمة أو بالنقر على المجسم لعرض تسمياتها ومعلوماتها.</p>
         <dl class="meta-grid" id="card-meta">
           <dt>نوع البنية</dt><dd id="card-kind">—</dd>
@@ -409,7 +413,7 @@
         <div class="note-feedback"><span id="note-status" role="status">لا توجد تغييرات</span><span id="note-length">0 / 4000</span></div>
         <div class="note-actions"><button id="save" type="button" class="primary">حفظ الآن</button><button id="delete-note" type="button">حذف الملاحظة</button></div>
         <details class="study-details" open><summary>الملاحظات المحفوظة <span id="notes-count"></span></summary><div id="saved-notes" class="note-list"></div></details>
-        <button id="export" type="button" style="width:100%;margin-top:12px">تنزيل نسخة من ملاحظاتي (JSON)</button>
+        <button id="export" type="button" style="width:100%;margin-top:12px">تنزيل نسخة من ملاحظاتي (JSON)</button><p class="notes-help" style="margin-top:10px">قد تفقد الملاحظات عند حذف بيانات المتصفح. احتفظ بنسخة إذا احتجتها.</p>
       </section>
       <section id="pane-layers" class="study-pane" aria-label="الطبقات والألوان" hidden>
         <h3>العرض والألوان</h3><div class="color-tools"><div><label for="color">لون البنية المحددة</label><input id="color" type="color" value="#19766b" disabled></div><button id="clear-color" type="button" disabled>استعادة اللون</button></div>

@@ -49,6 +49,8 @@ jobs:
         run: npx --no-install playwright install chromium
       - name: Run Khronos glTF-Validator & real Viewer.tsx 360px WebGL E2E smoke
         run: node scripts/khronos-and-browser-smoke.mjs
+      - name: Run production study workspace browser smoke
+        run: node scripts/studio-browser-smoke.mjs
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4 verified upstream
         with:
           name: mobile-webgl-smoke-artifacts
