@@ -260,7 +260,6 @@ function saveNote(force = false) {
   renderSavedNotes();
   renderBoneList();
   window.__syncStudyUx?.();
-  return true;
 }
 get('note').disabled = true;
 get('save').disabled = true;
@@ -792,6 +791,13 @@ initAtlasSpecimen();
 // === Subpage Study UX Upgrade (Floating HUD, Tri-Lingual Copy Tiles, Auto-Hide Empty Info, Pro Notes) ===
 (function initStudyUxEnhancements() {
   const byId = id => document.getElementById(id);
+  const exitFocusIfActive = () => {
+    if (document.body.classList.contains('study-focus')) {
+      document.body.classList.remove('study-focus');
+      get('focus-mode')?.setAttribute('aria-pressed', 'false');
+    }
+  };
+
   const stageEl = get('stage');
   let hudEl = null;
   if (stageEl && !byId('stage-hud')) {
@@ -816,15 +822,19 @@ initAtlasSpecimen();
         <button type="button" id="hud-isolate">عزل</button>
       </div>`;
     stageEl.append(hudEl);
-    byId('hud-open-info').addEventListener('click', () => { if (typeof openPane === 'function') openPane('info'); });
+    byId('hud-open-info').addEventListener('click', () => {
+      exitFocusIfActive();
+      if (typeof openPane === 'function') openPane('info');
+    });
     byId('hud-open-notes').addEventListener('click', () => {
+      exitFocusIfActive();
       if (typeof openPane === 'function') openPane('notes');
       setTimeout(() => get('note')?.focus(), 40);
     });
     byId('hud-isolate').addEventListener('click', () => get('isolate')?.click());
   }
 
-  // Inject click-to-copy tri-lingual tiles inside .selected-summary
+  // Click-to-copy tri-lingual tiles inside .selected-summary
   const summaryBox = document.querySelector('#pane-info .selected-summary');
   if (summaryBox && !byId('name-tiles')) {
     const tiles = document.createElement('div');
@@ -832,23 +842,27 @@ initAtlasSpecimen();
     tiles.className = 'name-tiles';
     tiles.hidden = true;
     tiles.innerHTML = `
-      <button type="button" class="name-tile" data-copy-target="card-ar"><span class="name-tile-label">العربي</span><span class="name-tile-val" id="tile-ar"></span><span class="name-tile-copy">نسخ</span></button>
-      <button type="button" class="name-tile" data-copy-target="card-en"><span class="name-tile-label">English</span><span class="name-tile-val" id="tile-en" dir="ltr"></span><span class="name-tile-copy">نسخ</span></button>
-      <button type="button" class="name-tile" data-copy-target="card-la"><span class="name-tile-label">NAV</span><span class="name-tile-val" id="tile-la" dir="ltr"></span><span class="name-tile-copy">نسخ</span></button>`;
+      <button type="button" class="name-tile"><span class="name-tile-label">العربي</span><span class="name-tile-val" id="tile-ar"></span><span class="name-tile-copy">نسخ</span></button>
+      <button type="button" class="name-tile"><span class="name-tile-label">English</span><span class="name-tile-val" id="tile-en" dir="ltr"></span><span class="name-tile-copy">نسخ</span></button>
+      <button type="button" class="name-tile"><span class="name-tile-label">NAV</span><span class="name-tile-val" id="tile-la" dir="ltr"></span><span class="name-tile-copy">نسخ</span></button>`;
     const copyBtn = get('copy-names');
     summaryBox.insertBefore(tiles, copyBtn || null);
     tiles.querySelectorAll('.name-tile').forEach(btn => {
       btn.addEventListener('click', async () => {
         const val = btn.querySelector('.name-tile-val')?.textContent?.trim();
         if (!val || val === '—') return;
-        try { await navigator.clipboard.writeText(val); } catch {}
         const lbl = btn.querySelector('.name-tile-copy');
-        if (lbl) { lbl.textContent = 'تم النسخ ✓'; setTimeout(() => { lbl.textContent = 'نسخ'; }, 1400); }
+        try {
+          await navigator.clipboard.writeText(val);
+          if (lbl) { lbl.textContent = 'تم النسخ ✓'; setTimeout(() => { lbl.textContent = 'نسخ'; }, 1400); }
+        } catch {
+          if (lbl) { lbl.textContent = 'تعذّر النسخ'; setTimeout(() => { lbl.textContent = 'نسخ'; }, 1600); }
+        }
       });
     });
   }
 
-  // Inject Quick Study Tag Chips above textarea#note + Markdown study-sheet export buttons
+  // Quick Study Tag Chips above textarea#note + Markdown study-sheet export buttons
   const noteInput = get('note');
   if (noteInput && !byId('note-templates')) {
     const chipsWrap = document.createElement('div');
@@ -866,8 +880,7 @@ initAtlasSpecimen();
       b.addEventListener('click', () => {
         if (noteInput.disabled) return;
         const cur = noteInput.value;
-        noteInput.value = cur ? `${cur.trimEnd()}
-${p.text}` : p.text;
+        noteInput.value = cur ? `${cur.trimEnd()}\n${p.text}` : p.text;
         noteInput.focus();
         noteInput.dispatchEvent(new Event('input', { bubbles: true }));
       });
@@ -888,26 +901,30 @@ ${p.text}` : p.text;
     exportBtn.parentNode.insertBefore(row, exportBtn);
 
     function buildMarkdownNotes() {
-      const notes = specimenBucket().notes;
+      const notes = { ...specimenBucket().notes };
+      // Preserve live unsaved textarea edits for the currently selected structure
+      const curId = selectedId();
+      const curVal = get('note')?.value ?? '';
+      if (curVal.trim()) notes[curId] = curVal;
       const entries = Object.entries(notes).filter(([id, v]) => (id === 'specimen:overview' || parts.has(id)) && typeof v === 'string' && v.trim());
       const title = catalog?.specimen?.titleAr || 'ملاحظات الأطلس البيطري العربي';
-      if (!entries.length) return `# ${title}
-
-لا توجد ملاحظات محفوظة بعد.
-`;
+      if (!entries.length) return `# ${title}\n\nلا توجد ملاحظات محفوظة بعد.\n`;
       const lines = [`# ${title}`, ''];
       for (const [id, v] of entries) {
         const s = parts.get(id)?.structure;
         const heading = s ? `${s.names.ar} (${s.names.en} — *${s.names.la}*)` : noteLabel(id);
         lines.push(`## ${heading}`, '', v.trim(), '');
       }
-      return lines.join('
-');
+      return lines.join('\n');
     }
 
     copyAllBtn.addEventListener('click', async () => {
-      try { await navigator.clipboard.writeText(buildMarkdownNotes()); } catch {}
-      copyAllBtn.textContent = 'تم نسخ الملخص ✓';
+      try {
+        await navigator.clipboard.writeText(buildMarkdownNotes());
+        copyAllBtn.textContent = 'تم نسخ الملخص ✓';
+      } catch {
+        copyAllBtn.textContent = 'تعذّر النسخ';
+      }
       setTimeout(() => { copyAllBtn.textContent = 'نسخ ملخص ملاحظاتي'; }, 1600);
     });
     mdBtn.addEventListener('click', () => {
@@ -920,7 +937,7 @@ ${p.text}` : p.text;
     });
   }
 
-  // Add live badge counter on Notes tab button & top ملاحظاتي button
+  // Live badge counter on Notes tab button & top ملاحظاتي button
   const notesTabBtn = document.querySelector('.study-switcher button[data-pane="notes"]');
   let tabBadge = null;
   if (notesTabBtn && !notesTabBtn.querySelector('.tab-badge')) {
@@ -930,13 +947,11 @@ ${p.text}` : p.text;
     notesTabBtn.append(tabBadge);
   }
 
-  // Helper to sync HUD, tiles, auto-hide empty info rows, and enhanced saved notes cards
   window.__syncStudyUx = function syncStudyUx() {
     const id = selectedId();
     const part = parts.get(id);
     const s = part?.structure;
 
-    // 1. Update Floating 3D HUD
     if (hudEl) {
       hudEl.hidden = !s;
       if (s) {
@@ -948,7 +963,6 @@ ${p.text}` : p.text;
       }
     }
 
-    // 2. Update Tri-Lingual Copy Tiles
     const tiles = byId('name-tiles');
     if (tiles) {
       tiles.hidden = !s;
@@ -959,11 +973,9 @@ ${p.text}` : p.text;
       }
     }
 
-    // 3. Auto-hide empty '—' rows in #card-meta
     const metaDl = get('card-meta');
     if (metaDl) {
-      const dts = metaDl.querySelectorAll('dt');
-      dts.forEach(dt => {
+      metaDl.querySelectorAll('dt').forEach(dt => {
         const dd = dt.nextElementSibling;
         if (!dd || dd.tagName !== 'DD') return;
         const val = (dd.textContent || '').trim();
@@ -973,7 +985,6 @@ ${p.text}` : p.text;
       });
     }
 
-    // 4. Sync Notes Badge Counter & Upgrade Saved Notes Cards
     if (catalog?.specimen?.id) {
       const notes = specimenBucket().notes;
       const entries = Object.entries(notes).filter(([nid, v]) => (nid === 'specimen:overview' || parts.has(nid)) && typeof v === 'string' && v.trim());
