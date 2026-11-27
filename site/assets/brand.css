@@ -1,0 +1,13 @@
+/* Approved Atlas visual identity. Keep existing ivory for seamless mascot sprites. */
+:root{--atlas-teal:#044442;--atlas-teal-hover:#063533;--atlas-ivory:#F7F4EC;--atlas-soft:#E5EFEB;--atlas-ink:#183634;--atlas-muted:#49625D;--atlas-border:#D1DCD5;
+--bg-canvas:var(--atlas-ivory);--bg-cobalt:var(--atlas-teal);--bg-cobalt-hover:var(--atlas-teal-hover);--bg-cobalt-soft:var(--atlas-soft);--ink-primary:var(--atlas-ink);--ink-secondary:#344E49;--ink-muted:var(--atlas-muted);--bg:var(--atlas-ivory);--ink:var(--atlas-ink);--muted:var(--atlas-muted);--accent:var(--atlas-teal);--accent-soft:var(--atlas-soft);--border:var(--atlas-border)}
+.brand-mark{width:48px;height:40px;background:transparent;box-shadow:none;border-radius:0}
+.brand-mark img{width:100%;height:auto}.brand-sub{direction:ltr;text-align:start}
+.atlas-studio-brand{display:inline-flex;align-items:center;gap:10px;font-weight:700;text-decoration:none;min-height:44px;color:var(--atlas-teal)}
+.atlas-studio-brand img{width:44px;height:auto}.atlas-studio-brand small{display:block;font-size:.73rem;font-weight:400;direction:ltr;text-align:start}
+.atlas-studio-nav{display:flex;align-items:center;gap:14px;flex-wrap:wrap;border-bottom:1px solid var(--atlas-border);padding-bottom:14px;margin-bottom:16px}
+.atlas-studio-nav a:not(.atlas-studio-brand){min-height:44px;display:inline-flex;align-items:center}
+.atlas-search-controls{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-bottom:16px}
+.atlas-search-controls input{flex:1;min-width:0}.atlas-search-controls select{font:inherit;color:var(--atlas-ink);background:white;border:1px solid var(--atlas-border);border-radius:10px;min-height:44px;padding:8px 12px}
+:focus-visible{outline:3px solid #19766B;outline-offset:3px}
+@media(max-width:480px){.atlas-search-controls{align-items:stretch;flex-direction:column}.atlas-search-controls input{width:100%}.atlas-studio-nav{gap:10px}.brand-mark{width:38px}}
