@@ -174,6 +174,7 @@ let noteTimer;
 let savedNoteValue = '';
 let noteReady = false;
 function openPane(name, focus = false) {
+  if (focus) setFocusMode(false);
   activePane = name;
   for (const btn of document.querySelectorAll('[data-pane]')) {
     const active = btn.dataset.pane === name;
@@ -186,6 +187,33 @@ function openPane(name, focus = false) {
 document.querySelectorAll('[data-pane]').forEach(btn => btn.addEventListener('click', () => openPane(btn.dataset.pane)));
 document.querySelectorAll('[data-open-pane]').forEach(btn => btn.addEventListener('click', () => openPane(btn.dataset.openPane, true)));
 get('open-notes').addEventListener('click', () => openPane('notes', true));
+function setFocusMode(on) {
+  document.body.classList.toggle('study-focus', on);
+  get('focus-mode').setAttribute('aria-pressed', String(on));
+  get('focus-mode').querySelector('span').textContent = on ? 'إنهاء التركيز' : 'تركيز';
+  get('focus-mode').setAttribute('aria-label', on ? 'إنهاء وضع التركيز' : 'وضع التركيز');
+}
+get('focus-mode').addEventListener('click', () => setFocusMode(get('focus-mode').getAttribute('aria-pressed') !== 'true'));
+document.addEventListener('keydown', e => { if(e.key === 'Escape' && document.body.classList.contains('study-focus')) setFocusMode(false); });
+const VIEW_DIRECTIONS = {perspective:[-1.05,.30,-.46],left:[-1,0,0],right:[1,0,0],cranial:[0,0,-1],caudal:[0,0,1],dorsal:[0,1,-.0001],ventral:[0,-1,-.0001]};
+get('view-angle').addEventListener('change', () => {const a=get('view-angle').value;if(viewerReady && VIEW_DIRECTIONS[a]){viewer.fit(a);get('view-caption').textContent='عرض كامل للعينة';}});
+get('fit-selection').addEventListener('click', () => { const part=parts.get(selectedId());if(viewerReady && part){const layer=layers.get(part.layerId);if(layer)layer.toggle.checked=true;const region=regionToggles.get(part.region);if(region)region.checked=true;refreshVisibility();viewer.fit(get('view-angle').value,part.mesh);get('view-caption').textContent='عرض مقرّب للبنية المحددة';} });
+function filteredIds() {
+  const q=normalizeSearch(get('bone-search').value), region=get('region-filter').value, notes=specimenBucket().notes;
+  return [...parts].filter(([id,p])=>{const s=p.structure;return (region==='all'||p.region===region)&&(!get('notes-only').checked||Boolean(notes[id]?.trim()))&&(!q||normalizeSearch([s?.names.ar,s?.names.en,s?.names.la,s?.id,s?.regionAr,s?.lateralityAr,s?.bookRef,s?.felineLandmarksAr].filter(Boolean).join(' ')).includes(q));}).map(([id])=>id);
+}
+function updateSelectionNav() {
+  const ids=filteredIds(), i=ids.indexOf(selectedId());
+  get('selection-index').textContent=i<0?(parts.has(selectedId())?'خارج نتائج التصفية':'العينة كاملة'):(i+1)+' / '+ids.length;
+  get('prev-bone').disabled=i<=0;
+  get('next-bone').disabled=ids.length===0||i===ids.length-1;
+}
+get('prev-bone').addEventListener('click',()=>{const ids=filteredIds(),i=ids.indexOf(selectedId());if(i>0)selectPart(ids[i-1]);});
+get('next-bone').addEventListener('click',()=>{const ids=filteredIds(),i=ids.indexOf(selectedId());if(i+1<ids.length)selectPart(ids[i+1]);});
+get('clear-search').addEventListener('click',()=>{get('bone-search').value='';get('region-filter').value='all';get('notes-only').checked=false;renderBoneList();get('bone-search').focus();});
+get('notes-only').addEventListener('change',renderBoneList);
+get('copy-names').addEventListener('click',async()=>{const s=parts.get(selectedId())?.structure;if(!s)return;try{await navigator.clipboard.writeText([s.names.ar,s.names.en,s.names.la].join(' / '));statusEl.textContent='تم نسخ المسميات الثلاثة.';}catch{statusEl.textContent='تعذّر النسخ التلقائي. يمكنك تحديد الأسماء ونسخها يدويًا.';}});
+
 
 function noteLabel(id) {
   return id === 'specimen:overview' ? 'ملاحظات عامة على العينة' : parts.get(id)?.structure?.names.ar || id;
@@ -230,6 +258,7 @@ function saveNote(force = false) {
   savedNoteValue = value;
   get('note-status').textContent = 'محفوظة محليًا';
   renderSavedNotes();
+  renderBoneList();
   return true;
 }
 get('note').disabled = true;
@@ -284,6 +313,9 @@ function showSelection() {
   if (!hasPart) isolated = false;
   updateBoneCard(id); updateInfoVisibility(hasPart);
   updateBoneListSelection(id);
+  updateSelectionNav();
+  get('fit-selection').disabled = !hasPart || !viewerReady;
+  get('copy-names').disabled = !hasPart;
   ensureSelectedVisible();
   refreshVisibility();
   refreshAllMaterials();
@@ -305,17 +337,12 @@ function normalizeSearch(value) {
 
 function renderBoneList() {
   const listEl = get('bone-list');
-  const query = normalizeSearch(get('bone-search').value);
-  const region = get('region-filter').value;
+  const ids=filteredIds(), noted=specimenBucket().notes;
+  const scroll=listEl.scrollTop;
   listEl.replaceChildren();
-  let shown = 0;
-  for (const [id, part] of parts) {
-    const s = part.structure;
-    if (region !== 'all' && part.region !== region) continue;
-    const hay = s
-      ? `${s.names.ar} ${s.names.en} ${s.names.la} ${s.id} ${s.regionAr} ${s.lateralityAr} ${s.bookRef || ''} ${s.felineLandmarksAr || ''}`.toLowerCase()
-      : `${part.label} ${id}`.toLowerCase();
-    if (query && !normalizeSearch(hay).includes(query)) continue;
+  let shown=0;
+  for (const id of ids) {
+    const part=parts.get(id), s=part.structure;
     const btn = document.createElement('button');
     btn.type = 'button';
     btn.className = 'bone-item';
@@ -332,11 +359,16 @@ function renderBoneList() {
     rightSpan.textContent = s ? s.names.la : '';
     sub.append(leftSpan, rightSpan);
     btn.append(title, sub);
+    if(noted[id]?.trim()){const marker=document.createElement('span');marker.className='note-marker';marker.textContent='ملاحظة محفوظة';btn.append(marker);}
     btn.addEventListener('click', () => selectPart(id));
     listEl.append(btn);
     shown++;
   }
-  get('bone-count').textContent = shown + ' بنية';
+  get('bone-count').textContent = shown + ' من ' + parts.size + ' بنية';
+  get('clear-search').disabled = !get('bone-search').value && get('region-filter').value==='all' && !get('notes-only').checked;
+  get('study-progress').textContent=parts.size+' بنية تشريحية';
+  listEl.scrollTop=scroll;
+  updateSelectionNav();
   if (!shown) {
     const p = document.createElement('p');
     p.style.cssText = 'margin:8px;font-size:0.88rem;color:#4b5a70;text-align:center';
@@ -397,6 +429,7 @@ get('reset').addEventListener('click', () => {
   for (const cb of regionToggles.values()) cb.checked = true;
   refreshVisibility();
   viewer?.fit();
+  get('view-caption').textContent='عرض كامل للعينة';
 });
 
 get('export').addEventListener('click', () => {
@@ -488,6 +521,7 @@ async function createViewer() {
   };
   new ResizeObserver(resize).observe(stage);
   controls.addEventListener('change', render);
+  controls.addEventListener('start',()=>{get('view-angle').value='custom';get('view-caption').textContent='منظور حر';});
 
   const canvas = renderer.domElement;
   canvas.addEventListener('webglcontextlost', e => {
@@ -515,6 +549,8 @@ async function createViewer() {
       return;
     } else return;
     e.preventDefault();
+    get('view-angle').value='custom';
+    get('view-caption').textContent='منظور حر';
     offset.setFromSpherical(spherical);
     camera.position.copy(controls.target).add(offset);
     controls.update();
@@ -553,12 +589,12 @@ async function createViewer() {
     return url;
   });
 
-  function fit() {
-    const box = new THREE.Box3().setFromObject(group);
+  function fit(angle = 'perspective', target = group) {
+    const box = new THREE.Box3().setFromObject(target);
     const sphere = box.getBoundingSphere(new THREE.Sphere());
     if (!sphere.radius) return;
     const center = sphere.center;
-    const outward = new THREE.Vector3(-1.05, 0.30, -0.46).normalize();
+    const outward = angle==='custom' ? camera.position.clone().sub(controls.target).normalize() : new THREE.Vector3(...(VIEW_DIRECTIONS[angle] || VIEW_DIRECTIONS.perspective)).normalize();
     const right = new THREE.Vector3().crossVectors(camera.up, outward).normalize();
     const up = new THREE.Vector3().crossVectors(outward, right).normalize();
     const tanV = Math.tan(THREE.MathUtils.degToRad(camera.fov / 2));
@@ -577,6 +613,7 @@ async function createViewer() {
     camera.updateProjectionMatrix();
     controls.target.copy(center);
     controls.update();
+    get('view-angle').value=angle;
     render();
   }
 
@@ -709,6 +746,7 @@ async function initAtlasSpecimen() {
     get('show-all').disabled = false;
     get('zoom-in').disabled = false;
     get('zoom-out').disabled = false;
+    get('view-angle').disabled = false;
 
     const urlParams = new URLSearchParams(window.location.search);
     const reqRegion = urlParams.get('region');
