@@ -81,7 +81,11 @@
       "coverageNoteAr": "القحف والفك العلوي للكلب (يمتاز بوجود القناة الجناحية Alar canal و42 سنًا دائمة مع الفك السفلي).",
       "triangles": 13263,
       "nodeKind": "merged-group",
-      "nodeKindAr": "مجموعة عظام مندمجة سطحيًا"
+      "nodeKindAr": "مجموعة عظام مندمجة سطحيًا",
+      "bookRef": "Evans & de Lahunta, Miller's Anatomy of the Dog (4th Ed.); NAV 6th Ed.",
+      "felineLandmarksAr": "يمتاز قحف الكلب بوجود القناة الجناحية (Alar canal) وثقبيها القحفي والذيلي، وبصيغة سنية دائمة تضم 42 سنًا (20 علويًا و22 سفليًا) مع جيوب جبهية واضحة.",
+      "muscleAttachmentsAr": "منشأ العضلتين الصدغية والماضغة (Mm. temporalis, masseter) والعضلات الجناحية وعضلات التعبير الوجهي.",
+      "adjacentVesselsNervesAr": "الشريان الفكي العلوي داخل القناة الجناحية والأعصاب القحفية الـ12."
     },
     {
       "node": "mandibula",
@@ -103,7 +107,11 @@
       "coverageNoteAr": "الفك السفلي للكلب متمفصل بوضع مفتوح جزئيًا في المسح الفوتوغرامتري.",
       "triangles": 1266,
       "nodeKind": "single-bone",
-      "nodeKindAr": "عظمة منفردة"
+      "nodeKindAr": "عظمة منفردة",
+      "bookRef": "Miller's Anatomy of the Dog (4th Ed.); NAV 6th Ed.",
+      "felineLandmarksAr": "يحمل كل نصف فك سفلي في الكلب 3 قواطع ونابًا و4 ضواحك و3 أضراس (11 سنًا في كل جانب)، مع ناتئ منقاري عريض وحفرة ماضغية عميقة.",
+      "muscleAttachmentsAr": "ارتكاز الماضغة والصدغية والجناحيتين وذات البطنين.",
+      "adjacentVesselsNervesAr": "العصب السنخي السفلي والشريان السنخي السفلي داخل القناة الفكية."
     },
     {
       "node": "vertebrae_cervicales",
@@ -125,7 +133,11 @@
       "coverageNoteAr": "7 فقرات عنقية (C1–C7)؛ يمتلك الكلب رباطًا قفويًا (Ligamentum nuchae) خلافًا للقطة.",
       "triangles": 5260,
       "nodeKind": "merged-group",
-      "nodeKindAr": "مجموعة عظام مندمجة سطحيًا"
+      "nodeKindAr": "مجموعة عظام مندمجة سطحيًا",
+      "bookRef": "Miller's Anatomy of the Dog (4th Ed.); NAV 6th Ed.",
+      "felineLandmarksAr": "7 فقرات عنقية (C1–C7)؛ يمتاز الكلب بوجود الرباط القفوي (Ligamentum nuchae) الممتد من المحور C2 إلى T1 خلافًا للقطة.",
+      "muscleAttachmentsAr": "العضلات الطحالية والمعينية العنقية والذراعية الرأسية والطويلة للرقبة.",
+      "adjacentVesselsNervesAr": "الشريان والوريد الفقريان عبر الثقوب المستعرضة (C1–C6) وبداية الضفيرة العضدية (C6–C8)."
     },
     {
       "node": "vertebrae_thoracicae",
@@ -147,7 +159,11 @@
       "coverageNoteAr": "13 فقرة صدرية (T1–T13) مع الفقرة المائلة العكسية عند T11.",
       "triangles": 8972,
       "nodeKind": "merged-group",
-      "nodeKindAr": "مجموعة عظام مندمجة سطحيًا"
+      "nodeKindAr": "مجموعة عظام مندمجة سطحيًا",
+      "bookRef": "Miller's Anatomy of the Dog (4th Ed.); NAV 6th Ed.",
+      "felineLandmarksAr": "13 فقرة صدرية (T1–T13) بنواتئ شوكية عالية قحفيًا، والفقرة المائلة العكسية عند T11.",
+      "muscleAttachmentsAr": "العضلات فوق المحورية وشبه المنحرفة والمعينية والظهرية العريضة.",
+      "adjacentVesselsNervesAr": "الأورطي الصدري والوريد الفرد الأيمن والأعصاب الصدرية."
     },
     {
       "node": "vertebrae_lumbales",
@@ -169,7 +185,11 @@
       "coverageNoteAr": "7 فقرات قطنية قوية النواتئ المستعرضة.",
       "triangles": 7617,
       "nodeKind": "merged-group",
-      "nodeKindAr": "مجموعة عظام مندمجة سطحيًا"
+      "nodeKindAr": "مجموعة عظام مندمجة سطحيًا",
+      "bookRef": "Miller's Anatomy of the Dog (4th Ed.); NAV 6th Ed.",
+      "felineLandmarksAr": "7 فقرات قطنية قوية ذات نواتئ مستعرضة طويلة مائلة قحفيًا وبطنيًا.",
+      "muscleAttachmentsAr": "العضلات الطولية والبسواس الكبرى والصغرى والمربعة القطنية.",
+      "adjacentVesselsNervesAr": "الأورطي البطني والوريد الأجوف الخلفي وجذور الضفيرة القطنية العجزية."
     },
     {
       "node": "os_sacrum",
@@ -191,7 +211,11 @@
       "coverageNoteAr": "التحام 3 فقرات عجزية يتمفصل جانبيًا مع الحرقفة.",
       "triangles": 6947,
       "nodeKind": "single-bone",
-      "nodeKindAr": "عظمة منفردة"
+      "nodeKindAr": "عظمة منفردة",
+      "bookRef": "Miller's Anatomy of the Dog (4th Ed.); NAV 6th Ed.",
+      "felineLandmarksAr": "التحام 3 فقرات عجزية (S1–S3)؛ يرتبط في الكلب بالحدبة الإسكية عبر الرباط العجزي الحدبي (Lig. sacrotuberale).",
+      "muscleAttachmentsAr": "منشأ الألوية السطحية وذات الرأسين الفخذية (عبر الرباط العجزي الحدبي).",
+      "adjacentVesselsNervesAr": "الشريان العجزي الوسطي والأعصاب العجزية S1–S3."
     },
     {
       "node": "vertebrae_caudales",
@@ -301,7 +325,11 @@
       "coverageNoteAr": "الحرقفة والإسك والعانة اليسرى (يمتلك الكلب رباطًا عجزيًا حدبيًا خلافًا للقطة).",
       "triangles": 1593,
       "nodeKind": "single-bone",
-      "nodeKindAr": "عظمة منفردة"
+      "nodeKindAr": "عظمة منفردة",
+      "bookRef": "Miller's Anatomy of the Dog (4th Ed.); NAV 6th Ed.",
+      "felineLandmarksAr": "الحرقفة والإسك والعانة اليسرى؛ يرتبط بالرباط العجزي الحدبي (ميزة كلبية غائبة بالقطة).",
+      "muscleAttachmentsAr": "منشأ الألوية والخياطية المنقسمة إلى جزأين وذات الرأسين الفخذية وشبه الوترية.",
+      "adjacentVesselsNervesAr": "الشريانان الحرقفيان الظاهر والغائر والعصبان الوركي والسدادي."
     },
     {
       "node": "os_coxae_dextrum",
@@ -323,7 +351,11 @@
       "coverageNoteAr": "الحرقفة والإسك والعانة اليمنى.",
       "triangles": 1554,
       "nodeKind": "single-bone",
-      "nodeKindAr": "عظمة منفردة"
+      "nodeKindAr": "عظمة منفردة",
+      "bookRef": "Miller's Anatomy of the Dog (4th Ed.); NAV 6th Ed.",
+      "felineLandmarksAr": "الحرقفة والإسك والعانة اليمنى؛ يرتبط بالرباط العجزي الحدبي.",
+      "muscleAttachmentsAr": "منشأ الألوية والخياطية المنقسمة وذات الرأسين الفخذية وشبه الوترية.",
+      "adjacentVesselsNervesAr": "الشريانان الحرقفيان الظاهر والغائر والعصبان الوركي والسدادي."
     },
     {
       "node": "scapula_sinistra",
@@ -345,7 +377,11 @@
       "coverageNoteAr": "لوح الكتف الأيسر؛ يغيب الناتئ فوق الشصي الموجود في القطط.",
       "triangles": 192,
       "nodeKind": "single-bone",
-      "nodeKindAr": "عظمة منفردة"
+      "nodeKindAr": "عظمة منفردة",
+      "bookRef": "Miller's Anatomy of the Dog (4th Ed.); NAV 6th Ed.",
+      "felineLandmarksAr": "شوكة كتف بارزة تنتهي بأخرم بسيط (يغيب الناتئ فوق الشصي الموجود بالقطط).",
+      "muscleAttachmentsAr": "فوق وتحت الشوكة والدالية وتحت الكتفية وذات الرأسين العضدية.",
+      "adjacentVesselsNervesAr": "العصب فوق الكتف والعصب الإبطي والشريان تحت الكتف."
     },
     {
       "node": "scapula_dextra",
@@ -367,7 +403,11 @@
       "coverageNoteAr": "لوح الكتف الأيمن.",
       "triangles": 1302,
       "nodeKind": "single-bone",
-      "nodeKindAr": "عظمة منفردة"
+      "nodeKindAr": "عظمة منفردة",
+      "bookRef": "Miller's Anatomy of the Dog (4th Ed.); NAV 6th Ed.",
+      "felineLandmarksAr": "شوكة كتف بارزة تنتهي بأخرم بسيط دون ناتئ فوق شصي.",
+      "muscleAttachmentsAr": "فوق وتحت الشوكة والدالية وتحت الكتفية وذات الرأسين العضدية.",
+      "adjacentVesselsNervesAr": "العصب فوق الكتف والعصب الإبطي والشريان تحت الكتف."
     },
     {
       "node": "humerus_sinister",
@@ -389,7 +429,11 @@
       "coverageNoteAr": "يمتاز عضد الكلب بوجود الثقبة فوق البكرة (Supratrochlear foramen) وغياب الثقبة فوق اللقمة الإنسية.",
       "triangles": 1324,
       "nodeKind": "single-bone",
-      "nodeKindAr": "عظمة منفردة"
+      "nodeKindAr": "عظمة منفردة",
+      "bookRef": "Miller's Anatomy of the Dog (4th Ed.); NAV 6th Ed.",
+      "felineLandmarksAr": "سمة كلبية فارقة: وجود الثقبة فوق البكرة (Supratrochlear foramen) التي تصل الحفرة المرفقية بالكعبرية، وغياب الثقبة فوق اللقمة الإنسية الموجودة في القطة.",
+      "muscleAttachmentsAr": "ارتكاز الدالية والصدرية والظهرية العريضة؛ ومنشأ ثلاثية الرؤوس وباسطات وقابضات الساعد.",
+      "adjacentVesselsNervesAr": "العصب الكعبري وحشيًا والشريان العضدي والعصب المتوسط إنسيًا."
     },
     {
       "node": "humerus_dexter",
@@ -411,7 +455,11 @@
       "coverageNoteAr": "يمتاز عضد الكلب بوجود الثقبة فوق البكرة (Supratrochlear foramen).",
       "triangles": 1133,
       "nodeKind": "single-bone",
-      "nodeKindAr": "عظمة منفردة"
+      "nodeKindAr": "عظمة منفردة",
+      "bookRef": "Miller's Anatomy of the Dog (4th Ed.); NAV 6th Ed.",
+      "felineLandmarksAr": "سمة كلبية فارقة: وجود الثقبة فوق البكرة (Supratrochlear foramen) وغياب الثقبة فوق اللقمة الإنسية.",
+      "muscleAttachmentsAr": "ارتكاز الدالية والصدرية والظهرية العريضة؛ ومنشأ ثلاثية الرؤوس وباسطات وقابضات الساعد.",
+      "adjacentVesselsNervesAr": "العصب الكعبري وحشيًا والشريان العضدي والعصب المتوسط إنسيًا."
     },
     {
       "node": "antebrachium_sinistrum",
@@ -521,7 +569,11 @@
       "coverageNoteAr": "عظم الفخذ الأيسر (أكثر تقوّسًا قليلًا من فخذ القطة).",
       "triangles": 1492,
       "nodeKind": "single-bone",
-      "nodeKindAr": "عظمة منفردة"
+      "nodeKindAr": "عظمة منفردة",
+      "bookRef": "Miller's Anatomy of the Dog (4th Ed.); NAV 6th Ed.",
+      "felineLandmarksAr": "عظم الفخذ الأيسر أكثر تقوّسًا قليلًا من فخذ القطة مع مدوّرين كبير وصغير وبكرة رضفية واضحة.",
+      "muscleAttachmentsAr": "ارتكاز الألوية والمقربات؛ ومنشأ المتسعات والساقية (Gastrocnemius).",
+      "adjacentVesselsNervesAr": "الشريان والوريد الفخذیان والعصب الصافن إنسيًا، والوركي ذيليًا."
     },
     {
       "node": "femur_dexter",
@@ -543,7 +595,11 @@
       "coverageNoteAr": "عظم الفخذ الأيمن.",
       "triangles": 2004,
       "nodeKind": "single-bone",
-      "nodeKindAr": "عظمة منفردة"
+      "nodeKindAr": "عظمة منفردة",
+      "bookRef": "Miller's Anatomy of the Dog (4th Ed.); NAV 6th Ed.",
+      "felineLandmarksAr": "عظم الفخذ الأيمن بمدوّرين كبير وصغير ولقمتين قاصيتين لمفصل الركبة.",
+      "muscleAttachmentsAr": "ارتكاز الألوية والمقربات؛ ومنشأ المتسعات والساقية.",
+      "adjacentVesselsNervesAr": "الشريان والوريد الفخذیان والعصب الصافن إنسيًا، والوركي ذيليًا."
     },
     {
       "node": "crus_sinistrum",
