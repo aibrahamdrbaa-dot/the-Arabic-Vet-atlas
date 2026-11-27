@@ -791,9 +791,10 @@ initAtlasSpecimen();
 
 // === Subpage Study UX Upgrade (Floating HUD, Tri-Lingual Copy Tiles, Auto-Hide Empty Info, Pro Notes) ===
 (function initStudyUxEnhancements() {
+  const byId = id => document.getElementById(id);
   const stageEl = get('stage');
   let hudEl = null;
-  if (stageEl && !get('stage-hud')) {
+  if (stageEl && !byId('stage-hud')) {
     hudEl = document.createElement('div');
     hudEl.id = 'stage-hud';
     hudEl.className = 'stage-hud';
@@ -815,17 +816,17 @@ initAtlasSpecimen();
         <button type="button" id="hud-isolate">عزل</button>
       </div>`;
     stageEl.append(hudEl);
-    get('hud-open-info').addEventListener('click', () => { if (typeof openPane === 'function') openPane('info'); });
-    get('hud-open-notes').addEventListener('click', () => {
+    byId('hud-open-info').addEventListener('click', () => { if (typeof openPane === 'function') openPane('info'); });
+    byId('hud-open-notes').addEventListener('click', () => {
       if (typeof openPane === 'function') openPane('notes');
       setTimeout(() => get('note')?.focus(), 40);
     });
-    get('hud-isolate').addEventListener('click', () => get('isolate')?.click());
+    byId('hud-isolate').addEventListener('click', () => get('isolate')?.click());
   }
 
   // Inject click-to-copy tri-lingual tiles inside .selected-summary
   const summaryBox = document.querySelector('#pane-info .selected-summary');
-  if (summaryBox && !get('name-tiles')) {
+  if (summaryBox && !byId('name-tiles')) {
     const tiles = document.createElement('div');
     tiles.id = 'name-tiles';
     tiles.className = 'name-tiles';
@@ -849,7 +850,7 @@ initAtlasSpecimen();
 
   // Inject Quick Study Tag Chips above textarea#note + Markdown study-sheet export buttons
   const noteInput = get('note');
-  if (noteInput && !get('note-templates')) {
+  if (noteInput && !byId('note-templates')) {
     const chipsWrap = document.createElement('div');
     chipsWrap.id = 'note-templates';
     chipsWrap.className = 'note-templates';
@@ -876,7 +877,7 @@ ${p.text}` : p.text;
   }
 
   const exportBtn = get('export');
-  if (exportBtn && !get('export-md')) {
+  if (exportBtn && !byId('export-md')) {
     const row = document.createElement('div');
     row.className = 'note-export-row';
     const copyAllBtn = document.createElement('button');
@@ -939,22 +940,22 @@ ${p.text}` : p.text;
     if (hudEl) {
       hudEl.hidden = !s;
       if (s) {
-        get('hud-ar').textContent = s.names.ar;
-        get('hud-latin').textContent = `${s.names.en} · ${s.names.la}`;
-        get('hud-region').textContent = `${s.regionAr} · ${s.lateralityAr}`;
-        get('hud-kind').textContent = s.nodeKindAr || 'عقدة تشريحية';
-        get('hud-isolate').textContent = isolated ? 'إنهاء العزل' : 'عزل';
+        byId('hud-ar').textContent = s.names.ar;
+        byId('hud-latin').textContent = `${s.names.en} · ${s.names.la}`;
+        byId('hud-region').textContent = `${s.regionAr} · ${s.lateralityAr}`;
+        byId('hud-kind').textContent = s.nodeKindAr || 'عقدة تشريحية';
+        byId('hud-isolate').textContent = isolated ? 'إنهاء العزل' : 'عزل';
       }
     }
 
     // 2. Update Tri-Lingual Copy Tiles
-    const tiles = get('name-tiles');
+    const tiles = byId('name-tiles');
     if (tiles) {
       tiles.hidden = !s;
       if (s) {
-        get('tile-ar').textContent = s.names.ar;
-        get('tile-en').textContent = s.names.en;
-        get('tile-la').textContent = s.names.la;
+        byId('tile-ar').textContent = s.names.ar;
+        byId('tile-en').textContent = s.names.en;
+        byId('tile-la').textContent = s.names.la;
       }
     }
 
