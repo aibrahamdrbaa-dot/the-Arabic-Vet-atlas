@@ -10,3 +10,7 @@
 /about/ /#/about 302
 /sources /#/sources 302
 /sources/ /#/sources 302
+/articles /#/articles 302
+/articles/ /#/articles 302
+/animals/* /#/animals/:splat 302
+/articles/* /#/articles/:splat 302

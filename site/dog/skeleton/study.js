@@ -11,7 +11,7 @@ const stage = get('stage');
 const statusEl = get('status');
 let viewer;
 let catalog;
-let specimenId = 'felis-catus-tavernier-2022';
+let specimenId = 'canis-familiaris-tavernier-2024';
 let isolated = false;
 
 function loadStudyState() {
