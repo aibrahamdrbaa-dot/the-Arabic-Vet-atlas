@@ -127,3 +127,109 @@ body.study-focus #stage{min-height:clamp(360px,calc(100dvh - 260px),900px)}
 @media(max-width:999px){.workspace{grid-template-columns:minmax(0,1fr)}#stage{min-height:clamp(280px,48dvh,520px)}.bone-list{max-height:340px}.study-title-row .badge{max-width:100%}}
 @media(max-width:480px){main{padding:10px}.study-title-row h1{font-size:1.22rem}.study-title-row .latin{display:block;margin-top:3px}.atlas-studio-nav{gap:8px}.atlas-studio-brand{margin-inline-end:0}.atlas-studio-brand small{font-size:.65rem}.study-intro-row{gap:8px}.stage-heading{gap:6px;padding:9px}.stage-actions button{font-size:.75rem;padding:5px 7px}.view-strip{gap:6px;padding:7px 9px}.view-strip select{flex:1;min-width:0}.view-strip label{font-size:.75rem}#view-caption{display:none}.stage-bar .btn-row{gap:4px}.stage-bar button{font-size:.75rem;padding:4px 7px}.kbd-hint{font-size:.73rem}.study-pane{padding:12px}}
 @media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}}
+
+
+/* === Subpage Study UX Upgrade (HUD, Nomenclature Tiles, Info Cards, Pro Notes) === */
+#stage{position:relative}
+.stage-hud{
+  position:absolute;bottom:14px;right:14px;z-index:12;
+  max-width:min(360px,calc(100% - 28px));
+  background:rgba(255,255,255,.92);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
+  border:1px solid rgba(15,82,74,.18);border-radius:14px;padding:12px 14px;
+  box-shadow:0 10px 28px rgba(15,35,32,.14);
+  display:flex;flex-direction:column;gap:8px;transition:opacity .18s ease,transform .18s ease;
+}
+.stage-hud[hidden]{display:none!important}
+.stage-hud-top{display:flex;align-items:flex-start;justify-content:space-between;gap:8px}
+.stage-hud-title{margin:0;font-size:.98rem;font-weight:700;color:var(--ink,#132320);line-height:1.35}
+.stage-hud-sub{display:flex;flex-wrap:wrap;gap:6px;align-items:center;font-size:.78rem;color:var(--muted)}
+.stage-hud-pill{
+  display:inline-flex;align-items:center;padding:2px 8px;border-radius:999px;
+  background:rgba(25,118,107,.1);color:#0f524a;font-weight:600;font-size:.74rem;
+}
+.stage-hud-latin{font-size:.8rem;color:#35524d;font-style:italic;direction:ltr;unicode-bidi:isolate}
+.stage-hud-actions{display:flex;gap:6px;flex-wrap:wrap;margin-top:2px}
+.stage-hud-actions button{
+  padding:5px 10px;font-size:.78rem;border-radius:8px;min-height:32px;
+  border:1px solid rgba(15,82,74,.22);background:#fff;color:#0f524a;font-weight:600;cursor:pointer;
+}
+.stage-hud-actions button.primary{background:var(--accent,#19766b);color:#fff;border-color:var(--accent,#19766b)}
+.stage-hud-actions button:hover{filter:brightness(.96)}
+
+/* Refined Selected Nomenclature Card in pane-info */
+.selected-summary{
+  background:linear-gradient(135deg,#f4faf8 0%,#ffffff 100%);
+  border:1px solid rgba(25,118,107,.2);border-radius:14px;padding:14px;margin-bottom:14px;
+}
+.selected-summary h3{margin:0 0 8px;font-size:1.12rem;color:#0d3b36}
+.name-tiles{display:grid;grid-template-columns:1fr;gap:6px;margin:8px 0 10px}
+.name-tile{
+  display:flex;align-items:center;justify-content:space-between;gap:8px;
+  padding:7px 10px;border-radius:9px;background:#fff;border:1px solid var(--border);
+  cursor:pointer;text-align:right;transition:border-color .15s ease,background .15s ease;
+}
+.name-tile:hover{border-color:var(--accent,#19766b);background:#f7fbfa}
+.name-tile-label{font-size:.72rem;font-weight:700;color:var(--muted);flex-shrink:0}
+.name-tile-val{font-size:.86rem;font-weight:600;color:var(--ink,#132320);overflow-wrap:anywhere}
+.name-tile-copy{font-size:.72rem;color:var(--accent,#19766b);font-weight:600;flex-shrink:0}
+
+/* Semantic Medical Info Cards for #card-meta */
+#pane-info #card-meta{display:flex;flex-direction:column;gap:8px;margin:0 0 12px}
+#pane-info #card-meta dt{
+  font-size:.76rem;font-weight:700;color:#0f524a;letter-spacing:.01em;
+  margin:0;padding:8px 12px 2px;background:#f8fbfa;
+  border-right:3px solid var(--accent,#19766b);border-radius:10px 10px 0 0;
+  border-top:1px solid var(--border);border-left:1px solid var(--border);
+}
+#pane-info #card-meta dd{
+  margin:-8px 0 0;padding:2px 12px 10px;font-size:.88rem;line-height:1.7;color:var(--ink,#1d2b28);
+  background:#f8fbfa;border-right:3px solid var(--accent,#19766b);border-radius:0 0 10px 10px;
+  border-bottom:1px solid var(--border);border-left:1px solid var(--border);
+}
+#pane-info #card-meta dt.info-hidden,#pane-info #card-meta dd.info-hidden{display:none!important}
+
+/* Pro Notes Workspace */
+.note-templates{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 10px}
+.note-chip{
+  padding:4px 9px;border-radius:999px;font-size:.76rem;font-weight:600;min-height:30px;
+  background:#f2f8f6;color:#0f524a;border:1px solid rgba(25,118,107,.24);cursor:pointer;
+}
+.note-chip:hover{background:#e2f2ee;border-color:#19766b}
+#pane-notes textarea#note{
+  min-height:132px;line-height:1.7;font-size:.9rem;padding:12px;border-radius:12px;
+  border:1.5px solid var(--border);background:#fff;transition:border-color .15s ease,box-shadow .15s ease;
+}
+#pane-notes textarea#note:focus{border-color:var(--accent,#19766b);box-shadow:0 0 0 3px rgba(25,118,107,.12);outline:none}
+.note-list{display:flex;flex-direction:column;gap:8px;margin-top:8px}
+.note-list .saved-note-card{
+  display:flex;flex-direction:column;gap:4px;width:100%;text-align:right;
+  padding:10px 12px;border-radius:11px;background:#fff;border:1px solid var(--border);
+  border-right:3px solid var(--accent,#19766b);cursor:pointer;transition:transform .12s ease,border-color .15s ease;
+}
+.note-list .saved-note-card:hover{border-color:var(--accent,#19766b);background:#f7fbfa}
+.note-list .saved-note-head{display:flex;justify-content:space-between;align-items:baseline;gap:6px;flex-wrap:wrap}
+.note-list .saved-note-latin{font-size:.74rem;color:var(--muted);font-style:italic;direction:ltr}
+.note-list .saved-note-preview{font-size:.82rem;color:#334642;line-height:1.55;white-space:pre-line}
+.note-export-row{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px}
+.note-export-row button{padding:8px 10px;font-size:.82rem;border-radius:10px}
+
+/* Tab badge counter */
+.tab-badge{
+  display:inline-flex;align-items:center;justify-content:center;min-width:18px;height:18px;
+  padding:0 5px;margin-inline-start:4px;border-radius:999px;font-size:.7rem;font-weight:700;
+  background:rgba(25,118,107,.14);color:#0f524a;vertical-align:middle;
+}
+.study-switcher button[aria-pressed=true] .tab-badge{background:rgba(255,255,255,.26);color:#fff}
+
+/* Bone list polish */
+.bone-item{border-radius:11px;transition:border-color .14s ease,background .14s ease}
+.bone-item[aria-pressed=true]{background:#eef7f5;border-color:var(--accent,#19766b);box-shadow:inset 3px 0 0 var(--accent,#19766b)}
+.note-marker{
+  display:inline-flex;align-items:center;gap:4px;margin-top:4px;padding:2px 8px;
+  border-radius:999px;font-size:.72rem;font-weight:600;background:#fff4d6;color:#7a4f01;
+}
+
+@media (max-width:640px){
+  .stage-hud{bottom:8px;right:8px;left:8px;max-width:none;padding:10px 12px}
+  .note-export-row{grid-template-columns:1fr}
+}

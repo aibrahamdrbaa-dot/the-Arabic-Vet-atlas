@@ -259,6 +259,7 @@ function saveNote(force = false) {
   get('note-status').textContent = 'محفوظة محليًا';
   renderSavedNotes();
   renderBoneList();
+  window.__syncStudyUx?.();
   return true;
 }
 get('note').disabled = true;
@@ -319,6 +320,7 @@ function showSelection() {
   ensureSelectedVisible();
   refreshVisibility();
   refreshAllMaterials();
+  window.__syncStudyUx?.();
 }
 function selectPart(id, reveal = true) {
   const select = get('part');
@@ -785,3 +787,240 @@ async function initAtlasSpecimen() {
 
 for (const name of ['dragover','drop']) document.addEventListener(name, e => { if (Array.from(e.dataTransfer?.types || []).includes('Files')) e.preventDefault(); });
 initAtlasSpecimen();
+
+
+// === Subpage Study UX Upgrade (Floating HUD, Tri-Lingual Copy Tiles, Auto-Hide Empty Info, Pro Notes) ===
+(function initStudyUxEnhancements() {
+  const byId = id => document.getElementById(id);
+  const exitFocusIfActive = () => {
+    if (document.body.classList.contains('study-focus')) {
+      document.body.classList.remove('study-focus');
+      get('focus-mode')?.setAttribute('aria-pressed', 'false');
+    }
+  };
+
+  const stageEl = get('stage');
+  let hudEl = null;
+  if (stageEl && !byId('stage-hud')) {
+    hudEl = document.createElement('div');
+    hudEl.id = 'stage-hud';
+    hudEl.className = 'stage-hud';
+    hudEl.hidden = true;
+    hudEl.innerHTML = `
+      <div class="stage-hud-top">
+        <div>
+          <h3 id="hud-ar" class="stage-hud-title"></h3>
+          <div id="hud-latin" class="stage-hud-latin"></div>
+        </div>
+      </div>
+      <div class="stage-hud-sub">
+        <span id="hud-region" class="stage-hud-pill"></span>
+        <span id="hud-kind" class="stage-hud-pill"></span>
+      </div>
+      <div class="stage-hud-actions">
+        <button type="button" id="hud-open-info" class="primary">المعلومات</button>
+        <button type="button" id="hud-open-notes">دوّن ملاحظة</button>
+        <button type="button" id="hud-isolate">عزل</button>
+      </div>`;
+    stageEl.append(hudEl);
+    byId('hud-open-info').addEventListener('click', () => {
+      exitFocusIfActive();
+      if (typeof openPane === 'function') openPane('info');
+    });
+    byId('hud-open-notes').addEventListener('click', () => {
+      exitFocusIfActive();
+      if (typeof openPane === 'function') openPane('notes');
+      setTimeout(() => get('note')?.focus(), 40);
+    });
+    byId('hud-isolate').addEventListener('click', () => get('isolate')?.click());
+  }
+
+  // Click-to-copy tri-lingual tiles inside .selected-summary
+  const summaryBox = document.querySelector('#pane-info .selected-summary');
+  if (summaryBox && !byId('name-tiles')) {
+    const tiles = document.createElement('div');
+    tiles.id = 'name-tiles';
+    tiles.className = 'name-tiles';
+    tiles.hidden = true;
+    tiles.innerHTML = `
+      <button type="button" class="name-tile"><span class="name-tile-label">العربي</span><span class="name-tile-val" id="tile-ar"></span><span class="name-tile-copy">نسخ</span></button>
+      <button type="button" class="name-tile"><span class="name-tile-label">English</span><span class="name-tile-val" id="tile-en" dir="ltr"></span><span class="name-tile-copy">نسخ</span></button>
+      <button type="button" class="name-tile"><span class="name-tile-label">NAV</span><span class="name-tile-val" id="tile-la" dir="ltr"></span><span class="name-tile-copy">نسخ</span></button>`;
+    const copyBtn = get('copy-names');
+    summaryBox.insertBefore(tiles, copyBtn || null);
+    tiles.querySelectorAll('.name-tile').forEach(btn => {
+      btn.addEventListener('click', async () => {
+        const val = btn.querySelector('.name-tile-val')?.textContent?.trim();
+        if (!val || val === '—') return;
+        const lbl = btn.querySelector('.name-tile-copy');
+        try {
+          await navigator.clipboard.writeText(val);
+          if (lbl) { lbl.textContent = 'تم النسخ ✓'; setTimeout(() => { lbl.textContent = 'نسخ'; }, 1400); }
+        } catch {
+          if (lbl) { lbl.textContent = 'تعذّر النسخ'; setTimeout(() => { lbl.textContent = 'نسخ'; }, 1600); }
+        }
+      });
+    });
+  }
+
+  // Quick Study Tag Chips above textarea#note + Markdown study-sheet export buttons
+  const noteInput = get('note');
+  if (noteInput && !byId('note-templates')) {
+    const chipsWrap = document.createElement('div');
+    chipsWrap.id = 'note-templates';
+    chipsWrap.className = 'note-templates';
+    const presets = [
+      { label: '📌 مهم للامتحان', text: '📌 مهم للامتحان: ' },
+      { label: '❓ سؤال للمراجعة', text: '❓ سؤال للمراجعة: ' },
+      { label: '🩺 ملاحظة سريرية', text: '🩺 ملاحظة سريرية: ' },
+      { label: '⚖️ مقارنة تشريحية', text: '⚖️ مقارنة تشريحية: ' },
+    ];
+    for (const p of presets) {
+      const b = document.createElement('button');
+      b.type = 'button'; b.className = 'note-chip'; b.textContent = p.label;
+      b.addEventListener('click', () => {
+        if (noteInput.disabled) return;
+        const cur = noteInput.value;
+        noteInput.value = cur ? `${cur.trimEnd()}\n${p.text}` : p.text;
+        noteInput.focus();
+        noteInput.dispatchEvent(new Event('input', { bubbles: true }));
+      });
+      chipsWrap.append(b);
+    }
+    noteInput.parentNode.insertBefore(chipsWrap, noteInput);
+  }
+
+  const exportBtn = get('export');
+  if (exportBtn && !byId('export-md')) {
+    const row = document.createElement('div');
+    row.className = 'note-export-row';
+    const copyAllBtn = document.createElement('button');
+    copyAllBtn.type = 'button'; copyAllBtn.id = 'copy-all-notes'; copyAllBtn.textContent = 'نسخ ملخص ملاحظاتي';
+    const mdBtn = document.createElement('button');
+    mdBtn.type = 'button'; mdBtn.id = 'export-md'; mdBtn.textContent = 'تنزيل ورقة مراجعة (.md)';
+    row.append(copyAllBtn, mdBtn);
+    exportBtn.parentNode.insertBefore(row, exportBtn);
+
+    function buildMarkdownNotes() {
+      const notes = { ...specimenBucket().notes };
+      // Preserve live unsaved textarea edits for the currently selected structure
+      const curId = selectedId();
+      const curVal = get('note')?.value ?? '';
+      if (curVal.trim()) notes[curId] = curVal;
+      const entries = Object.entries(notes).filter(([id, v]) => (id === 'specimen:overview' || parts.has(id)) && typeof v === 'string' && v.trim());
+      const title = catalog?.specimen?.titleAr || 'ملاحظات الأطلس البيطري العربي';
+      if (!entries.length) return `# ${title}\n\nلا توجد ملاحظات محفوظة بعد.\n`;
+      const lines = [`# ${title}`, ''];
+      for (const [id, v] of entries) {
+        const s = parts.get(id)?.structure;
+        const heading = s ? `${s.names.ar} (${s.names.en} — *${s.names.la}*)` : noteLabel(id);
+        lines.push(`## ${heading}`, '', v.trim(), '');
+      }
+      return lines.join('\n');
+    }
+
+    copyAllBtn.addEventListener('click', async () => {
+      try {
+        await navigator.clipboard.writeText(buildMarkdownNotes());
+        copyAllBtn.textContent = 'تم نسخ الملخص ✓';
+      } catch {
+        copyAllBtn.textContent = 'تعذّر النسخ';
+      }
+      setTimeout(() => { copyAllBtn.textContent = 'نسخ ملخص ملاحظاتي'; }, 1600);
+    });
+    mdBtn.addEventListener('click', () => {
+      const blob = new Blob([buildMarkdownNotes()], { type: 'text/markdown;charset=utf-8' });
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = `${specimenId || 'vet-atlas'}-notes.md`;
+      a.click();
+      setTimeout(() => URL.revokeObjectURL(a.href), 1500);
+    });
+  }
+
+  // Live badge counter on Notes tab button & top ملاحظاتي button
+  const notesTabBtn = document.querySelector('.study-switcher button[data-pane="notes"]');
+  let tabBadge = null;
+  if (notesTabBtn && !notesTabBtn.querySelector('.tab-badge')) {
+    tabBadge = document.createElement('span');
+    tabBadge.className = 'tab-badge';
+    tabBadge.hidden = true;
+    notesTabBtn.append(tabBadge);
+  }
+
+  window.__syncStudyUx = function syncStudyUx() {
+    const id = selectedId();
+    const part = parts.get(id);
+    const s = part?.structure;
+
+    if (hudEl) {
+      hudEl.hidden = !s;
+      if (s) {
+        byId('hud-ar').textContent = s.names.ar;
+        byId('hud-latin').textContent = `${s.names.en} · ${s.names.la}`;
+        byId('hud-region').textContent = `${s.regionAr} · ${s.lateralityAr}`;
+        byId('hud-kind').textContent = s.nodeKindAr || 'عقدة تشريحية';
+        byId('hud-isolate').textContent = isolated ? 'إنهاء العزل' : 'عزل';
+      }
+    }
+
+    const tiles = byId('name-tiles');
+    if (tiles) {
+      tiles.hidden = !s;
+      if (s) {
+        byId('tile-ar').textContent = s.names.ar;
+        byId('tile-en').textContent = s.names.en;
+        byId('tile-la').textContent = s.names.la;
+      }
+    }
+
+    const metaDl = get('card-meta');
+    if (metaDl) {
+      metaDl.querySelectorAll('dt').forEach(dt => {
+        const dd = dt.nextElementSibling;
+        if (!dd || dd.tagName !== 'DD') return;
+        const val = (dd.textContent || '').trim();
+        const empty = !val || val === '—';
+        dt.classList.toggle('info-hidden', empty);
+        dd.classList.toggle('info-hidden', empty);
+      });
+    }
+
+    if (catalog?.specimen?.id) {
+      const notes = specimenBucket().notes;
+      const entries = Object.entries(notes).filter(([nid, v]) => (nid === 'specimen:overview' || parts.has(nid)) && typeof v === 'string' && v.trim());
+      if (tabBadge) {
+        tabBadge.textContent = String(entries.length);
+        tabBadge.hidden = entries.length === 0;
+      }
+      const openNotesBtn = get('open-notes');
+      if (openNotesBtn) {
+        openNotesBtn.textContent = entries.length ? `ملاحظاتي (${entries.length})` : 'ملاحظاتي';
+      }
+      const box = get('saved-notes');
+      if (box && entries.length) {
+        box.replaceChildren();
+        for (const [nid, value] of entries) {
+          const ns = parts.get(nid)?.structure;
+          const card = document.createElement('button');
+          card.type = 'button'; card.className = 'saved-note-card';
+          const head = document.createElement('div'); head.className = 'saved-note-head';
+          const title = document.createElement('strong'); title.textContent = noteLabel(nid);
+          head.append(title);
+          if (ns?.names?.la) {
+            const lat = document.createElement('span'); lat.className = 'saved-note-latin'; lat.textContent = ns.names.la;
+            head.append(lat);
+          }
+          const preview = document.createElement('div'); preview.className = 'saved-note-preview';
+          preview.textContent = value.length > 140 ? value.slice(0, 140) + '…' : value;
+          card.append(head, preview);
+          card.addEventListener('click', () => {
+            selectPart(nid === 'specimen:overview' ? '' : nid, false);
+            if (typeof openPane === 'function') openPane('notes');
+          });
+          box.append(card);
+        }
+      }
+    }
+  };
+})();
