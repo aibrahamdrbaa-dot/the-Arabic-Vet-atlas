@@ -260,6 +260,7 @@ function saveNote(force = false) {
   renderSavedNotes();
   renderBoneList();
   window.__syncStudyUx?.();
+  return true;
 }
 get('note').disabled = true;
 get('save').disabled = true;
